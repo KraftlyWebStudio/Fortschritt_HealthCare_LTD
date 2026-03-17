@@ -21,7 +21,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative h-[700px] flex items-center overflow-hidden bg-slate-100">
+    <section id="home" className="relative h-[850px] flex items-center overflow-hidden bg-slate-100">
       {/* Background Image Slider */}
       <div className="absolute inset-0 z-0">
         {images.map((img, idx) => (
@@ -83,8 +83,10 @@ const Hero = () => {
           <button
             key={idx}
             onClick={() => setCurrentImage(idx)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              idx === currentImage ? "w-8 bg-primary" : "w-3 bg-primary/20"
+            className={`w-3 h-3 rounded-full transition-all duration-300 border-2 ${
+              idx === currentImage 
+                ? "bg-primary border-primary scale-125 shadow-lg shadow-primary/20" 
+                : "bg-white/50 border-white/50 hover:bg-white hover:border-white"
             }`}
           />
         ))}

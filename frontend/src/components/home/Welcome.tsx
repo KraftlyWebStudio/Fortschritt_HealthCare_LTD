@@ -30,43 +30,33 @@ const Welcome = () => {
             </button>
           </div>
 
-          {/* Visual Side with Custom Butterfly Shape */}
-          <div className="lg:w-1/2 relative group">
-            {/* Butterfly/Organic Shape Container */}
-            <div className="relative w-full aspect-[4/3] md:aspect-square flex items-center justify-center">
-              {/* Outer Decorative Glow */}
-              <div className="absolute inset-0 bg-secondary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              
-              {/* Complex Butterfly Shape Mask */}
-              <div 
-                className="relative w-full h-full overflow-hidden"
-                style={{
-                  clipPath: 'path("M232,23.3C212.7,46.5,200,81.4,200,120s12.7,73.5,32,96.7c18.5,22.4,59.3,43.3,118,43.3 c24.6,0,50-1.8,75-5c24,24,35,45,35,85c0,100-80,160-260,160S0,440,0,340c0-40,11-61,35-85c25,3.2,50.4,5,75,5 c58.7,0,99.5-20.9,118-43.3c19.3-23.2,32-58.1,32-96.7s-12.7-73.5-32-96.7C209.5,72.4,168.7,51.5,110,51.5 c-24.6,0-50,1.8-75,5C11,32,0,11,0-29c0-100,80-160,260-160s260,60,260,160c0,40-11,61-35,85 c-25-3.2-50.4-5-75-5C311.3,74.5,270.5,95.4,232,23.3z")',
-                  // Note: Simplified for now as clip-paths are complex, using a more manageable organic shape for reliable rendering
-                  borderRadius: '35% 65% 69% 31% / 46% 38% 62% 54%',
-                  border: '8px solid white',
-                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-                }}
-              >
+          {/* Visual Side with 3D Card Flip */}
+          <div className="lg:w-1/2 relative group perspective-[2000px]">
+            {/* Flip Container */}
+            <div className="relative w-full aspect-[4/3] transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
+              {/* Front Side */}
+              <div className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
                 <img 
                   src="/images/about-facility.png" 
-                  alt="Inside Fortschritt Facility"
+                  alt="Modern Pharmaceutical Facility"
                   className="w-full h-full object-cover"
                 />
-                
-                {/* Accent Colors as per reference */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-cyan-400 opacity-80 mix-blend-multiply rounded-full -mr-12 -mt-12"></div>
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-secondary opacity-60 mix-blend-multiply rounded-full -ml-16 -mb-16"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
 
-              {/* Decorative Border Layer to simulate the double lines in reference */}
-              <div 
-                className="absolute inset-0 -z-10 bg-gradient-to-tr from-secondary to-cyan-400 opacity-20"
-                style={{
-                  borderRadius: '35% 65% 69% 31% / 46% 38% 62% 54%',
-                  transform: 'scale(1.05)'
-                }}
-              ></div>
+              {/* Back Side */}
+              <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
+                <img 
+                  src="/images/home/hero-scientist.png" 
+                  alt="Medical Research"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-secondary/20 mix-blend-overlay"></div>
+              </div>
+
+              {/* Decorative Accents */}
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-secondary/10 rounded-full blur-3xl -z-10 group-hover:bg-cyan-400/10 transition-colors"></div>
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-pink-500/10 rounded-full blur-3xl -z-10 group-hover:bg-secondary/10 transition-colors"></div>
             </div>
           </div>
         </div>
