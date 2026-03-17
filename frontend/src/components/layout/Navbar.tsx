@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,12 +14,24 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToTop = (e: React.MouseEvent) => {
+    // If we are already on the home page, scroll smoothly
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <header className={`sticky top-0 z-50 w-full bg-white border-b border-primary/10 transition-shadow ${isScrolled ? "shadow-sm" : ""}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center gap-4">
+          <Link 
+            href="/" 
+            onClick={scrollToTop}
+            className="flex items-center gap-4 hover:opacity-80 transition-opacity cursor-pointer"
+          >
             <img 
               src="/images/brand/logo.png" 
               alt="Fortschritt Healthcare" 
@@ -28,11 +41,17 @@ const Navbar = () => {
               <span className="text-primary font-extrabold text-xl tracking-tight">FORTSCHRITT</span>
               <span className="text-secondary text-[10px] font-semibold tracking-widest uppercase">Healthcare Limited</span>
             </div>
-          </div>
+          </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-slate-600 hover:text-primary font-medium transition-colors">Home</a>
+            <Link 
+              href="/" 
+              onClick={scrollToTop}
+              className="text-slate-600 hover:text-primary font-medium transition-colors"
+            >
+              Home
+            </Link>
             <a href="#about" className="text-slate-600 hover:text-primary font-medium transition-colors">About</a>
             <div className="relative group">
               <button className="flex items-center gap-1 text-slate-600 hover:text-primary font-medium transition-colors">
