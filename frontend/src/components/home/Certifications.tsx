@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FadeUp, FadeIn, StaggerGrid, staggerItem, motion } from "@/utils/animations";
+import { FadeIn, StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const certifications = [
   { title: "WHO-GMP", description: "Compliance with World Health Organization Good Manufacturing Practices ensuring consistent quality.", code: "WHO" },
