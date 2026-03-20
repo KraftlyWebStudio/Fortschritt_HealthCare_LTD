@@ -97,7 +97,6 @@ export function StaggerGrid({
       variants={staggerContainer}
       initial="hidden"
       animate={inView ? "show" : "hidden"}
-      style={{ transitionDelay: `${delay}s` }}
     >
       {children}
     </motion.div>
