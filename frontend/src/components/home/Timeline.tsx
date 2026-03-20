@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FadeIn, FadeUp, StaggerGrid, staggerItem, motion } from "@/utils/animations";
+import { FadeIn, motion } from "@/utils/animations";
 
 const milestones = [
   { year: "2012", title: "The Genesis", description: "Fortschritt Healthcare Limited was established with a mission to bring high-quality primary care formulations to the Indian market." },
