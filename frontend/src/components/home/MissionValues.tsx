@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FadeUp, StaggerGrid, staggerItem, motion } from "@/utils/animations";
+import { StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const values = [
   { title: "Our Mission", description: "To enhance the quality of human life by providing innovative, high-quality, and affordable pharmaceutical products across the nation.", icon: "rocket_launch" },
