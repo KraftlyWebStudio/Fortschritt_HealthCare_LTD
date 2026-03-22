@@ -112,6 +112,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) {
+        clearTimeout(closeTimer.current);
+        closeTimer.current = null;
+      }
+    };
+  }, []);
+
   const open = (label: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setActiveDropdown(label);
