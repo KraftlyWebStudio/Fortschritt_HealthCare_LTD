@@ -32,7 +32,11 @@ const MissionValues = () => {
                 {item.description}
               </p>
               <div className="pt-8 border-t border-slate-100">
-                <a href="/#about" className="inline-flex items-center gap-3 text-primary font-bold hover:gap-5 transition-all group/link">
+                <a
+                  href="/#about"
+                  aria-label={`Learn more about ${item.title}`}
+                  className="inline-flex items-center gap-3 text-primary font-bold hover:gap-5 transition-all group/link"
+                >
                   Learn More
                   <span className="material-icons text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
                 </a>
