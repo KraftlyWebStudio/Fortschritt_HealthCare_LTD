@@ -27,9 +27,9 @@ function Section({ children, className = "" }: { children: React.ReactNode; clas
   );
 }
 
-const WHATSAPP = "https://wa.me/919999999999";
-const PHONE = "tel:+919999999999";
-const EMAIL = "mailto:info@fortschritt.com";
+const WHATSAPP = "https://wa.me/919816388337";
+const PHONE = "tel:+919816388337";
+const EMAIL = "mailto:fortschritthealthcare@gmail.com";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", subject: "", message: "" });
@@ -60,7 +60,7 @@ export default function ContactPage() {
               <span className="animate-ping absolute h-full w-full rounded-full bg-white opacity-60"></span>
               <span className="relative rounded-full h-2 w-2 bg-white"></span>
             </span>
-            We Respond Within 2 Hours
+            We Respond Within 24 Hours
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease }}
@@ -100,17 +100,17 @@ export default function ContactPage() {
             {
               icon: "call", color: "primary", href: PHONE,
               title: "Call Direct", sub: "Speak to our team instantly",
-              value: "+91 99999 99999", action: "Call Now →",
+              value: "+91 98163 88337 (Mr. Naveen)", action: "Call Now →",
             },
             {
               icon: "chat", color: "green", href: WHATSAPP,
               title: "WhatsApp", sub: "Chat, share enquiries & get quotes",
-              value: "+91 99999 99999", action: "Open Chat →",
+              value: "+91 98163 88337 (Mr. Naveen)", action: "Open Chat →",
             },
             {
               icon: "mail_outline", color: "secondary", href: EMAIL,
               title: "Email Us", sub: "Detailed enquiries & documentation",
-              value: "info@fortschritt.com", action: "Compose →",
+              value: "fortschritthealthcare@gmail.com", action: "Compose →",
             },
           ].map((card) => (
             <motion.a key={card.title} href={card.href}
@@ -156,9 +156,9 @@ export default function ContactPage() {
             </div>
 
             {[
-              { icon: "location_on", title: "Registered Office", lines: ["Baddi Industrial Area,", "Solan, Himachal Pradesh – 173205"], color: "primary" },
-              { icon: "schedule", title: "Working Hours", lines: ["Mon – Sat: 9:00 AM – 6:00 PM", "Sundays: By Appointment Only"], color: "secondary" },
-              { icon: "business", title: "Corporate Office", lines: ["Contact us for corporate address", "and directions"], color: "primary" },
+              { icon: "business", title: "Corporate Office", lines: ["201, Suraj Heritage, G.B Road,", "Thane, Maharashtra – 400615"], color: "primary" },
+              { icon: "store", title: "Office Address", lines: ["No.- 80, Ground Floor, Modern Complex,", "Sai Road Baddi, Himachal Pradesh – 173205"], color: "secondary" },
+              { icon: "factory", title: "Plant Address", lines: ["91/2, DIC Industrial Area Baddi,", "Himachal Pradesh – 173205"], color: "primary" },
             ].map((item) => (
               <motion.div key={item.title}
                 whileHover={{ x: 6 }}
@@ -177,19 +177,29 @@ export default function ContactPage() {
               </motion.div>
             ))}
 
-            <div className="p-6 bg-primary rounded-2xl">
-              <h4 className="text-white font-bold mb-3 flex items-center gap-2">
-                <span className="material-icons text-sm">chat</span>
-                Need quick help?
+            <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm">
+              <h4 className="font-bold text-primary mb-4 flex items-center gap-2">
+                <span className="material-icons text-base">contacts</span>
+                Key Contacts
               </h4>
-              <p className="text-white/70 text-sm mb-5">For fastest response, reach us directly on WhatsApp. Our team typically replies in under 20 minutes during business hours.</p>
-              <motion.a href={WHATSAPP} target="_blank"
-                whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-                className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white font-bold rounded-xl text-sm shadow-lg shadow-green-500/20 hover:bg-[#1db954] transition-colors">
-                <span className="material-icons text-base">chat</span>
-                Open WhatsApp Now
-              </motion.a>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">NK</div>
+                  <div>
+                    <p className="font-bold text-slate-700 text-sm">Mr. Naveen Kandpal</p>
+                    <a href="tel:+919816388337" className="text-primary text-xs font-semibold hover:underline">+91 98163 88337</a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center text-secondary font-bold text-sm flex-shrink-0">CN</div>
+                  <div>
+                    <p className="font-bold text-slate-700 text-sm">Mr. Chander Negi</p>
+                    <a href="tel:+919223808080" className="text-secondary text-xs font-semibold hover:underline">+91 92238 08080</a>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </motion.div>
 
           <motion.div
@@ -226,7 +236,7 @@ export default function ContactPage() {
                 <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                   <div className="mb-10">
                     <h2 className="text-3xl font-extrabold text-primary mb-2">Send an Enquiry</h2>
-                    <p className="text-slate-500">We'll get back to you within 2 hours on business days.</p>
+                    <p className="text-slate-500">We'll get back to you within 24 hours on business days.</p>
                   </div>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-6">
@@ -341,9 +351,11 @@ export default function ContactPage() {
           className="rounded-[40px] overflow-hidden shadow-2xl shadow-primary/10 border border-slate-100">
           <div className="relative">
             <iframe
-              src="https://maps.google.com/maps?q=Baddi,Himachal+Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3422.5066238716545!2d76.80261949999999!3d30.9284121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ff53dc9472b9d%3A0x9f36d53280d4795f!2sFortschritt%20healthcare%20Limited!5e0!3m2!1sen!2sin!4v1774167141984!5m2!1sen!2sin"
               className="w-full h-[420px] border-0"
               loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
             />
             <div className="absolute inset-0 pointer-events-none border border-white/10 rounded-[40px]" />
           </div>
@@ -351,7 +363,7 @@ export default function ContactPage() {
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
               <div>
                 <h3 className="text-2xl font-extrabold text-white mb-2">Find Our Manufacturing Facility</h3>
-                <p className="text-white/70 text-lg">Baddi Industrial Area, Solan, Himachal Pradesh – 173205</p>
+                <p className="text-white/70 text-lg">91/2, DIC Industrial Area Baddi, Himachal Pradesh – 173205</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
                 <motion.a href={PHONE} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}

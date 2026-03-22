@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
     },
     {
       title: "Your Rights",
-      content: "You have the right to access, correct, or delete your personal information. You may also object to or restrict our processing of your data. To exercise these rights, please contact us at privacy@fortschritt.com.",
+      content: "You have the right to access, correct, or delete your personal information. You may also object to or restrict our processing of your data. To exercise these rights, please contact us at fortschritthealthcare@gmail.com.",
     },
     {
       title: "Cookies",
@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
     },
     {
       title: "Contact Us",
-      content: "If you have questions about this Privacy Policy or our data practices, please contact our Data Protection Officer at privacy@fortschritt.com or write to us at our registered office.",
+      content: "If you have questions about this Privacy Policy or our data practices, please contact our Data Protection Officer at fortschritthealthcare@gmail.com or write to us at our registered office.",
     },
   ];
 
@@ -45,7 +45,7 @@ export default function PrivacyPolicyPage() {
       <section className="py-16 bg-primary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-extrabold text-white mb-4">Privacy Policy</h1>
-          <p className="text-white/70">Effective Date: January 1, 2024 · Last Updated: March 2024</p>
+          <p className="text-white/70">Effective Date: January 1, 2024 · Last Updated: March 2026</p>
         </div>
       </section>
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

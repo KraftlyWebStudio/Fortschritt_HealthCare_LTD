@@ -54,16 +54,19 @@ const Footer = () => {
             <h4 className="font-bold text-lg mb-6 text-secondary">Contact Info</h4>
             <ul className="space-y-4 text-white/70 text-sm">
               <li className="flex items-start gap-3">
-                <span className="material-icons text-secondary text-base pt-1">location_on</span>
-                <span>Corporate Headquarters,<br/>Corporate Tower, City Plaza</span>
+                <span className="material-icons text-secondary text-base pt-1">business</span>
+                <span>201, Suraj Heritage, G.B Road,<br/>Thane, Maharashtra – 400615</span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="material-icons text-secondary text-base">call</span>
-                <span>+1 (234) 567-890</span>
+              <li className="flex items-start gap-3">
+                <span className="material-icons text-secondary text-base pt-1">call</span>
+                <span>
+                  <a href="tel:+919816388337" className="hover:text-white transition-colors">+91 98163 88337</a> (Mr. Naveen)<br/>
+                  <a href="tel:+919223808080" className="hover:text-white transition-colors">+91 92238 08080</a> (Mr. Chander)
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-icons text-secondary text-base">mail</span>
-                <span>info@fortschritt.com</span>
+                <a href="mailto:fortschritthealthcare@gmail.com" className="hover:text-white transition-colors">fortschritthealthcare@gmail.com</a>
               </li>
             </ul>
           </div>
