@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const heroSlides = [
   {
@@ -32,6 +33,7 @@ const Hero = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
     const interval = setInterval(() => {
       setSlide((prev) => (prev + 1) % heroSlides.length);
@@ -106,19 +108,19 @@ const Hero = () => {
                     transition={{ delay: 0.35 }}
                     className="flex flex-wrap gap-5"
                   >
-                    <a
+                    <Link
                       href="/products"
                       className="bg-primary text-white px-10 py-5 rounded-2xl font-bold text-lg hover:scale-[1.05] hover:shadow-primary/40 active:scale-[0.98] transition-all shadow-2xl shadow-primary/20 flex items-center gap-3 group"
                     >
                       Explore Portfolio
                       <span className="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       href="/#about"
                       className="glass text-slate-700 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/90 hover:scale-[1.05] transition-all flex items-center gap-3 border border-slate-200"
                     >
                       Our History
-                    </a>
+                    </Link>
                   </motion.div>
                 </motion.div>
               </AnimatePresence>

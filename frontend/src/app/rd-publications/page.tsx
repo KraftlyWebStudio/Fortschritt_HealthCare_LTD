@@ -33,7 +33,7 @@ export default function RDPublicationsPage() {
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">R&D Publications</h1>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Peer-reviewed research and scientific publications from Fortschritt Healthcare's R&D division.
+            Peer-reviewed research and scientific publications from Fortschritt Healthcare&apos;s R&D division.
           </p>
         </div>
       </section>

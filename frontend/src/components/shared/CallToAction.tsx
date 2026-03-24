@@ -15,8 +15,8 @@ const CallToAction = () => {
                 Ready to Partner for a{" "}<span className="text-secondary">Healthier World?</span>
               </h2>
               <p className="text-white/80 text-lg leading-relaxed mb-10">
-                Join our global network of healthcare pioneers. Whether you're looking for specialized distribution, contract manufacturing, or R&D collaboration, let's innovate together.
-              </p>
+                Join our global network of healthcare pioneers. Whether you&apos;re looking for specialized distribution, contract manufacturing, or R&D collaboration, let&apos;s innovate together.
+                   </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                 <button className="px-10 py-5 bg-white text-primary font-extrabold rounded-2xl shadow-xl hover:bg-slate-50 hover:shadow-white/10 transition-all flex items-center gap-3">
                   Start Collaboration
@@ -40,8 +40,8 @@ const CallToAction = () => {
                   </div>
                 </div>
                 <p className="text-white/80 text-sm leading-relaxed mb-6">
-                  "Our dedicated regulatory and support team ensures that your partnership experience is seamless across time zones."
-                </p>
+                  &quot;Our dedicated regulatory and support team ensures that your partnership experience is seamless across time zones.&quot;
+                     </p>
                 <div className="pt-6 border-t border-white/10">
                   <div className="text-white font-bold">Dr. Sarah Jenkins</div>
                   <div className="text-white/60 text-xs tracking-widest uppercase">Head of Global Partnerships</div>

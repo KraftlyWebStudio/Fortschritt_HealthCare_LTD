@@ -54,8 +54,8 @@ export default function PrivacyPolicyPage() {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 md:p-12">
           <p className="text-slate-600 leading-relaxed mb-10 text-lg">
-            Fortschritt Healthcare Limited ("we", "us", or "our") is committed to protecting your privacy. This policy describes how we collect, use, and safeguard your personal information when you visit our website or interact with us.
-          </p>
+            Fortschritt Healthcare Limited (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is committed to protecting your privacy. This policy describes how we collect, use, and safeguard your personal information when you visit our website or interact with us.
+                                   </p>
           <div className="space-y-8">
             {sections.map((s, i) => (
               <div key={s.title}>

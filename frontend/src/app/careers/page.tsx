@@ -266,10 +266,10 @@ export default function CareersPage() {
               <span className="material-icons text-4xl">flight_takeoff</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">
-              Don't see a perfect fit?
+              Don&apos;t see a perfect fit?
             </h2>
             <p className="text-white/80 text-lg leading-relaxed mb-10">
-              We are constantly looking for talented professionals to join our ranks. Send us your resume and we'll keep you in mind for future opportunities.
+              We are constantly looking for talented professionals to join our ranks. Send us your resume and we&apos;ll keep you in mind for future opportunities.
             </p>
             <a 
               href="mailto:fortschritthealthcare@gmail.com?subject=Spontaneous Application"

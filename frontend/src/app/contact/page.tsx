@@ -65,7 +65,7 @@ export default function ContactPage() {
 
           <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease }}
             className="text-5xl md:text-7xl font-extrabold text-white leading-[1.05] mb-8">
-            Let's Build Something<br />
+            Let&apos;s Build Something<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-200">
               Great Together
             </span>
@@ -73,7 +73,7 @@ export default function ContactPage() {
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.25 }}
             className="text-white/70 text-xl max-w-2xl mx-auto mb-14 leading-relaxed font-medium">
-            Whether you're looking for a manufacturing partner, product enquiry, or expert consultation — reach us instantly via your preferred channel.
+            Whether you&apos;re looking for a manufacturing partner, product enquiry, or expert consultation — reach us instantly via your preferred channel.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.38 }}
@@ -151,7 +151,7 @@ export default function ContactPage() {
                 Every way to reach us
               </h2>
               <p className="text-slate-500 text-lg leading-relaxed">
-                We're available across all channels — choose whatever is most convenient for you.
+                We&apos;re available across all channels — choose whatever is most convenient for you.
               </p>
             </div>
 
@@ -236,7 +236,7 @@ export default function ContactPage() {
                 <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                   <div className="mb-10">
                     <h2 className="text-3xl font-extrabold text-primary mb-2">Send an Enquiry</h2>
-                    <p className="text-slate-500">We'll get back to you within 24 hours on business days.</p>
+                    <p className="text-slate-500">We&apos;ll get back to you within 24 hours on business days.</p>
                   </div>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-6">

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { FadeIn, StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const Welcome = () => {
@@ -83,10 +84,10 @@ const Welcome = () => {
             </div>
 
             <div className="mt-12">
-              <a href="/#about" className="inline-flex items-center gap-3 text-primary font-bold hover:gap-5 transition-all group">
+              <Link href="/#about" className="inline-flex items-center gap-3 text-primary font-bold hover:gap-5 transition-all group">
                 Discover Our Heritage
                 <span className="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </FadeIn>
 
