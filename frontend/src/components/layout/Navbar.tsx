@@ -354,7 +354,7 @@ export default function Navbar() {
                     }}
                   >
                     <div className="ml-4 mt-1 mb-1 space-y-0.5 border-l-2 border-primary/20 pl-3">
-                      {item.dropdown!.map((sub) => (
+                      {item.dropdown?.map((sub) => (
                         <a
                           key={sub.label}
                           href={sub.href}
