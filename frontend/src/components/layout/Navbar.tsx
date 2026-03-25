@@ -130,12 +130,14 @@ export default function Navbar() {
     closeTimer.current = setTimeout(() => setActiveDropdown(null), 380);
   };
 
-  const scrollToTop = (e: React.MouseEvent) => {
+  const scrollToTop = (e: React.MouseEvent, closeMobile: boolean = false) => {
     if (window.location.pathname === "/") {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-    setMobileOpen(false);
+    if (closeMobile) {
+      setMobileOpen(false);
+    }
   };
 
   return (
