@@ -2,8 +2,12 @@
 
 import React, { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence, type Variants } from "framer-motion";
+import { z } from "zod";
+import axios from "axios";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { contactSchema } from "@/validators/contact";
+import { submitContactForm } from "@/api/contact";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -27,21 +31,51 @@ function Section({ children, className = "" }: { children: React.ReactNode; clas
   );
 }
 
-const WHATSAPP = "https://wa.me/919816388337";
-const PHONE = "tel:+919816388337";
+const WHATSAPP = "https://wa.me/918352810339";
+const PHONE = "tel:+918352810339";
 const EMAIL = "mailto:fortschritthealthcare@gmail.com";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", subject: "", message: "" });
+  const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    // Clear field specific error when user types
+    if (errors[e.target.name]) {
+      setErrors((prev) => ({ ...prev, [e.target.name]: [] }));
+    }
+    setServerError(null);
+  };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrors({});
+    setServerError(null);
+
+    try {
+      const validatedData = contactSchema.parse(form);
+      
+      await submitContactForm(validatedData);
+
+      setSubmitted(true);
+      setForm({ name: "", company: "", email: "", phone: "", subject: "", message: "" });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        setErrors(error.flatten().fieldErrors as Record<string, string[]>);
+      } else if (axios.isAxiosError(error)) {
+        setServerError(error.response?.data?.message || "Failed to send message. Please try again later.");
+      } else {
+        setServerError("An unexpected error occurred. Please try again.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -60,7 +94,7 @@ export default function ContactPage() {
               <span className="animate-ping absolute h-full w-full rounded-full bg-white opacity-60"></span>
               <span className="relative rounded-full h-2 w-2 bg-white"></span>
             </span>
-            We Respond Within 24 Hours
+            We Respond Within 3 Working Days
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease }}
@@ -100,12 +134,12 @@ export default function ContactPage() {
             {
               icon: "call", color: "primary", href: PHONE,
               title: "Call Direct", sub: "Speak to our team instantly",
-              value: "+91 98163 88337 (Mr. Naveen)", action: "Call Now →",
+              value: "+91 83528 10339 (Vikas)", action: "Call Now →",
             },
             {
               icon: "chat", color: "green", href: WHATSAPP,
               title: "WhatsApp", sub: "Chat, share enquiries & get quotes",
-              value: "+91 98163 88337 (Mr. Naveen)", action: "Open Chat →",
+              value: "+91 83528 10339 (Vikas)", action: "Open Chat →",
             },
             {
               icon: "mail_outline", color: "secondary", href: EMAIL,
@@ -184,17 +218,17 @@ export default function ContactPage() {
               </h4>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">NK</div>
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">V</div>
                   <div>
-                    <p className="font-bold text-slate-700 text-sm">Mr. Naveen Kandpal</p>
-                    <a href="tel:+919816388337" className="text-primary text-xs font-semibold hover:underline">+91 98163 88337</a>
+                    <p className="font-bold text-slate-700 text-sm">Vikas</p>
+                    <a href="tel:+918352810339" className="text-primary text-xs font-semibold hover:underline">+91 83528 10339</a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center text-secondary font-bold text-sm flex-shrink-0">CN</div>
+                  <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center text-secondary font-bold text-sm flex-shrink-0">K</div>
                   <div>
-                    <p className="font-bold text-slate-700 text-sm">Mr. Chander Negi</p>
-                    <a href="tel:+919223808080" className="text-secondary text-xs font-semibold hover:underline">+91 92238 08080</a>
+                    <p className="font-bold text-slate-700 text-sm">Kaniska</p>
+                    <a href="tel:+918580877336" className="text-secondary text-xs font-semibold hover:underline">+91 85808 77336</a>
                   </div>
                 </div>
               </div>
@@ -219,7 +253,7 @@ export default function ContactPage() {
                     <span className="material-icons text-5xl">check_circle</span>
                   </motion.div>
                   <h2 className="text-3xl font-extrabold text-primary">Message Sent!</h2>
-                  <p className="text-slate-500 max-w-sm text-lg">Our team will respond within 2 business hours. For urgent queries, call or WhatsApp us directly.</p>
+                  <p className="text-slate-500 max-w-sm text-lg">Our team will respond within 3 working days. For urgent queries, call or WhatsApp us directly.</p>
                   <div className="flex gap-4 mt-4">
                     <a href={PHONE} className="px-6 py-3 bg-primary text-white font-bold rounded-xl text-sm hover:bg-primary/90 transition-colors flex items-center gap-2">
                       <span className="material-icons text-sm">call</span>Call Us
@@ -236,7 +270,7 @@ export default function ContactPage() {
                 <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                   <div className="mb-10">
                     <h2 className="text-3xl font-extrabold text-primary mb-2">Send an Enquiry</h2>
-                    <p className="text-slate-500">We&apos;ll get back to you within 24 hours on business days.</p>
+                    <p className="text-slate-500">We&apos;ll get back to you within 3 working days.</p>
                   </div>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-6">
@@ -249,15 +283,15 @@ export default function ContactPage() {
                           <motion.input
                             name={field.name}
                             type={field.type}
-                            required={field.label.includes("*")}
                             placeholder={field.placeholder}
                             value={form[field.name as keyof typeof form]}
                             onChange={handleChange}
                             onFocus={() => setFocused(field.name)}
                             onBlur={() => setFocused(null)}
-                            animate={{ borderColor: focused === field.name ? "#1e3a8a" : "#e2e8f0" }}
+                            animate={{ borderColor: errors[field.name]?.length ? "#ef4444" : focused === field.name ? "#1e3a8a" : "#e2e8f0" }}
                             className="w-full px-4 py-3.5 rounded-xl border bg-slate-50 text-slate-700 placeholder:text-slate-300 outline-none transition-all text-sm"
                           />
+                          {errors[field.name] && <p className="text-red-500 text-xs mt-1">{errors[field.name][0]}</p>}
                         </div>
                       ))}
                     </div>
@@ -271,15 +305,15 @@ export default function ContactPage() {
                           <motion.input
                             name={field.name}
                             type={field.type}
-                            required
                             placeholder={field.placeholder}
                             value={form[field.name as keyof typeof form]}
                             onChange={handleChange}
                             onFocus={() => setFocused(field.name)}
                             onBlur={() => setFocused(null)}
-                            animate={{ borderColor: focused === field.name ? "#1e3a8a" : "#e2e8f0" }}
+                            animate={{ borderColor: errors[field.name]?.length ? "#ef4444" : focused === field.name ? "#1e3a8a" : "#e2e8f0" }}
                             className="w-full px-4 py-3.5 rounded-xl border bg-slate-50 text-slate-700 placeholder:text-slate-300 outline-none transition-all text-sm"
                           />
+                          {errors[field.name] && <p className="text-red-500 text-xs mt-1">{errors[field.name][0]}</p>}
                         </div>
                       ))}
                     </div>
@@ -287,12 +321,11 @@ export default function ContactPage() {
                       <label className="block text-sm font-bold text-primary mb-2">Enquiry Type *</label>
                       <select
                         name="subject"
-                        required
                         value={form.subject}
                         onChange={handleChange}
                         onFocus={() => setFocused("subject")}
                         onBlur={() => setFocused(null)}
-                        className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 outline-none transition-all text-sm focus:border-primary">
+                        className={`w-full px-4 py-3.5 rounded-xl border bg-slate-50 text-slate-700 outline-none transition-all text-sm focus:border-primary ${errors.subject?.length ? 'border-red-500' : 'border-slate-200'}`}>
                         <option value="">Select an enquiry type</option>
                         <option>Product Enquiry</option>
                         <option>Partnership / Distribution</option>
@@ -302,29 +335,42 @@ export default function ContactPage() {
                         <option>Export / International</option>
                         <option>General Inquiry</option>
                       </select>
+                      {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject[0]}</p>}
                     </div>
+
                     <div>
                       <label className="block text-sm font-bold text-primary mb-2">Message *</label>
                       <motion.textarea
                         name="message"
-                        required
                         rows={5}
                         placeholder="Tell us your requirement in detail — which products, quantities, target markets, and any specific standards required..."
                         value={form.message}
                         onChange={handleChange}
                         onFocus={() => setFocused("message")}
                         onBlur={() => setFocused(null)}
-                        animate={{ borderColor: focused === "message" ? "#1e3a8a" : "#e2e8f0" }}
+                        animate={{ borderColor: errors.message?.length ? "#ef4444" : focused === "message" ? "#1e3a8a" : "#e2e8f0" }}
                         className="w-full px-4 py-3.5 rounded-xl border bg-slate-50 text-slate-700 placeholder:text-slate-300 outline-none transition-all text-sm resize-none"
                       />
+                      {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message[0]}</p>}
                     </div>
+                    {serverError && <p className="text-red-500 text-sm font-semibold text-center">{serverError}</p>}
                     <motion.button
                       type="submit"
-                      whileHover={{ scale: 1.02, boxShadow: "0 20px 40px -12px rgba(30,58,138,0.35)" }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full py-5 bg-primary text-white font-bold rounded-2xl text-lg flex items-center justify-center gap-3 shadow-xl shadow-primary/20 transition-all">
-                      <span className="material-icons">send</span>
-                      Send Enquiry
+                      disabled={isSubmitting}
+                      whileHover={{ scale: isSubmitting ? 1 : 1.02, boxShadow: isSubmitting ? "none" : "0 20px 40px -12px rgba(30,58,138,0.35)" }}
+                      whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                      className="w-full py-5 bg-primary text-white font-bold rounded-2xl text-lg flex items-center justify-center gap-3 shadow-xl shadow-primary/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed">
+                      {isSubmitting ? (
+                        <>
+                          <span className="material-icons animate-spin">autorenew</span>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <span className="material-icons">send</span>
+                          Send Enquiry
+                        </>
+                      )}
                     </motion.button>
                     <p className="text-center text-xs text-slate-400">
                       Or reach us instantly:{" "}
@@ -385,7 +431,7 @@ export default function ContactPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <Section className="grid sm:grid-cols-3 gap-6">
           {[
-            { icon: "timer", title: "2-Hour Response", desc: "We guarantee a response to every enquiry within 2 business hours." },
+            { icon: "timer", title: "3-Day Response", desc: "We guarantee a response to every enquiry within 3 working days." },
             { icon: "support_agent", title: "Dedicated Manager", desc: "Every partner gets a dedicated relationship manager for smooth communication." },
             { icon: "verified", title: "Confidential & Secure", desc: "All your data and business enquiries are kept strictly confidential." },
           ].map((item) => (

@@ -4,10 +4,8 @@ import React from "react";
 import { FadeUp, StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const leaders = [
-  { name: "Dr. Marcus Weber", role: "Chief Executive Officer", bio: "20+ years in pharmaceutical management and strategic growth.", image: "https://i.pravatar.cc/300?img=11" },
-  { name: "Dr. Elena Rodriguez", role: "Head of R&D", bio: "Lead researcher in advanced molecular drug delivery systems.", image: "https://i.pravatar.cc/300?img=26" },
-  { name: "Julian Schmidt", role: "Operations Director", bio: "Expert in global supply chain and lean manufacturing protocols.", image: "https://i.pravatar.cc/300?img=12" },
-  { name: "Sarah Jenkins", role: "Quality Assurance Lead", bio: "Ensuring world-class standards across all manufacturing units.", image: "https://i.pravatar.cc/300?img=32" },
+  { name: "Naveen Chandra Kandpal", role: "CEO and Founder", bio: "Leading with vision and integrity to deliver world-class pharmaceutical solutions.", image: "/images/home/hero-scientist.png" },
+  { name: "Chander Negi", role: "Operational Director", bio: "Expert in operational excellence and strategic manufacturing management.", image: "/images/home/hero-facility.png" },
 ];
 
 const Leadership = () => {
@@ -25,7 +23,7 @@ const Leadership = () => {
           </p>
         </FadeUp>
 
-        <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 max-w-4xl mx-auto gap-10">
           {leaders.map((leader) => (
             <motion.div
               key={leader.name}

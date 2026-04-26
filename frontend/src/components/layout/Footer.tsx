@@ -75,8 +75,8 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <span className="material-icons text-secondary text-base pt-1">call</span>
                 <span>
-                  <a href="tel:+919816388337" className="hover:text-white transition-colors">+91 98163 88337</a> (Mr. Naveen)<br/>
-                  <a href="tel:+919223808080" className="hover:text-white transition-colors">+91 92238 08080</a> (Mr. Chander)
+                  <a href="tel:+918352810339" className="hover:text-white transition-colors">+91 83528 10339</a> (Vikas)<br/>
+                  <a href="tel:+918580877336" className="hover:text-white transition-colors">+91 85808 77336</a> (Kaniska)
                 </span>
               </li>
               <li className="flex items-center gap-3">
