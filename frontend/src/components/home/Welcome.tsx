@@ -34,7 +34,7 @@ const Welcome = () => {
               className="absolute top-1/2 -right-12 translate-y-[-50%] z-30 glass p-6 rounded-3xl shadow-xl hidden lg:block border border-white/50"
             >
               <div className="text-center">
-                <div className="text-4xl font-extrabold text-primary mb-1">12+</div>
+                <div className="text-4xl font-extrabold text-primary mb-1">10+</div>
                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Years of <br /> Excellence</div>
               </div>
             </motion.div>
@@ -66,19 +66,19 @@ const Welcome = () => {
                     <span className="material-icons text-lg">workspace_premium</span>
                     Quality Assured
                   </div>
-                  <p className="text-sm text-slate-500">WHO-GMP and ISO certified manufacturing protocols.</p>
+                  <p className="text-sm text-slate-500">WHO-cGMP norms and ISO Certified plant.</p>
                 </motion.div>
                 <motion.div variants={staggerItem} className="space-y-2">
                   <div className="flex items-center gap-2 text-secondary font-bold">
                     <span className="material-icons text-lg">public</span>
-                    Bharat Presence
+                    Global Reach
                   </div>
-                  <p className="text-sm text-slate-500">Serving healthcare providers across every Indian state.</p>
+                  <p className="text-sm text-slate-500">Exporting excellence to partners all over the world.</p>
                 </motion.div>
               </StaggerGrid>
 
               <p className="text-slate-600 text-lg leading-relaxed">
-                Established in 2012, we have evolved from a visionary startup into a trusted name,
+                Established in 2014, we have evolved from a visionary startup into a trusted name,
                 registered with the Registrar of Companies and delivering excellence in every dosage.
               </p>
             </div>

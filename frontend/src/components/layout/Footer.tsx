@@ -76,12 +76,19 @@ const Footer = () => {
                 <span className="material-icons text-secondary text-base pt-1">call</span>
                 <span>
                   <a href="tel:+918352810339" className="hover:text-white transition-colors">+91 83528 10339</a> (Vikas)<br/>
-                  <a href="tel:+918580877336" className="hover:text-white transition-colors">+91 85808 77336</a> (Kaniska)
+                  <a href="tel:+918580877336" className="hover:text-white transition-colors">+91 85808 77336</a> (Kaniska)<br/>
+                  <a href="tel:+9101795350639" className="hover:text-white transition-colors">+91 01795-350639</a> (General)
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <span className="material-icons text-secondary text-base">mail</span>
-                <a href="mailto:fortschritthealthcare@gmail.com" className="hover:text-white transition-colors">fortschritthealthcare@gmail.com</a>
+              <li className="flex flex-col gap-2">
+                <div className="flex items-center gap-3">
+                  <span className="material-icons text-secondary text-base">mail</span>
+                  <a href="mailto:info@fortschritthealthcareltd.com" className="hover:text-white transition-colors text-xs">info@fortschritthealthcareltd.com</a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="material-icons text-secondary text-base">mail</span>
+                  <a href="mailto:fortschritthealthcare@gmail.com" className="hover:text-white transition-colors text-xs">fortschritthealthcare@gmail.com</a>
+                </div>
               </li>
             </ul>
           </div>

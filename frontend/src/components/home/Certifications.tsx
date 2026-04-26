@@ -68,10 +68,7 @@ const Certifications = () => {
               <p className="text-slate-500 text-sm leading-relaxed mb-6 flex-grow">
                 {item.description}
               </p>
-              <div className="flex items-center gap-2 text-primary text-xs font-bold mt-auto group-hover:translate-x-1 transition-transform">
-                <span>Download Certificate</span>
-                <span className="material-icons text-sm">download</span>
-              </div>
+
             </motion.div>
           ))}
         </StaggerGrid>

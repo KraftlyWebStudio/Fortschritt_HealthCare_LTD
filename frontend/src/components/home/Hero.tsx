@@ -6,10 +6,10 @@ import Link from "next/link";
 
 const heroSlides = [
   {
-    badge: "Legacy of Excellence",
-    heading: "Advancing Human Health Through",
-    highlight: "Precision Medicine",
-    sub: "Fortschritt Healthcare Limited delivers world-class pharmaceutical solutions, combining modern innovation with a decade of trusted expertise.",
+    badge: "Global Reach",
+    heading: "Advancing Human Health",
+    highlight: "All Over The World",
+    sub: "Fortschritt Healthcare Limited delivers world-class pharmaceutical solutions, exporting excellence to over 45+ countries with a decade of trusted expertise.",
     image: "/images/home/hero-lab.png",
   },
   {
@@ -23,7 +23,7 @@ const heroSlides = [
     badge: "Innovation Driven",
     heading: "Pioneering Formulations for a",
     highlight: "Healthier Future",
-    sub: "From complex APIs to critical life-saving therapeutics, we are dedicated to making quality healthcare accessible to all.",
+    sub: "From complex APIs to critical life-saving therapeutics, we are dedicated to making quality healthcare accessible to all, globally.",
     image: "/images/home/hero-packaging.png",
   },
 ];

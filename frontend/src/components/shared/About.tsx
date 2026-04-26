@@ -27,9 +27,9 @@ const About = () => {
           <div>
             <div className="mb-10">
               <h2 className="text-primary font-bold tracking-widest uppercase text-sm mb-4">Our Foundation</h2>
-              <h3 className="text-4xl font-extrabold text-primary mb-6 font-display">Quality Assured Pharmaceutical Solutions Since 2012</h3>
+              <h3 className="text-4xl font-extrabold text-primary mb-6 font-display">Quality Assured Pharmaceutical Solutions Since 2014</h3>
               <p className="text-slate-600 text-lg leading-relaxed mb-4">
-                Our foundation stone was laid in the year 2012 in Himachal Pradesh, India. Since then, we have served numerous clients and turned them into loyal partners through our commitment to honesty and fair pricing.
+                Our foundation stone was laid in the year 2014 in Himachal Pradesh, India. Since then, we have served numerous clients and turned them into loyal partners through our commitment to honesty and fair pricing.
               </p>
               <p className="text-slate-600 text-lg leading-relaxed mb-8">
                 Fortschritt Healthcare Limited is ranked among renowned Manufacturers, Exporters and Suppliers of a wide range of superior grade pharmaceutical products. We are a one-stop destination where buyers get quality assured products at par with branded standards at economical prices.

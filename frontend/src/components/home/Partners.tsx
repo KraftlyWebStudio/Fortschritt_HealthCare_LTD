@@ -4,12 +4,23 @@ import React from "react";
 import { FadeIn, motion } from "@/utils/animations";
 
 const partners = [
-  { name: "National Pharma", type: "Research Collaborator", icon: "science" },
-  { name: "Himachal Bio", type: "Manufacturing Partner", icon: "factory" },
-  { name: "Apex Labs", type: "Quality Assurance", icon: "verified" },
-  { name: "LifeCare", type: "Distribution Network", icon: "local_shipping" },
-  { name: "EuroHealth", type: "Supply Chain", icon: "inventory" },
-  { name: "MedTech", type: "R&D Innovations", icon: "biotech" },
+  { name: "Akumentis Healthcare Ltd.", type: "Pharmaceutical Partner", icon: "science" },
+  { name: "Koye Pharmaceuticals", type: "Manufacturing Client", icon: "factory" },
+  { name: "Wanbury Ltd.", type: "Strategic Partner", icon: "verified" },
+  { name: "Tirupati Medicare", type: "Collaborator", icon: "biotech" },
+  { name: "SUREMED", type: "Healthcare Partner", icon: "health_and_safety" },
+  { name: "Unimark", type: "Pharma Client", icon: "inventory" },
+  { name: "Menschlich Healthcare", type: "Manufacturing Partner", icon: "medication" },
+  { name: "Symulux Pharmaceuticals", type: "Export Partner", icon: "public" },
+  { name: "Atlanta Biological USA", type: "International Client", icon: "language" },
+  { name: "VHA Pharma", type: "Manufacturing Client", icon: "precision_manufacturing" },
+  { name: "Ruan Life Sciences", type: "Pharma Collaborator", icon: "science" },
+  { name: "Britannia Biological", type: "Biological Partner", icon: "coronavirus" },
+  { name: "Keita Pharma", type: "Strategic Client", icon: "business_center" },
+  { name: "Megacare Life Sciences", type: "Pharma Partner", icon: "medical_services" },
+  { name: "Triglobal Biosciences", type: "Biosciences Partner", icon: "biotech" },
+  { name: "Servocare Lifesciences", type: "Collaborator", icon: "health_and_safety" },
+  { name: "Novalab Healthcare", type: "Healthcare Client", icon: "medication" },
 ];
 
 const Partners = () => {
@@ -70,10 +81,10 @@ const Partners = () => {
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-256px * 6 - 32px * 6)); }
+          100% { transform: translateX(calc(-256px * 17 - 32px * 17)); }
         }
         .animate-scroll {
-          animation: scroll 40s linear infinite;
+          animation: scroll 110s linear infinite;
         }
         @media (prefers-reduced-motion: reduce) {
           .animate-scroll {

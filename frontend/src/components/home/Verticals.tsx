@@ -4,12 +4,12 @@ import React from "react";
 import { FadeUp, StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const verticals = [
-  { title: "Soft Gelatin Capsules", description: "Superior grade soft gelatin capsules made available in different formulations, emerging as a promising manufacturer in Himachal Pradesh.", icon: "medication", image: "/images/home/capsules.png", tag: "High Bioavailability" },
-  { title: "Oral Liquid Solutions", description: "Comprehensive range of liquid orals including calcium preparations, antacids, and specialty syrups for pediatric and geriatric care.", icon: "water_drop", image: "/images/home/injectables.png", tag: "Flavor-Optimized" },
-  { title: "Oncology Therapeutics", description: "Reputed manufacturers of critical oncology medicines across various dosage forms, meeting stringent safety protocols.", icon: "science", image: "/images/home/hero-lab.png", tag: "Critical Care" },
-  { title: "Nutrition Supplements", description: "Extensive range including protein powder, multivitamins, and specialty supplements kept in line with industry norms.", icon: "health_and_safety", image: "/images/home/tablets.png", tag: "Wellness Focused" },
-  { title: "Dermatological Care", description: "Specialized hair and skin care formulations including ketoconazole and medicinal soaps tested on all quality parameters.", icon: "clean_hands", image: "/images/home/shampoo.png", tag: "Clinical Grade" },
-  { title: "Medicinal Soaps", description: "Foremost manufacturers of medicinal soaps in Himachal Pradesh, tested on all crucial quality parameters.", icon: "bubble_chart", image: "/images/home/soap.png", tag: "Quality Tested" },
+  { title: "Soft Gel Capsules", description: "State-of-the-art manufacturing of Allopathic and Nutraceutical soft gelatin capsules with high bioavailability.", icon: "medication", image: "/images/home/capsules.png", tag: "Allopathic/Nutra" },
+  { title: "Solid Oral Doses", description: "Large scale production of Tablets and Capsules across Allopathic, Hormonal, and Nutraceutical categories.", icon: "tablets", image: "/images/home/tablets.png", tag: "Tab/Cap" },
+  { title: "Oral Liquids", description: "Comprehensive range of Suspensions and Syrups for Allopathic and Nutraceutical therapeutic segments.", icon: "water_drop", image: "/images/home/injectables.png", tag: "Susp/Syrup" },
+  { title: "Dry Powder & Injectables", description: "Dedicated facilities for Dry Powder Syrups and specialized Injectable formulations.", icon: "science", image: "/images/home/hero-lab.png", tag: "Dry Powder/Inj" },
+  { title: "Ointments & Creams", description: "Advanced production of Ointments, Creams, and Topical Sprays for Allopathic and Cosmetic use.", icon: "clean_hands", image: "/images/home/shampoo.png", tag: "Topical/Cosmetic" },
+  { title: "Specialty Formulations", description: "Manufacturing of Sachets, Protein Powders, and other specialized nutraceutical delivery systems.", icon: "health_and_safety", image: "/images/home/soap.png", tag: "Sachet/Protein" },
 ];
 
 const Verticals = () => {

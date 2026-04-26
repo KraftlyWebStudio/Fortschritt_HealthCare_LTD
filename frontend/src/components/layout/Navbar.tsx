@@ -75,7 +75,7 @@ const navItems: NavItem[] = [
       { label: "Company Overview",    href: "/#about",   icon: "domain",           description: "Our story, mission & values"     },
       { label: "CEO's Message",       href: "/#ceo",     icon: "person",           description: "Leadership vision & direction"   },
       { label: "Our Team",            href: "/#team",    icon: "groups",           description: "Meet the experts behind us"      },
-      { label: "Legacy & Milestones", href: "/#legacy",  icon: "timeline",         description: "12+ years of healthcare impact"  },
+      { label: "Legacy & Milestones", href: "/#legacy",  icon: "timeline",         description: "10+ years of healthcare impact"  },
     ],
   },
   {

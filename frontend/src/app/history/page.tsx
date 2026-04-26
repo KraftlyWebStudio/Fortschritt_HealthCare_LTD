@@ -6,14 +6,14 @@ import Footer from "@/components/layout/Footer";
 
 const milestones = [
   {
-    year: "2012",
-    title: "Foundation",
-    description: "Fortschritt Healthcare Limited established with a vision to revolutionize primary care medication.",
+    year: "2014",
+    title: "The Foundation",
+    description: "Fortschritt Healthcare Limited was established with a clear vision to bridge the gap in quality healthcare solutions. B2 operations were initiated in January 2014.",
   },
   {
     year: "2015",
-    title: "Global Expansion",
-    description: "Initiated exports to Southeast Asian and Middle Eastern markets, doubling production capacity.",
+    title: "Fortschritt Start & Global Export",
+    description: "Fortschritt Healthcare Limited was officially established, and we immediately initiated our export operations to global markets.",
   },
   {
     year: "2018",
@@ -23,7 +23,7 @@ const milestones = [
   {
     year: "2023",
     title: "Global Player",
-    description: "Recognized as a leading manufacturing partner in over 45 countries with WHO-GMP compliance.",
+    description: "Broadened our portfolio to 1500+ formulations and recognized as a leading manufacturing partner exporting all over the world.",
   },
 ];
 
