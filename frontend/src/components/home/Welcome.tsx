@@ -14,7 +14,7 @@ const Welcome = () => {
           <FadeIn direction="left" className="lg:w-1/2 relative">
             <div className="relative z-10 w-4/5 rounded-[32px] overflow-hidden shadow-2xl border-8 border-white hover-lift">
               <img
-                src="/images/about-facility.png"
+                src="/about-facility.webp"
                 alt="State-of-the-Art Facility"
                 className="w-full h-full object-cover aspect-[4/5]"
               />
@@ -22,7 +22,7 @@ const Welcome = () => {
 
             <div className="absolute -bottom-10 -right-0 w-3/5 z-20 rounded-[24px] overflow-hidden shadow-2xl border-8 border-white animate-float hidden md:block">
               <img
-                src="/images/home/hero-scientist.png"
+                src="/home/hero-scientist.webp"
                 alt="Pharmaceutical Research"
                 className="w-full h-full object-cover aspect-square"
               />

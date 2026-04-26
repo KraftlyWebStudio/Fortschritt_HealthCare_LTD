@@ -10,21 +10,21 @@ const heroSlides = [
     heading: "Advancing Human Health",
     highlight: "All Over The World",
     sub: "Fortschritt Healthcare Limited delivers world-class pharmaceutical solutions, exporting excellence to over 45+ countries with a decade of trusted expertise.",
-    image: "/images/home/hero-lab.png",
+    image: "/home/hero-lab.webp",
   },
   {
     badge: "Quality First",
     heading: "State-of-the-Art Manufacturing",
     highlight: "Certified Standards",
     sub: "Our WHO-GMP and ISO certified facilities ensure every dosage meets the highest international benchmarks for safety and efficacy.",
-    image: "/images/home/hero-facility.png",
+    image: "/home/hero-facility.webp",
   },
   {
     badge: "Innovation Driven",
     heading: "Pioneering Formulations for a",
     highlight: "Healthier Future",
     sub: "From complex APIs to critical life-saving therapeutics, we are dedicated to making quality healthcare accessible to all, globally.",
-    image: "/images/home/hero-packaging.png",
+    image: "/home/hero-packaging.webp",
   },
 ];
 

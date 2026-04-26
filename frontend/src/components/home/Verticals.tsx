@@ -4,12 +4,12 @@ import React from "react";
 import { FadeUp, StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const verticals = [
-  { title: "Soft Gel Capsules", description: "State-of-the-art manufacturing of Allopathic and Nutraceutical soft gelatin capsules with high bioavailability.", icon: "medication", image: "/images/home/capsules.png", tag: "Allopathic/Nutra" },
-  { title: "Solid Oral Doses", description: "Large scale production of Tablets and Capsules across Allopathic, Hormonal, and Nutraceutical categories.", icon: "tablets", image: "/images/home/tablets.png", tag: "Tab/Cap" },
-  { title: "Oral Liquids", description: "Comprehensive range of Suspensions and Syrups for Allopathic and Nutraceutical therapeutic segments.", icon: "water_drop", image: "/images/home/injectables.png", tag: "Susp/Syrup" },
-  { title: "Dry Powder & Injectables", description: "Dedicated facilities for Dry Powder Syrups and specialized Injectable formulations.", icon: "science", image: "/images/home/hero-lab.png", tag: "Dry Powder/Inj" },
-  { title: "Ointments & Creams", description: "Advanced production of Ointments, Creams, and Topical Sprays for Allopathic and Cosmetic use.", icon: "clean_hands", image: "/images/home/shampoo.png", tag: "Topical/Cosmetic" },
-  { title: "Specialty Formulations", description: "Manufacturing of Sachets, Protein Powders, and other specialized nutraceutical delivery systems.", icon: "health_and_safety", image: "/images/home/soap.png", tag: "Sachet/Protein" },
+  { title: "Soft Gel Capsules", description: "State-of-the-art manufacturing of Allopathic and Nutraceutical soft gelatin capsules.", icon: "medication", image: "/home/capsules.webp", tag: "Allopathic/Nutra" },
+  { title: "Solid Oral Doses", description: "Best-in-class manufacturing of Hormonal Tablets, General Tablets, and Capsules.", icon: "tablets", image: "/home/tablets.webp", tag: "Hormonal/General" },
+  { title: "Oral Liquids", description: "Comprehensive range of Suspensions and Syrups for Allopathic and Nutraceutical segments.", icon: "water_drop", image: "/home/injectables.webp", tag: "Susp/Syrup" },
+  { title: "Dry Powder & Injectables", description: "Specialized sections for Dry Powder Syrups and Injectable formulations.", icon: "science", image: "/home/hero-lab.webp", tag: "Dry Powder/Inj" },
+  { title: "Ointments & Creams", description: "Production of Ointments, Creams, and Topical Sprays for Allopathic and Cosmetic use.", icon: "clean_hands", image: "/home/shampoo.webp", tag: "Topical/Cosmetic" },
+  { title: "Specialty Formulations", description: "Dedicated manufacturing for Sachets, Protein Powders, and Nutraceutical Syrups.", icon: "health_and_safety", image: "/home/soap.webp", tag: "Sachet/Protein" },
 ];
 
 const Verticals = () => {

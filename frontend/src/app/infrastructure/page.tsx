@@ -28,12 +28,12 @@ const sections = [
     subtitle: "GMP-Compliant Plant & Processes",
     description: "Our manufacturing facility in Baddi, Himachal Pradesh operates under WHO-GMP guidelines with strict adherence to Good Manufacturing Practices. The facility features end-to-end production lines for multiple dosage forms, ensuring consistency, purity, and efficacy in every batch produced.",
     highlights: [
-      "Sections: Soft Gel Capsules, Solid Oral (Tab/Cap), Liquids (Susp/Syrups)",
-      "Specialized: Dry Powder Syrups, Injectables, Ointments & Creams",
-      "Nutraceuticals: Protein Powders, Sachets, Specialty Supplements",
-      "Facilities: General, Cephalosporin, Beta Lactum, Oncology, Anti-TB",
-      "Compliance: WHO-cGMP norms / ISO Certified Plant",
-      "Capacity: Above 1500+ Formulation Products available",
+      "Sections: Soft Gel, Solid Oral (Hormonal/Gen), Liquids, Dry Powder",
+      "Specialized: Injectables, Ointments, Creams, Topical Sprays",
+      "Nutraceuticals: Protein Powders, Sachets, Specialized Syrups",
+      "Facilities: GENERAL / CEPHALOSPORIN / BETA LACTUM / ONCOLOGY",
+      "Specialized Facilities: ANTI – TB & EFFERVESCENTS",
+      "Capacity: Above 1800+ Formulation Products available",
     ],
   },
   {

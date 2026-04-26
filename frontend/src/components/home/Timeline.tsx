@@ -7,7 +7,7 @@ const milestones = [
   { year: "2014", title: "The Genesis (B2)", description: "Started our initial B2 operations in January 2014, laying the foundation for our future healthcare endeavors." },
   { year: "2015", title: "Fortschritt & Global Export", description: "Fortschritt Healthcare Limited was officially established, and we simultaneously expanded our reach by initiating export operations." },
   { year: "2018", title: "R&D Innovation HUB", description: "Established a dedicated Research & Development center focusing on complex generic formulations and critical therapeutics." },
-  { year: "2023", title: "Therapeutic Excellence", description: "Broadened our portfolio to over 1500+ specialized formulations, exporting excellence all over the world." },
+  { year: "2023", title: "Therapeutic Excellence", description: "Broadened our portfolio to over 1800+ specialized formulations, highlighting our expertise in Hormonal Tablets." },
 ];
 
 const Timeline = () => {
@@ -34,7 +34,7 @@ const Timeline = () => {
             <div className="space-y-6">
               {[
                 { icon: "history_edu", color: "primary", label: "10+ Years Legacy" },
-                { icon: "inventory_2", color: "secondary", label: "1500+ Formulations" },
+                { icon: "inventory_2", color: "secondary", label: "1800+ Formulations" },
               ].map((item) => (
                 <motion.div
                   key={item.label}

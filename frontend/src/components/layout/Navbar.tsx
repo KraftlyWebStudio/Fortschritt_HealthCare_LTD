@@ -157,7 +157,7 @@ export default function Navbar() {
             >
               <div className="flex items-center justify-center h-11 w-11 flex-shrink-0">
                 <img
-                  src="/images/brand/logo.png"
+                  src="/brand/logo.webp"
                   alt="Fortschritt Healthcare"
                   className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />

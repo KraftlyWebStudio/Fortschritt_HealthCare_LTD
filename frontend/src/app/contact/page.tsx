@@ -31,9 +31,9 @@ function Section({ children, className = "" }: { children: React.ReactNode; clas
   );
 }
 
-const WHATSAPP = "https://wa.me/918352810339";
-const PHONE = "tel:+918352810339";
-const EMAIL = "mailto:fortschritthealthcare@gmail.com";
+const WHATSAPP = "https://wa.me/919816388337";
+const PHONE = "tel:+919816388337";
+const EMAIL = "mailto:info@fortschritthealthcareltd.com";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", subject: "", message: "" });
@@ -134,17 +134,17 @@ export default function ContactPage() {
             {
               icon: "call", color: "primary", href: PHONE,
               title: "Call Direct", sub: "Speak to our team instantly",
-              value: "+91 83528 10339 (Vikas)", action: "Call Now →",
+              value: "+91 98163 88337 (Naveen)", action: "Call Now →",
             },
             {
               icon: "chat", color: "green", href: WHATSAPP,
               title: "WhatsApp", sub: "Chat, share enquiries & get quotes",
-              value: "+91 83528 10339 (Vikas)", action: "Open Chat →",
+              value: "+91 98163 88337 (Naveen)", action: "Open Chat →",
             },
             {
               icon: "mail_outline", color: "secondary", href: EMAIL,
               title: "Email Us", sub: "Detailed enquiries & documentation",
-              value: "fortschritthealthcare@gmail.com", action: "Compose →",
+              value: "info@fortschritthealthcareltd.com", action: "Compose →",
             },
           ].map((card) => (
             <motion.a key={card.title} href={card.href}
@@ -218,17 +218,17 @@ export default function ContactPage() {
               </h4>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">V</div>
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm flex-shrink-0">N</div>
                   <div>
-                    <p className="font-bold text-slate-700 text-sm">Vikas</p>
-                    <a href="tel:+918352810339" className="text-primary text-xs font-semibold hover:underline">+91 83528 10339</a>
+                    <p className="font-bold text-slate-700 text-sm">Naveen Kandpal</p>
+                    <a href="tel:+919816388337" className="text-primary text-xs font-semibold hover:underline">+91 98163 88337</a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center text-secondary font-bold text-sm flex-shrink-0">K</div>
+                  <div className="w-10 h-10 rounded-full bg-sky-50 flex items-center justify-center text-secondary font-bold text-sm flex-shrink-0">C</div>
                   <div>
-                    <p className="font-bold text-slate-700 text-sm">Kaniska</p>
-                    <a href="tel:+918580877336" className="text-secondary text-xs font-semibold hover:underline">+91 85808 77336</a>
+                    <p className="font-bold text-slate-700 text-sm">Chander Negi</p>
+                    <a href="tel:+919324144466" className="text-secondary text-xs font-semibold hover:underline">+91 93241 44466</a>
                   </div>
                 </div>
               </div>

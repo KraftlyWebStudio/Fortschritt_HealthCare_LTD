@@ -8,7 +8,7 @@ const About = () => {
           <div className="relative">
             <div className="relative overflow-hidden rounded-3xl shadow-2xl">
               <img 
-                src="/images/about-facility.png" 
+                src="/about-facility.webp" 
                 alt="Medical Facility" 
                 className="w-full aspect-[4/5] object-cover"
               />

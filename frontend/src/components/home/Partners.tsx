@@ -4,23 +4,26 @@ import React from "react";
 import { FadeIn, motion } from "@/utils/animations";
 
 const partners = [
-  { name: "Akumentis Healthcare Ltd.", type: "Pharmaceutical Partner", icon: "science" },
-  { name: "Koye Pharmaceuticals", type: "Manufacturing Client", icon: "factory" },
-  { name: "Wanbury Ltd.", type: "Strategic Partner", icon: "verified" },
-  { name: "Tirupati Medicare", type: "Collaborator", icon: "biotech" },
-  { name: "SUREMED", type: "Healthcare Partner", icon: "health_and_safety" },
-  { name: "Unimark", type: "Pharma Client", icon: "inventory" },
-  { name: "Menschlich Healthcare", type: "Manufacturing Partner", icon: "medication" },
-  { name: "Symulux Pharmaceuticals", type: "Export Partner", icon: "public" },
-  { name: "Atlanta Biological USA", type: "International Client", icon: "language" },
-  { name: "VHA Pharma", type: "Manufacturing Client", icon: "precision_manufacturing" },
-  { name: "Ruan Life Sciences", type: "Pharma Collaborator", icon: "science" },
-  { name: "Britannia Biological", type: "Biological Partner", icon: "coronavirus" },
-  { name: "Keita Pharma", type: "Strategic Client", icon: "business_center" },
-  { name: "Megacare Life Sciences", type: "Pharma Partner", icon: "medical_services" },
-  { name: "Triglobal Biosciences", type: "Biosciences Partner", icon: "biotech" },
-  { name: "Servocare Lifesciences", type: "Collaborator", icon: "health_and_safety" },
-  { name: "Novalab Healthcare", type: "Healthcare Client", icon: "medication" },
+  { name: "Akumentis Healthcare Ltd.", type: "Strategic Partner", logo: "/partners/akumentis.webp" },
+  { name: "Koye Pharmaceuticals", type: "Manufacturing Partner", logo: "/partners/koye.webp" },
+  { name: "Wanbury Limited", type: "Strategic Partner", logo: "/partners/wanbury.webp" },
+  { name: "Tirupati Medicare", type: "Manufacturing Partner", logo: "/partners/tirupati.webp" },
+  { name: "SUREMED", type: "Healthcare Partner", logo: "/partners/suremed.webp" },
+  { name: "UNIMARK", type: "Pharma Client", logo: "/partners/unimarck.webp" },
+  { name: "Menschlich Healthcare", type: "Collaborator", logo: "/partners/menschlich.webp" },
+  { name: "Symulux Pharmaceuticals", type: "Export Partner", logo: "/partners/symlux.webp" },
+  { name: "Atlanta Biological USA", type: "International Client", logo: "/partners/atlanta.webp" },
+  { name: "VHA Pharma", type: "Pharma Partner", logo: "/partners/vha.webp" },
+  { name: "Ruan Life Sciences", type: "Export Partner", logo: "/partners/ruan.webp" },
+  { name: "Britannia Biological", type: "Manufacturing Client", logo: "/partners/britannia.webp" },
+  { name: "Keita Pharma", type: "Strategic Client", logo: "/partners/keita.webp" },
+  { name: "Megacare Life Sciences", type: "Strategic Partner", logo: "/partners/mega.webp" },
+  { name: "Triglobal Biosciences", type: "Biosciences Partner", logo: "/partners/triglobal.webp" },
+  { name: "Servocare Lifesciences", type: "Healthcare Client", logo: "/partners/servocare.webp" },
+  { name: "NOVALAB HEALTH CARE", type: "Pharma Partner", logo: "/partners/novalab.webp" },
+  { name: "Prowill Pharma", type: "Collaborator", logo: "/partners/akumentis.webp" },
+  { name: "Ramburg Pharma", type: "Manufacturing Partner", logo: "/partners/akumentis.webp" },
+  { name: "Vitaglobal", type: "Strategic Client", logo: "/partners/akumentis.webp" },
 ];
 
 const Partners = () => {
@@ -56,23 +59,23 @@ const Partners = () => {
 
       {/* Infinite Scroll Logo Cloud */}
       <div className="relative w-full flex overflow-hidden">
-        <div className="flex animate-scroll hover:[animation-play-state:paused] gap-8 py-4">
-          {[...partners, ...partners].map((p, idx) => (
+        <div className="flex animate-scroll hover:[animation-play-state:paused] py-8">
+          {[...partners, ...partners].map((partner, idx) => (
             <motion.div
-              key={`${idx}-${p.name}`}
-              whileHover={{ scale: 1.04, y: -4 }}
+              key={idx}
+              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="flex-shrink-0 w-64 glass p-8 rounded-[24px] border border-white/50 group cursor-default"
+              className="flex-shrink-0 w-64 mx-10 flex flex-col items-center justify-center text-center"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-slate-400 group-hover:text-primary group-hover:bg-primary/5 transition-all shadow-sm">
-                  <span className="material-icons text-3xl">{p.icon}</span>
-                </div>
-                <div>
-                  <div className="text-primary font-bold text-base tracking-tight group-hover:text-primary-accent transition-colors">{p.name}</div>
-                  <div className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mt-0.5">{p.type}</div>
-                </div>
+              <div className="w-40 h-24 mb-6 flex items-center justify-center">
+                <img 
+                  src={partner.logo} 
+                  alt={`${partner.name} logo`}
+                  className="max-w-full max-h-full object-contain transition-all duration-500 hover:scale-110 mix-blend-multiply"
+                />
               </div>
+              <p className="text-primary font-bold text-sm mb-1 line-clamp-1">{partner.name}</p>
+              <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{partner.type}</p>
             </motion.div>
           ))}
         </div>
@@ -81,10 +84,10 @@ const Partners = () => {
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-256px * 17 - 32px * 17)); }
+          100% { transform: translateX(calc(-336px * 20)); }
         }
         .animate-scroll {
-          animation: scroll 110s linear infinite;
+          animation: scroll 80s linear infinite;
         }
         @media (prefers-reduced-motion: reduce) {
           .animate-scroll {
