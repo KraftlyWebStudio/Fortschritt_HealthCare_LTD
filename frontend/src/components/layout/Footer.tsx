@@ -10,9 +10,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <img 
-                src="/brand/logo.webp" 
-                alt="Logo" 
+              <img
+                src="/brand/logo.webp"
+                alt="Logo"
                 className="h-10 w-auto brightness-0 invert"
               />
               <h3 className="text-2xl font-black italic tracking-tighter decoration-secondary decoration-4">
@@ -23,18 +23,18 @@ const Footer = () => {
               Pioneering precision medicine for a healthier tomorrow. Quality without compromise, healthcare for all.
             </p>
             <div className="flex gap-4">
-              <a 
-                href="https://www.facebook.com/p/Fortschritt-Healthcare-100009673599725" 
-                target="_blank" 
+              <a
+                href="https://www.facebook.com/p/Fortschritt-Healthcare-100009673599725"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300 group"
                 aria-label="Facebook"
               >
                 <Facebook size={18} className="group-hover:scale-110 transition-transform" />
               </a>
-              <a 
-                href="https://www.linkedin.com/company/fortschritt-healthcare-ltd" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/company/fortschritt-healthcare-ltd"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300 group"
                 aria-label="LinkedIn"
@@ -70,14 +70,14 @@ const Footer = () => {
             <ul className="space-y-4 text-white/70 text-sm">
               <li className="flex items-start gap-3">
                 <span className="material-icons text-secondary text-base pt-1">business</span>
-                <span>201, Suraj Heritage, G.B Road,<br/>Thane, Maharashtra – 400615</span>
+                <span>201, Suraj Heritage, G.B Road,<br />Thane, Maharashtra - 400615</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="material-icons text-secondary text-base pt-1">call</span>
                 <span>
-                  <a href="tel:+919816388337" className="hover:text-white transition-colors">+91 98163 88337</a> (Naveen)<br/>
-                  <a href="tel:+919324144466" className="hover:text-white transition-colors">+91 93241 44466</a> (Chander)<br/>
-                  <a href="tel:+9101795350639" className="hover:text-white transition-colors">+91 01795-350639</a>
+                  <a href="tel:+918352810339" className="hover:text-white transition-colors">+91 83528 10339</a> (Vikas)<br />
+                  <a href="tel:+918580877336" className="hover:text-white transition-colors">+91 85808 77336</a> (Kanishka)<br />
+                  <a href="tel:+9101795350639" className="hover:text-white transition-colors">+91 01795-350639</a> (General)
                 </span>
               </li>
               <li className="flex flex-col gap-2">
@@ -88,6 +88,14 @@ const Footer = () => {
                 <div className="flex items-center gap-3">
                   <span className="material-icons text-secondary text-base">mail</span>
                   <a href="mailto:fortschritthealthcare@gmail.com" className="hover:text-white transition-colors text-[10px]">fortschritthealthcare@gmail.com</a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="material-icons text-secondary text-base">mail</span>
+                  <a href="mailto:fortschritthealthcareltdsales@gmail.com" className="hover:text-white transition-colors text-[10px]">fortschritthealthcareltdsales@gmail.com</a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="material-icons text-secondary text-base">mail</span>
+                  <a href="mailto:ceo@fortschritthealthcareltd.com" className="hover:text-white transition-colors text-[10px]">ceo@fortschritthealthcareltd.com</a>
                 </div>
               </li>
             </ul>
