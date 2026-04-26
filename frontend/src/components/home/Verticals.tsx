@@ -14,7 +14,7 @@ const verticals = [
 
 const Verticals = () => {
   return (
-    <section id="verticals" className="py-24 bg-white relative">
+    <section id="verticals" className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeUp className="text-center max-w-3xl mx-auto mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-widest mb-4">

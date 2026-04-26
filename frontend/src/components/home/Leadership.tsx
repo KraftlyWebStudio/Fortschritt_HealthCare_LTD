@@ -12,7 +12,7 @@ const leaders = [
 
 const Leadership = () => {
   return (
-    <section id="leadership" className="py-24 bg-white scroll-mt-20">
+    <section id="leadership" className="py-24 bg-white scroll-mt-20 overflow-hidden">
       <div id="team" className="absolute invisible" style={{marginTop: "-80px"}} />
       <div id="ceo" className="absolute invisible" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Facebook, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -22,11 +23,24 @@ const Footer = () => {
               Pioneering precision medicine for a healthier tomorrow. Quality without compromise, healthcare for all.
             </p>
             <div className="flex gap-4">
-              {["facebook", "twitter", "linkedin"].map((icon) => (
-                <a key={icon} href="#" className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary transition-colors">
-                  <span className="material-icons text-sm">{icon === "twitter" ? "X" : icon}</span>
-                </a>
-              ))}
+              <a 
+                href="https://www.facebook.com/p/Fortschritt-Healthcare-100009673599725" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300 group"
+                aria-label="Facebook"
+              >
+                <Facebook size={18} className="group-hover:scale-110 transition-transform" />
+              </a>
+              <a 
+                href="https://www.linkedin.com/company/fortschritt-healthcare-ltd" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300 group"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
+              </a>
             </div>
           </div>
 

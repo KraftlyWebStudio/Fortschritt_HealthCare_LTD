@@ -44,7 +44,7 @@ const Hero = () => {
   const s = heroSlides[slide];
 
   return (
-    <section id="home" className="relative min-h-[90vh] lg:h-[95vh] flex items-center overflow-visible bg-[#fdfdfe]">
+    <section id="home" className="relative min-h-[90vh] lg:h-[95vh] flex items-center overflow-hidden bg-[#fdfdfe]">
       {/* ── Background Layer ────────────────────────────────── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] animate-pulse" />

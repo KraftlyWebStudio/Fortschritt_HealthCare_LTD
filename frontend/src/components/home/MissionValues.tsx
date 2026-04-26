@@ -12,7 +12,7 @@ const values = [
 
 const MissionValues = () => {
   return (
-    <section className="py-24 bg-white relative">
+    <section className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {values.map((item) => (
