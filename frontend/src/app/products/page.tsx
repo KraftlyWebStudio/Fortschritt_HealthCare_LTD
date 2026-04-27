@@ -7,40 +7,77 @@ import Link from "next/link";
 
 const categories = [
   {
-    id: "pharmaceuticals",
+    id: "softgel",
     icon: "medication",
-    title: "Pharmaceuticals",
-    subtitle: "Tablets, Capsules & Injectables",
-    description: "Our pharmaceutical portfolio covers a wide spectrum of dosage forms manufactured under WHO-GMP certified conditions. From solid oral dosage forms to parenteral preparations, we deliver consistent quality at every stage.",
-    products: ["Tablets & Capsules", "Softgel Capsules", "Injectables", "Oral Liquids", "Topical Formulations", "Suppositories"],
-    color: "bg-primary/5 text-primary",
+    title: "Soft Gel Capsules",
+    subtitle: "Allopathic / Nutraceuticals",
+    description: "Our state-of-the-art soft gelatin manufacturing facility produces high-quality capsules for both Allopathic treatments and Nutraceutical supplements, ensuring optimal bioavailability and stability.",
+    products: ["Allopathic Softgels", "Nutraceutical Softgels", "Vitamin D3 Softgels", "Omega-3 Softgels", "Evening Primrose Oil", "Custom Formulations"],
+    color: "bg-blue-500/10 text-blue-600",
   },
   {
-    id: "api",
+    id: "solid-oral",
+    icon: "tablets",
+    title: "Solid Oral Doses",
+    subtitle: "Tabs / Caps (Allopathic / Hormonal / Nutra)",
+    description: "We excel in the manufacturing of solid oral dosage forms. Our facility features dedicated sections for General and Hormonal tablets, maintaining the highest standards of containment and quality.",
+    products: ["Hormonal Tablets (Most Selling)", "General Tablets", "Hard Gelatin Capsules", "Sustained Release Tabs", "Mouth Dissolving Tabs", "Coated Tablets"],
+    color: "bg-amber-500/10 text-amber-600",
+    isBestseller: true,
+  },
+  {
+    id: "oral-liquids",
+    icon: "water_drop",
+    title: "Oral Liquids",
+    subtitle: "Suspensions / Syrups (Allopathic / Nutra)",
+    description: "Equipped with high-capacity mixing and filling lines, our liquids section produces stable and palatable suspensions and syrups for a wide range of therapeutic categories.",
+    products: ["Cough Syrups", "Antacid Suspensions", "Vitamin Syrups", "Pediatric Drops", "Nutraceutical Liquids", "Digestive Enzymes"],
+    color: "bg-cyan-500/10 text-cyan-600",
+  },
+  {
+    id: "dry-powder",
     icon: "science",
-    title: "Active Pharma Ingredients",
-    subtitle: "High-Purity API Manufacturing",
-    description: "We manufacture a range of high-purity Active Pharmaceutical Ingredients (APIs) that comply with international pharmacopeial standards including IP, BP, and USP. Our synthesis processes are backed by rigorous QA/QC protocols.",
-    products: ["Cardiovascular APIs", "Anti-infective APIs", "Oncology Intermediates", "NSAIDs", "Antidiabetic APIs", "Vitamins & Cofactors"],
-    color: "bg-secondary/5 text-secondary",
+    title: "Dry Powder & Injectables",
+    subtitle: "Allopathic / Nutraceutical",
+    description: "Our specialized sections for Dry Powder Syrups and Injectables operate under stringent sterile and environmental conditions to ensure the safety and efficacy of every dose.",
+    products: ["Dry Powder Syrups", "Liquid Injectables", "Lyophilized Injections", "Cephalosporin Injections", "Nutritional Injections", "Antibiotic Dry Syrups"],
+    color: "bg-purple-500/10 text-purple-600",
   },
   {
-    id: "nutra",
-    icon: "local_pharmacy",
-    title: "Nutraceuticals",
-    subtitle: "Wellness & Dietary Supplements",
-    description: "Our nutraceuticals division produces a comprehensive range of health supplements formulated with clinically researched ingredients. Every product adheres to FSSAI guidelines and international quality benchmarks.",
-    products: ["Protein Powders", "Multivitamins", "Omega-3 Supplements", "Probiotics", "Mineral Complexes", "Herbal Extracts"],
-    color: "bg-primary/5 text-primary",
+    id: "topicals",
+    icon: "clean_hands",
+    title: "Ointment / Cream / Spray",
+    subtitle: "Allopathic / Cosmetic",
+    description: "From therapeutic ointments to premium cosmetic creams and topical sprays, our topical section utilizes advanced emulsification technology for superior texture and absorption.",
+    products: ["Antifungal Creams", "Pain Relief Gels", "Moisturizing Lotions", "Topical Sprays", "Cosmetic Formulations", "Medicated Shampoos"],
+    color: "bg-teal-500/10 text-teal-600",
   },
   {
-    id: "vet",
-    icon: "pets",
-    title: "Veterinary Products",
-    subtitle: "Animal Healthcare Solutions",
-    description: "Fortschritt Healthcare extends its pharmaceutical expertise to veterinary medicine, offering a complete line of products for companion animals and livestock. Our vet products meet all regulatory requirements set by the CVMA and international bodies.",
-    products: ["Antiparasitic Treatments", "Antibiotics", "Nutritional Supplements", "Skin & Coat Care", "Digestive Health", "Vaccines (Cold Chain)"],
-    color: "bg-secondary/5 text-secondary",
+    id: "sachet",
+    icon: "inventory_2",
+    title: "Sachets",
+    subtitle: "Single Dose Packaging",
+    description: "High-speed sachet packing lines for powders, granules, and liquids, providing convenient and accurate single-dose solutions for patients and consumers.",
+    products: ["ORS Sachets", "Probiotic Sachets", "Collagen Powders", "Pre-workout Sachets", "Vitamin Granules", "Energy Powders"],
+    color: "bg-indigo-500/10 text-indigo-600",
+  },
+  {
+    id: "protein",
+    icon: "fitness_center",
+    title: "Protein Powder",
+    subtitle: "High-Quality Nutraceuticals",
+    description: "Dedicated protein powder manufacturing facility producing a range of supplements for sports nutrition, general wellness, and clinical nutrition requirements.",
+    products: ["Whey Protein", "Plant Protein", "Weight Gainers", "Meal Replacements", "Amino Acid Blends", "BCAA Formulations"],
+    color: "bg-orange-500/10 text-orange-600",
+  },
+  {
+    id: "syrup-extra",
+    icon: "vaccines",
+    title: "Health Syrups",
+    subtitle: "Nutraceutical Formulations",
+    description: "Specialized focus on health-promoting syrups and liquid supplements designed for daily wellness and targeted nutritional support.",
+    products: ["Iron Tonics", "Calcium Suspensions", "B-Complex Syrups", "Liver Tonics", "Ayurvedic Syrups", "Immunity Boosters"],
+    color: "bg-rose-500/10 text-rose-600",
   },
 ];
 
@@ -81,7 +118,13 @@ export default function ProductsPage() {
           <section key={cat.id} id={cat.id} className="scroll-mt-24">
             <div className={`grid lg:grid-cols-2 gap-16 items-center ${idx % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>
               <div className={idx % 2 === 1 ? "lg:col-start-2" : ""}>
-                <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 ${cat.color} bg-opacity-10`}>
+                {cat.isBestseller && (
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500 text-white text-[10px] font-black uppercase tracking-widest mb-6 shadow-lg shadow-amber-500/20 animate-bounce">
+                    <span className="material-icons text-sm">auto_awesome</span>
+                    Global Bestseller
+                  </div>
+                )}
+                <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 ${cat.color}`}>
                   <span className="material-icons text-sm">{cat.icon}</span>
                   {cat.subtitle}
                 </div>
@@ -89,24 +132,27 @@ export default function ProductsPage() {
                 <p className="text-slate-500 text-lg leading-relaxed mb-8">{cat.description}</p>
                 <div className="grid grid-cols-2 gap-3 mb-8">
                   {cat.products.map((p) => (
-                    <div key={p} className="flex items-center gap-2 text-sm text-slate-600 font-medium">
-                      <span className="material-icons text-primary text-base">check_circle</span>
+                    <div key={p} className="flex items-center gap-2 text-sm text-slate-600 font-medium p-3 rounded-xl bg-slate-50 border border-slate-100 group hover:border-primary/20 transition-colors">
+                      <span className="material-icons text-primary text-base group-hover:scale-110 transition-transform">check_circle</span>
                       {p}
                     </div>
                   ))}
                 </div>
                 <Link href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-colors">
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all hover:gap-4 shadow-xl shadow-primary/20">
                   <span className="material-icons text-sm">mail_outline</span>
                   Enquire Now
                 </Link>
               </div>
-              <div className={`bg-primary/5 rounded-[40px] p-12 flex items-center justify-center ${idx % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}`}>
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto rounded-3xl bg-white shadow-xl flex items-center justify-center text-primary mb-6">
-                    <span className="material-icons text-6xl">{cat.icon}</span>
+              <div className={`relative bg-primary/5 rounded-[40px] p-12 flex items-center justify-center ${idx % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}`}>
+                {cat.isBestseller && (
+                  <div className="absolute -top-6 -right-6 w-32 h-32 bg-amber-100 rounded-full blur-3xl opacity-60 animate-pulse" />
+                )}
+                <div className="text-center relative z-10">
+                  <div className="w-40 h-40 mx-auto rounded-[40px] bg-white shadow-2xl flex items-center justify-center text-primary mb-6 border border-slate-50 group hover:rotate-6 transition-transform duration-500">
+                    <span className="material-icons text-7xl">{cat.icon}</span>
                   </div>
-                  <p className="text-primary font-bold text-lg">{cat.title}</p>
+                  <p className="text-primary font-bold text-2xl">{cat.title}</p>
                   <p className="text-slate-400 text-sm mt-1">{cat.subtitle}</p>
                 </div>
               </div>

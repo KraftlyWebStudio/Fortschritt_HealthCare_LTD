@@ -1,4 +1,6 @@
-const { PrismaClient } = require("@prisma/client"); // Defaulting to standard client
+const { PrismaClient } = require("@prisma/client");
+const { PrismaPg } = require("@prisma/adapter-pg");
+const { Pool } = require("pg");
 const env = require("./env.config");
 
 class DatabaseService {
@@ -6,9 +8,9 @@ class DatabaseService {
 
     static async getInstance() {
         if (!this.instance) {
-            this.instance = new PrismaClient({
-                accelerateUrl: env.DATABASE_URL
-            });
+            const pool = new Pool({ connectionString: env.DATABASE_URL });
+            const adapter = new PrismaPg(pool);
+            this.instance = new PrismaClient({ adapter });
 
             try {
                 await this.instance.$connect();

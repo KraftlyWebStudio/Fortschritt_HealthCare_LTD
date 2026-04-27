@@ -4,12 +4,64 @@ import React from "react";
 import { FadeUp, StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const verticals = [
-  { title: "Soft Gel Capsules", description: "State-of-the-art manufacturing of Allopathic and Nutraceutical soft gelatin capsules.", icon: "medication", image: "/home/capsules.webp", tag: "Allopathic/Nutra" },
-  { title: "Solid Oral Doses", description: "Best-in-class manufacturing of Hormonal Tablets, General Tablets, and Capsules.", icon: "tablets", image: "/home/tablets.webp", tag: "Hormonal/General" },
-  { title: "Oral Liquids", description: "Comprehensive range of Suspensions and Syrups for Allopathic and Nutraceutical segments.", icon: "water_drop", image: "/home/injectables.webp", tag: "Susp/Syrup" },
-  { title: "Dry Powder & Injectables", description: "Specialized sections for Dry Powder Syrups and Injectable formulations.", icon: "science", image: "/home/hero-lab.webp", tag: "Dry Powder/Inj" },
-  { title: "Ointments & Creams", description: "Production of Ointments, Creams, and Topical Sprays for Allopathic and Cosmetic use.", icon: "clean_hands", image: "/home/shampoo.webp", tag: "Topical/Cosmetic" },
-  { title: "Specialty Formulations", description: "Dedicated manufacturing for Sachets, Protein Powders, and Nutraceutical Syrups.", icon: "health_and_safety", image: "/home/soap.webp", tag: "Sachet/Protein" },
+  { 
+    title: "Soft Gel Capsules", 
+    description: "State-of-the-art manufacturing of Allopathic and Nutraceutical soft gelatin capsules with precision dosing.", 
+    icon: "medication", 
+    image: "/home/capsules.webp", 
+    tag: "Allopathic/Nutra" 
+  },
+  { 
+    title: "Solid Oral Doses", 
+    description: "Specialized in Hormonal Tablets, General Tablets, and Capsules with advanced coating technologies.", 
+    icon: "tablets", 
+    image: "/home/tablets.webp", 
+    tag: "Hormonal/General",
+    isBestseller: true,
+    bestsellerText: "Most Selling: Hormonal Tablets"
+  },
+  { 
+    title: "Oral Liquids", 
+    description: "Comprehensive range of Suspensions and Syrups for Allopathic and Nutraceutical therapeutic segments.", 
+    icon: "water_drop", 
+    image: "/home/injectables.webp", 
+    tag: "Susp/Syrup" 
+  },
+  { 
+    title: "Dry Powder & Injectables", 
+    description: "Strict environmental controls for Dry Powder Syrups and high-purity Injectable formulations.", 
+    icon: "science", 
+    image: "/home/hero-lab.webp", 
+    tag: "Dry Powder/Inj" 
+  },
+  { 
+    title: "Ointments & Topicals", 
+    description: "Production of Ointments, Creams, and Topical Sprays for Allopathic and Cosmetic applications.", 
+    icon: "clean_hands", 
+    image: "/home/shampoo.webp", 
+    tag: "Topical/Cosmetic" 
+  },
+  { 
+    title: "Specialized Sachets", 
+    description: "Precision-filled sachets for convenient dosing across various therapeutic and health segments.", 
+    icon: "inventory_2", 
+    image: "/home/hero-packaging.webp", 
+    tag: "Sachet" 
+  },
+  { 
+    title: "Protein Powders", 
+    description: "High-grade nutritional supplements and protein formulations manufactured under FSSAI standards.", 
+    icon: "fitness_center", 
+    image: "/home/hero-scientist.webp", 
+    tag: "Nutraceutical" 
+  },
+  { 
+    title: "Nutraceutical Syrups", 
+    description: "Deliciously formulated health syrups enriched with essential vitamins and mineral complexes.", 
+    icon: "vaccines", 
+    image: "/home/soap.webp", 
+    tag: "Syrup" 
+  },
 ];
 
 const Verticals = () => {
@@ -28,7 +80,7 @@ const Verticals = () => {
           </p>
         </FadeUp>
 
-        <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {verticals.map((item) => (
             <motion.div
               key={item.title}
@@ -43,21 +95,36 @@ const Verticals = () => {
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
-                <div className="absolute top-6 right-6 w-14 h-14 glass rounded-2xl flex items-center justify-center text-primary shadow-xl border border-white/40">
-                  <span className="material-icons text-3xl">{item.icon}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                
+                {item.isBestseller && (
+                  <div className="absolute top-0 left-0 w-full overflow-hidden">
+                    <div className="bg-gradient-to-r from-amber-400 to-amber-600 text-white text-[10px] font-black uppercase tracking-[0.2em] py-2 text-center shadow-lg border-b border-amber-300/30 backdrop-blur-sm animate-pulse">
+                      🌟 {item.bestsellerText} 🌟
+                    </div>
+                  </div>
+                )}
+
+                <div className="absolute top-6 right-6 w-12 h-12 glass rounded-2xl flex items-center justify-center text-primary shadow-2xl border border-white/40 group-hover:rotate-12 transition-transform duration-500">
+                  <span className="material-icons text-2xl">{item.icon}</span>
                 </div>
-                <div className="absolute bottom-6 left-6 flex items-center gap-2 text-xs font-bold text-white uppercase tracking-widest bg-primary/80 backdrop-blur px-3 py-1.5 rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                
+                <div className="absolute bottom-6 left-6 flex items-center gap-2 text-[10px] font-bold text-white uppercase tracking-widest bg-primary/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
                   {item.tag}
                 </div>
               </div>
 
-              <div className="p-10">
-                <h3 className="text-2xl font-bold text-primary mb-4 group-hover:text-primary-accent transition-colors">
+              <div className="p-8 relative">
+                {item.isBestseller && (
+                  <div className="absolute -top-4 right-8 w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white text-white">
+                    <span className="material-icons text-xl">trending_up</span>
+                  </div>
+                )}
+                <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-secondary transition-colors duration-300">
                   {item.title}
                 </h3>
-                <p className="text-slate-500 text-base mb-8 leading-relaxed font-medium line-clamp-3">
+                <p className="text-slate-500 text-sm mb-6 leading-relaxed font-medium line-clamp-2">
                   {item.description}
                 </p>
                 <a
