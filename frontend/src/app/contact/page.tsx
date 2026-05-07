@@ -263,10 +263,10 @@ export default function ContactPage() {
                   <h2 className="text-3xl font-extrabold text-primary">Message Sent!</h2>
                   <p className="text-slate-500 max-w-sm text-lg">Our team will respond within 3 working days. For urgent queries, call or WhatsApp us directly.</p>
                   <div className="flex gap-4 mt-4">
-                    <a href={PHONE} className="px-6 py-3 bg-primary text-white font-bold rounded-xl text-sm hover:bg-primary/90 transition-colors flex items-center gap-2">
+                    <a href={VIKAS.phone} className="px-6 py-3 bg-primary text-white font-bold rounded-xl text-sm hover:bg-primary/90 transition-colors flex items-center gap-2">
                       <span className="material-icons text-sm">call</span>Call Us
                     </a>
-                    <a href={WHATSAPP} target="_blank" className="px-6 py-3 bg-[#25D366] text-white font-bold rounded-xl text-sm hover:bg-[#1db954] transition-colors flex items-center gap-2">
+                    <a href={VIKAS.whatsapp} target="_blank" className="px-6 py-3 bg-[#25D366] text-white font-bold rounded-xl text-sm hover:bg-[#1db954] transition-colors flex items-center gap-2">
                       <span className="material-icons text-sm">chat</span>WhatsApp
                     </a>
                   </div>
