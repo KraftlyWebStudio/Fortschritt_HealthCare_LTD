@@ -8,7 +8,7 @@ const Welcome = () => {
   return (
     <section id="about" className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
 
           {/* Visual Side */}
           <FadeIn direction="left" className="lg:w-1/2 relative">
@@ -43,51 +43,65 @@ const Welcome = () => {
           {/* Content Side */}
           <FadeIn direction="right" className="lg:w-1/2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-widest mb-6">
-              Our Legacy
+              About Our Company
             </div>
 
             <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-8 leading-[1.15]">
-              Pioneering the Future of <br />
+              Excellence in <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-accent">
-                Pharmaceutical Care
+                Pharmaceutical Manufacturing
               </span>
             </h2>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               <p className="text-slate-600 text-lg leading-relaxed font-medium">
-                Fortschritt Healthcare Limited stands at the intersection of medical science and compassionate care.
-                As a rapidly ascending force in the Indian pharmaceutical landscape, we combine clinical precision
-                with a steadfast commitment to accessibility.
+                Fortschritt Healthcare Limited is a premier pharmaceutical manufacturing company based in Baddi, Himachal Pradesh, one of India's leading manufacturing hubs.
               </p>
 
-              <StaggerGrid className="grid grid-cols-2 gap-8">
-                <motion.div variants={staggerItem} className="space-y-2">
-                  <div className="flex items-center gap-2 text-primary font-bold">
-                    <span className="material-icons text-lg">workspace_premium</span>
-                    Quality Assured
-                  </div>
-                  <p className="text-sm text-slate-500">WHO-cGMP norms and ISO Certified plant.</p>
-                </motion.div>
-                <motion.div variants={staggerItem} className="space-y-2">
-                  <div className="flex items-center gap-2 text-secondary font-bold">
-                    <span className="material-icons text-lg">public</span>
-                    Global Reach
-                  </div>
-                  <p className="text-sm text-slate-500">Exporting excellence to partners all over the world.</p>
-                </motion.div>
-              </StaggerGrid>
-
-              <p className="text-slate-600 text-lg leading-relaxed">
-                Established in 2014, we have evolved from a visionary startup into a trusted name,
-                registered with the Registrar of Companies and delivering excellence in every dosage.
+              <p className="text-slate-500 text-base leading-relaxed">
+                Specializing in contract and third-party manufacturing, we deliver customized, high-quality formulations across Gynecology, General Medicine, and Hormonal Tablet segments, ensuring every product meets the highest pharmaceutical benchmarks.
               </p>
             </div>
 
+            {/* Stats Grid */}
+            <StaggerGrid className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-8 border-t border-slate-100">
+              {[
+                { value: "10+", label: "Years Experience" },
+                { value: "100+", label: "Products" },
+                { value: "50+", label: "Clients" },
+                { value: "3", label: "Segments" }
+              ].map((stat, idx) => (
+                <motion.div 
+                  key={stat.label}
+                  variants={staggerItem}
+                  className="space-y-1"
+                >
+                  <div className={`text-3xl font-extrabold ${
+                    idx === 0 ? "text-primary" :
+                    idx === 1 ? "text-primary-accent" :
+                    idx === 2 ? "text-secondary" :
+                    "text-emerald-500"
+                  }`}>
+                    {stat.value}
+                  </div>
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">
+                    {stat.label}
+                  </p>
+                </motion.div>
+              ))}
+            </StaggerGrid>
+
             <div className="mt-12">
-              <Link href="/#about" className="inline-flex items-center gap-3 text-primary font-bold hover:gap-5 transition-all group">
-                Discover Our Heritage
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("verticals")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="inline-flex items-center gap-3 text-primary font-bold hover:gap-5 transition-all group cursor-pointer bg-transparent border-none outline-none"
+              >
+                Explore Our Capabilities
                 <span className="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </Link>
+              </button>
             </div>
           </FadeIn>
 

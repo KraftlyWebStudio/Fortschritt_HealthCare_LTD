@@ -71,39 +71,33 @@ const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   {
     label: "About",
+    href: "/",
     dropdown: [
-      { label: "Company Overview",    href: "/#about",   icon: "domain",           description: "Our story, mission & values"     },
-      { label: "CEO's Message",       href: "/#ceo",     icon: "person",           description: "Leadership vision & direction"   },
-      { label: "Our Team",            href: "/#team",    icon: "groups",           description: "Meet the experts behind us"      },
-      { label: "Legacy & Milestones", href: "/#legacy",  icon: "timeline",         description: "10+ years of healthcare impact"  },
+      { label: "Company Overview", href: "/?scroll=about", icon: "domain", description: "Our story, mission & values" },
+      { label: "CEO's Message", href: "/?scroll=ceo", icon: "person", description: "Leadership vision & direction" },
+      { label: "Our Team", href: "/?scroll=team", icon: "groups", description: "Meet the experts behind us" },
+      { label: "Legacy & Milestones", href: "/?scroll=legacy", icon: "timeline", description: "10+ years of healthcare impact" },
     ],
   },
   {
     label: "Products",
+    href: "/products",
     dropdown: [
-      { label: "Pharmaceuticals",           href: "/products#pharmaceuticals", icon: "medication",     description: "Tablets, capsules & injectables" },
-      { label: "Active Pharma Ingredients", href: "/products#api",             icon: "science",        description: "High-purity API manufacturing"   },
-      { label: "Nutraceuticals",            href: "/products#nutra",           icon: "local_pharmacy", description: "Wellness & dietary supplements"   },
-      { label: "Veterinary Products",       href: "/products#vet",             icon: "pets",           description: "Animal healthcare solutions"      },
+      { label: "Pharmaceuticals", href: "/products?cat=general", icon: "medication", description: "Tablets, capsules & injectables" },
+      { label: "Active Pharma Ingredients", href: "/products?cat=api", icon: "science", description: "High-purity API manufacturing" },
+      { label: "Nutraceuticals", href: "/products?cat=nutra", icon: "local_pharmacy", description: "Wellness & dietary supplements" },
+      { label: "Veterinary Products", href: "/products?cat=vet", icon: "pets", description: "Animal healthcare solutions" },
     ],
   },
-  {
-    label: "Infrastructure",
-    dropdown: [
-      { label: "R&D Center",      href: "/infrastructure#rnd",           icon: "biotech",           description: "Cutting-edge research facility"  },
-      { label: "Manufacturing",   href: "/infrastructure#manufacturing",  icon: "factory",           description: "GMP-compliant plant & processes" },
-      { label: "Quality Control", href: "/infrastructure#quality",        icon: "verified",          description: "Rigorous QA/QC protocols"        },
-      { label: "Certifications",  href: "/infrastructure#certs",          icon: "workspace_premium", description: "WHO-GMP, ISO & international certs" },
-    ],
-  },
+  { label: "Infrastructure", href: "/?scroll=infrastructure" },
   { label: "Careers", href: "/careers" },
 ];
 
 export default function Navbar() {
-  const [isScrolled,     setIsScrolled]     = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [mobileOpen,     setMobileOpen]     = useState(false);
-  const [mobileExp,      setMobileExp]      = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExp, setMobileExp] = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -138,16 +132,55 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
+  // Click Handler for custom scroll / category navigation
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const [path, query] = href.split("?");
+    const searchParams = new URLSearchParams(query);
+    const scrollTarget = searchParams.get("scroll");
+    const catTarget = searchParams.get("cat");
+
+    const currentPath = window.location.pathname;
+    const isHomePage = path === "/" || path === "";
+
+    // 1. Same Page scrolling for Home Page
+    if (scrollTarget && (currentPath === "/" || (isHomePage && currentPath === "/"))) {
+      e.preventDefault();
+      const element = document.getElementById(scrollTarget);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+      setMobileOpen(false);
+      setActiveDropdown(null);
+    }
+
+    // 2. Same Page category filter for Products Page
+    if (catTarget && currentPath === "/products") {
+      e.preventDefault();
+      const event = new CustomEvent("changeCategory", { detail: catTarget });
+      window.dispatchEvent(event);
+      setMobileOpen(false);
+      setActiveDropdown(null);
+    }
+
+    // 3. Same Page scrolling for Infrastructure Page
+    if (scrollTarget && currentPath === "/infrastructure") {
+      e.preventDefault();
+      const event = new CustomEvent("changeInfraSection", { detail: scrollTarget });
+      window.dispatchEvent(event);
+      setMobileOpen(false);
+      setActiveDropdown(null);
+    }
+  };
+
   return (
     <>
       <style>{styles}</style>
 
       <header
-        className={`sticky top-0 z-50 w-full bg-white transition-all duration-500 ${
-          isScrolled
+        className={`sticky top-0 z-50 w-full bg-white transition-all duration-500 ${isScrolled
             ? "shadow-lg shadow-primary/10 border-b border-primary/10"
             : "border-b border-slate-100"
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-[72px]">
@@ -183,22 +216,28 @@ export default function Navbar() {
                     onMouseLeave={scheduleClose}
                   >
                     {/* Trigger */}
-                    <button
-                      className={`nav-link-underline flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-200 ${
-                        activeDropdown === item.label
+                    <Link
+                      href={item.href || "#"}
+                      onClick={(e) => {
+                        if (item.href === window.location.pathname) {
+                          e.preventDefault();
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                        setActiveDropdown(null);
+                      }}
+                      className={`nav-link-underline flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-200 ${activeDropdown === item.label
                           ? "text-primary bg-primary/5"
                           : "text-slate-600 hover:text-primary hover:bg-primary/5"
-                      }`}
+                        }`}
                     >
                       {item.label}
                       <span
-                        className={`material-icons text-[17px] chevron-spin ${
-                          activeDropdown === item.label ? "is-open text-primary" : "text-slate-400"
-                        }`}
+                        className={`material-icons text-[17px] chevron-spin ${activeDropdown === item.label ? "is-open text-primary" : "text-slate-400"
+                          }`}
                       >
                         keyboard_arrow_down
                       </span>
-                    </button>
+                    </Link>
 
                     {activeDropdown === item.label && (
                       <div
@@ -220,6 +259,7 @@ export default function Navbar() {
                               <a
                                 key={sub.label}
                                 href={sub.href}
+                                onClick={(e) => handleLinkClick(e, sub.href)}
                                 className="drop-row flex items-center gap-3.5 px-3 py-2.5 rounded-xl hover:bg-primary/5"
                               >
                                 <div className="drop-icon w-9 h-9 rounded-lg flex items-center
@@ -278,12 +318,6 @@ export default function Navbar() {
               onClick={() => setMobileOpen((p) => !p)}
               aria-label="Toggle menu"
             >
-              {/** Helper functions to keep hamburger line styles readable **/}
-              {/** These are defined inline to avoid cluttering the component's top-level scope **/}
-              {/*
-                Note: Using function declarations inside JSX expressions is allowed in TS/JS.
-                They are evaluated each render but are trivial in cost here.
-              */}
               {(() => {
                 const getHamburgerLineWidth = (index: number, isOpen: boolean): string => {
                   if (index === 1) {
@@ -337,9 +371,8 @@ export default function Navbar() {
                   >
                     {item.label}
                     <span
-                      className={`material-icons text-[18px] chevron-spin ${
-                        mobileExp === item.label ? "is-open text-primary" : "text-slate-400"
-                      }`}
+                      className={`material-icons text-[18px] chevron-spin ${mobileExp === item.label ? "is-open text-primary" : "text-slate-400"
+                        }`}
                     >
                       keyboard_arrow_down
                     </span>
@@ -358,7 +391,10 @@ export default function Navbar() {
                         <a
                           key={sub.label}
                           href={sub.href}
-                          onClick={() => setMobileOpen(false)}
+                          onClick={(e) => {
+                            setMobileOpen(false);
+                            handleLinkClick(e, sub.href);
+                          }}
                           className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:text-primary hover:bg-primary/5 transition-colors duration-200"
                         >
                           <span className="material-icons text-[16px] text-primary/60">{sub.icon}</span>

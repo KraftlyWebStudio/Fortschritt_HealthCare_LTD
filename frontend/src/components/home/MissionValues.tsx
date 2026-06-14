@@ -1,49 +1,77 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { StaggerGrid, staggerItem, motion } from "@/utils/animations";
-
-const values = [
-  { title: "Our Mission", description: "To enhance the quality of human life by providing innovative, high-quality, and affordable pharmaceutical products across the nation.", icon: "rocket_launch" },
-  { title: "Our Vision", description: "To be a recognized pharmaceutical leader, admired for our scientific excellence, ethical standards, and patient-centric approach.", icon: "visibility" },
-  { title: "Our Values", description: "Integrity in Action, Innovation for Patients, Quality Without Compromise, and Social Responsibility.", icon: "verified" },
-];
+import { FadeUp, StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const MissionValues = () => {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section id="values" className="py-24 bg-slate-50 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/5 rounded-full translate-x-1/4 -translate-y-1/4 blur-[80px] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {values.map((item) => (
-            <motion.div
-              key={item.title}
-              variants={staggerItem}
-              whileHover={{ y: -6, boxShadow: "0 24px 48px -12px rgba(30,58,138,0.12)" }}
-              transition={{ type: "spring", stiffness: 280, damping: 20 }}
-              className="bg-white rounded-[40px] p-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-slate-100 group hover:border-primary/20 transition-colors duration-500 flex flex-col h-full"
-            >
-              <div className="w-20 h-20 bg-primary/5 rounded-3xl flex items-center justify-center text-primary mb-10 group-hover:scale-110 transition-transform">
-                <span className="material-icons text-4xl">{item.icon}</span>
-              </div>
-              <h3 className="text-3xl font-extrabold text-primary mb-6 group-hover:text-primary-accent transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-slate-500 text-lg leading-relaxed font-medium mb-10 flex-grow">
-                {item.description}
-              </p>
-              <div className="pt-8 border-t border-slate-100">
-                <Link
-                  href="/#about"
-                  aria-label={`Learn more about ${item.title}`}
-                  className="inline-flex items-center gap-3 text-primary font-bold hover:gap-5 transition-all group/link"
+
+        <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Mission Card */}
+          <motion.div
+            variants={staggerItem}
+            whileHover={{ y: -6, boxShadow: "0 24px 48px -12px rgba(30,58,138,0.12)" }}
+            transition={{ type: "spring", stiffness: 280, damping: 20 }}
+            className="bg-white rounded-[32px] p-10 border border-slate-100 shadow-sm group hover:border-primary/20 transition-all duration-300 flex flex-col h-full"
+          >
+            <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500">
+              <span className="material-icons text-3xl">rocket_launch</span>
+            </div>
+            <h3 className="text-2xl font-extrabold text-primary mb-4 group-hover:text-primary-accent transition-colors">
+              Our Mission
+            </h3>
+            <p className="text-slate-500 text-[15px] leading-relaxed font-medium flex-grow">
+              To provide high-quality pharmaceutical manufacturing solutions that meet industry standards and client expectations, contributing to better healthcare outcomes.
+            </p>
+          </motion.div>
+
+          {/* Vision Card */}
+          <motion.div
+            variants={staggerItem}
+            whileHover={{ y: -6, boxShadow: "0 24px 48px -12px rgba(30,58,138,0.12)" }}
+            transition={{ type: "spring", stiffness: 280, damping: 20 }}
+            className="bg-white rounded-[32px] p-10 border border-slate-100 shadow-sm group hover:border-primary/20 transition-all duration-300 flex flex-col h-full"
+          >
+            <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500">
+              <span className="material-icons text-3xl">visibility</span>
+            </div>
+            <h3 className="text-2xl font-extrabold text-primary mb-4 group-hover:text-primary-accent transition-colors">
+              Our Vision
+            </h3>
+            <p className="text-slate-500 text-[15px] leading-relaxed font-medium flex-grow">
+              To become a trusted pharmaceutical manufacturing partner recognized for quality, innovation, and reliability across the Indian pharmaceutical industry.
+            </p>
+          </motion.div>
+
+          {/* Core Values Card */}
+          <motion.div
+            variants={staggerItem}
+            whileHover={{ y: -6, boxShadow: "0 24px 48px -12px rgba(30,58,138,0.12)" }}
+            transition={{ type: "spring", stiffness: 280, damping: 20 }}
+            className="bg-white rounded-[32px] p-10 border border-slate-100 shadow-sm group hover:border-primary/20 transition-all duration-300 flex flex-col h-full"
+          >
+            <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500">
+              <span className="material-icons text-3xl">verified</span>
+            </div>
+            <h3 className="text-2xl font-extrabold text-primary mb-6 group-hover:text-primary-accent transition-colors">
+              Core Values
+            </h3>
+            <div className="flex flex-wrap gap-2.5 mt-2">
+              {["Quality", "Integrity", "Innovation", "Customer Satisfaction", "Excellence"].map((val) => (
+                <span 
+                  key={val} 
+                  className="px-4 py-2 rounded-full bg-slate-50 border border-slate-100/80 text-slate-600 text-xs font-bold shadow-sm"
                 >
-                  Learn More
-                  <span className="material-icons text-lg group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+                  {val}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </StaggerGrid>
       </div>
     </section>

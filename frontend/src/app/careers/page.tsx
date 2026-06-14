@@ -74,7 +74,7 @@ export default function CareersPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-primary pb-20 pt-32">
+      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-primary pb-32 pt-48">
         <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(#fff 2px, transparent 2px)", backgroundSize: "40px 40px" }} />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/20 rounded-full translate-x-1/2 -translate-y-1/2 blur-[100px]" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/5 rounded-full -translate-x-1/3 translate-y-1/3 blur-[120px]" />
@@ -250,32 +250,32 @@ export default function CareersPage() {
       </section>
 
       {/* Spontaneous Application CTA */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div 
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease }}
-          className="bg-primary rounded-[40px] p-10 md:p-16 text-center relative overflow-hidden shadow-2xl shadow-primary/20"
+          className="bg-primary rounded-[2rem] p-8 md:p-10 text-center relative overflow-hidden shadow-2xl shadow-primary/20"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-32 -mb-32"></div>
+          <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24"></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-24 -mb-24"></div>
           
-          <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-            <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center text-white mb-8 border border-white/20">
-              <span className="material-icons text-4xl">flight_takeoff</span>
+          <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center">
+            <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white mb-6 border border-white/20">
+              <span className="material-icons text-xl">flight_takeoff</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-4">
               Don&apos;t see a perfect fit?
             </h2>
-            <p className="text-white/80 text-lg leading-relaxed mb-10">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-6">
               We are constantly looking for talented professionals to join our ranks. Send us your resume and we&apos;ll keep you in mind for future opportunities.
             </p>
             <a 
               href="mailto:fortschritthealthcare@gmail.com?subject=Spontaneous Application"
-              className="bg-white text-primary px-10 py-5 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center gap-3 group shadow-xl"
+              className="bg-white text-primary px-6 py-3 rounded-xl font-bold text-sm hover:bg-slate-50 transition-all flex items-center gap-2 group shadow-lg"
             >
-              <span className="material-icons">mail</span>
+              <span className="material-icons text-sm">mail</span>
               Send Your Resume
             </a>
           </div>
