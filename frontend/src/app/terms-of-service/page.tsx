@@ -7,42 +7,44 @@ import Link from "next/link";
 import { FadeUp, motion } from "@/utils/animations";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
-const EFFECTIVE_DATE = "July 2026";
-const LAST_UPDATED_DATE = "July 2026";
 
-export default function PrivacyPolicyPage() {
+export default function TermsPage() {
   const sections = [
-    {
-      title: "Information We Collect",
-      content: "We collect information you provide directly to us, such as when you fill out a contact form, request product information, or communicate with us. This may include your name, email address, phone number, company name, and the content of your message.",
+    { 
+      title: "Acceptance of Terms", 
+      content: "By accessing and using the Fortschritt Healthcare Limited website, you accept and agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our website." 
     },
-    {
-      title: "How We Use Your Information",
-      content: "We use the information we collect to respond to your inquiries, provide product information and quotations, improve our services, send relevant communications about our products and industry updates (with your consent), and comply with legal obligations.",
+    { 
+      title: "Use of the Website", 
+      content: "This website is provided for informational purposes only. You agree to use the website only for lawful purposes and in a manner that does not infringe the rights of others or restrict their use of the website." 
     },
-    {
-      title: "Data Sharing & Disclosure",
-      content: "We do not sell, trade, or otherwise transfer your personal information to outside parties. We may share data with trusted service providers who assist us in operating our website, conducting our business, or servicing you, provided those parties agree to keep this information confidential.",
+    { 
+      title: "Intellectual Property", 
+      content: "All content on this website — including text, graphics, logos, images, and software — is the property of Fortschritt Healthcare Limited and is protected by applicable intellectual property laws. You may not reproduce or distribute any content without our express written permission." 
     },
-    {
-      title: "Data Security",
-      content: "We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of internet transmission is 100% secure.",
+    { 
+      title: "Medical Disclaimer", 
+      content: "The information on this website is for general informational purposes only and does not constitute medical advice. Always consult a qualified healthcare professional for medical guidance. Our products are prescription-only unless otherwise specified and must be used under medical supervision." 
     },
-    {
-      title: "Your Rights",
-      content: "You have the right to access, correct, or delete your personal information. You may also object to or restrict our processing of your data. To exercise these rights, please contact us at fortschritthealthcare@gmail.com.",
+    { 
+      title: "Product Information", 
+      content: "Product descriptions and specifications are subject to change. While we strive for accuracy, we do not warrant that product information is complete, current, or error-free. Availability may vary by region and applicable regulations." 
     },
-    {
-      title: "Cookies",
-      content: "Our website uses cookies to enhance your browsing experience. You can choose to disable cookies through your browser settings, though this may affect some functionality of the site. See our Cookie Policy for more details.",
+    { 
+      title: "Limitation of Liability", 
+      content: "Fortschritt Healthcare Limited shall not be liable for any indirect, incidental, special, or consequential damages arising out of your use of, or inability to use, this website or its content, to the maximum extent permitted by law." 
     },
-    {
-      title: "Changes to This Policy",
-      content: "We may update this Privacy Policy from time to time. We will notify you of significant changes by posting the new policy on this page with a revised effective date.",
+    { 
+      title: "Third-Party Links", 
+      content: "This website may contain links to third-party websites. These links are provided for your convenience only. We have no control over the content of those sites and accept no responsibility for them." 
     },
-    {
-      title: "Contact Us",
-      content: "If you have questions about this Privacy Policy or our data practices, please contact our Data Protection Officer at fortschritthealthcare@gmail.com or write to us at our registered office.",
+    { 
+      title: "Governing Law", 
+      content: "These Terms of Service are governed by and construed in accordance with the laws of India. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts in Himachal Pradesh, India." 
+    },
+    { 
+      title: "Changes to Terms", 
+      content: "We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Continued use of the website after changes constitutes your acceptance of the revised terms." 
     },
   ];
 
@@ -63,8 +65,8 @@ export default function PrivacyPolicyPage() {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest mb-8"
           >
-            <span className="material-icons text-[14px] text-secondary">security</span>
-            Data Protection
+            <span className="material-icons text-[14px] text-secondary">gavel</span>
+            User Agreement
           </motion.div>
 
           <motion.h1
@@ -73,7 +75,7 @@ export default function PrivacyPolicyPage() {
             transition={{ duration: 0.8, delay: 0.1, ease }}
             className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6"
           >
-            Privacy <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-200">Policy</span>
+            Terms of <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-200">Service</span>
           </motion.h1>
 
           <motion.p
@@ -82,7 +84,7 @@ export default function PrivacyPolicyPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-white/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-semibold"
           >
-            Effective Date: {EFFECTIVE_DATE} · Last Updated: {LAST_UPDATED_DATE}
+            Effective Date: July 2026 · Last Updated: July 2026
           </motion.p>
         </div>
       </section>
@@ -91,7 +93,7 @@ export default function PrivacyPolicyPage() {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <FadeUp className="bg-white rounded-[32px] border border-slate-100 shadow-sm p-8 md:p-16 space-y-10">
           <p className="text-slate-600 leading-relaxed mb-10 text-lg font-semibold border-b border-slate-100 pb-8">
-            Fortschritt Healthcare Limited (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is committed to protecting your privacy. This policy describes how we collect, use, and safeguard your personal information when you visit our website or interact with us.
+            Please read these Terms of Service carefully before using the Fortschritt Healthcare Limited website. These terms govern your access to and use of our website and services.
           </p>
           <div className="space-y-10">
             {sections.map((s, i) => (
