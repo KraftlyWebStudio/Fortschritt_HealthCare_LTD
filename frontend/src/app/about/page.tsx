@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -68,6 +68,81 @@ const pastEvents = [
 
 export default function AboutPage() {
   const router = useRouter();
+
+  // ── Drag-to-scroll for the events marquee ──────────────────────
+  // Uses Pointer Events (mouse + touch unified) + setPointerCapture so
+  // dragging stays smooth even when cursor leaves the container.
+  // On drag start we REMOVE the CSS animation entirely (not just pause)
+  // so inline transform has sole control with zero CSS-vs-inline conflict.
+  const marqueeWrapperRef = useRef<HTMLDivElement>(null);
+  const trackRef          = useRef<HTMLDivElement>(null);
+  const isDragging        = useRef(false);
+  const dragStartX        = useRef(0);
+  const dragBaseX         = useRef(0); // track translateX at drag start
+  const DURATION          = 35;        // must match CSS animation duration
+
+  /** Read the current translateX (px) from computed style. */
+  const getTrackX = useCallback((): number => {
+    if (!trackRef.current) return 0;
+    const m = new DOMMatrix(window.getComputedStyle(trackRef.current).transform);
+    return m.m41;
+  }, []);
+
+  /** Keep offset looping in [-2×oneSet, 0] for seamless infinity. */
+  const wrapX = useCallback((x: number): number => {
+    if (!trackRef.current) return x;
+    const oneSet = trackRef.current.scrollWidth / 3;
+    if (oneSet <= 0) return x;
+    while (x < -2 * oneSet) x += oneSet;
+    while (x > 0)           x -= oneSet;
+    return x;
+  }, []);
+
+  const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (!trackRef.current || !marqueeWrapperRef.current) return;
+    // Capture so pointer events keep firing even outside the element
+    e.currentTarget.setPointerCapture(e.pointerId);
+
+    // Read position BEFORE killing the animation
+    const currentX = getTrackX();
+    dragBaseX.current   = currentX;
+    dragStartX.current  = e.clientX;
+    isDragging.current  = true;
+
+    // Fully remove CSS animation → inline transform has sole ownership
+    trackRef.current.style.animation = 'none';
+    trackRef.current.style.transform = `translateX(${currentX}px)`;
+    marqueeWrapperRef.current.style.cursor = 'grabbing';
+  }, [getTrackX]);
+
+  const onPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !trackRef.current) return;
+    const delta = e.clientX - dragStartX.current;
+    const newX  = wrapX(dragBaseX.current + delta);
+    trackRef.current.style.transform = `translateX(${newX}px)`;
+  }, [wrapX]);
+
+  const onPointerUp = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !trackRef.current || !marqueeWrapperRef.current) return;
+    e.currentTarget.releasePointerCapture(e.pointerId);
+    isDragging.current = false;
+
+    // Compute how far through one cycle we are to resume from that point
+    const oneSet    = trackRef.current.scrollWidth / 3;
+    const currentX  = getTrackX();
+    const progress  = oneSet > 0 ? Math.abs(currentX % oneSet) / oneSet : 0;
+    const delay     = -(progress * DURATION);
+
+    // Clear inline styles, then restore animation starting at the right offset
+    trackRef.current.style.transform = '';
+    trackRef.current.style.animation =
+      `marquee-rtl ${DURATION}s linear ${delay}s infinite`;
+
+    marqueeWrapperRef.current.style.cursor = 'grab';
+  }, [getTrackX]);
+
+  // Cancel behaves same as up (e.g. touch cancelled by OS)
+  const onPointerCancel = onPointerUp;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -254,56 +329,71 @@ export default function AboutPage() {
 
         {/* Full-width Marquee Container */}
         <FadeUp delay={0.15}>
-          <div className="relative w-full overflow-hidden py-4">
-            {/* Left and right fade gradient overlays for premium aesthetic */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-48 bg-gradient-to-r from-slate-50 via-slate-50/70 to-transparent z-10" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-48 bg-gradient-to-l from-slate-50 via-slate-50/70 to-transparent z-10" />
+          <div className="relative w-full py-4">
+            {/* Gradient overlays — siblings to scroll area, always fixed */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-40 bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-40 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent z-10" />
 
-            <div className="flex w-max gap-8 animate-marquee-rtl px-8">
-              {/* Render pastEvents 3 times for seamless infinite scroll */}
-              {[...pastEvents, ...pastEvents, ...pastEvents].map((evt, idx) => (
-                <div
-                  key={`${evt.title}-${idx}`}
-                  className="group w-[300px] sm:w-[420px] flex-shrink-0 rounded-[32px] overflow-hidden border border-slate-100 bg-white hover:-translate-y-1 hover:shadow-xl hover:border-transparent transition-all duration-300 shadow-sm flex flex-col justify-between"
-                >
-                  <div>
-                    {/* Event Image */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
-                      <img
-                        src={evt.image}
-                        alt={evt.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-60" />
-                    </div>
-                    
-                    {/* Event Details */}
-                    <div className="p-8">
-                      <div className="flex justify-between items-center mb-5">
-                        <span className="text-[10px] font-bold tracking-wider uppercase bg-primary/5 text-primary px-3 py-1 rounded-full">
-                          {evt.category}
-                        </span>
-                        <span className="text-xs font-semibold text-slate-400 tabular-nums">
-                          {evt.date}
-                        </span>
+            {/* Drag surface — overflow-hidden clips the track, touch-action:none */}
+            {/* prevents browser scroll hijacking on mobile                        */}
+            <div
+              ref={marqueeWrapperRef}
+              className="overflow-hidden cursor-grab select-none"
+              style={{ touchAction: 'none' }}
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={onPointerUp}
+              onPointerCancel={onPointerCancel}
+            >
+              {/* will-change:transform hints the browser to GPU-composite this layer */}
+              <div
+                ref={trackRef}
+                className="flex w-max gap-8 animate-marquee-rtl px-8"
+                style={{ willChange: 'transform' }}
+              >
+                {[...pastEvents, ...pastEvents, ...pastEvents].map((evt, idx) => (
+                  <div
+                    key={`${evt.title}-${idx}`}
+                    className="group w-[300px] sm:w-[420px] flex-shrink-0 rounded-[32px] overflow-hidden border border-slate-100 bg-white hover:-translate-y-1 hover:shadow-xl hover:border-transparent transition-all duration-300 shadow-sm flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                        <img
+                          src={evt.image}
+                          alt={evt.title}
+                          draggable={false}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-60" />
                       </div>
-                      
-                      <div className="flex items-start gap-3.5 mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                          <span className="material-icons text-lg">{evt.icon}</span>
+
+                      <div className="p-8">
+                        <div className="flex justify-between items-center mb-5">
+                          <span className="text-[10px] font-bold tracking-wider uppercase bg-primary/5 text-primary px-3 py-1 rounded-full">
+                            {evt.category}
+                          </span>
+                          <span className="text-xs font-semibold text-slate-400 tabular-nums">
+                            {evt.date}
+                          </span>
                         </div>
-                        <h4 className="text-base sm:text-lg font-bold text-primary group-hover:text-primary-accent transition-colors pt-1.5">
-                          {evt.title}
-                        </h4>
+
+                        <div className="flex items-start gap-3.5 mb-4">
+                          <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                            <span className="material-icons text-lg">{evt.icon}</span>
+                          </div>
+                          <h4 className="text-base sm:text-lg font-bold text-primary group-hover:text-primary-accent transition-colors pt-1.5">
+                            {evt.title}
+                          </h4>
+                        </div>
+
+                        <p className="text-slate-500 text-sm leading-relaxed pl-14 font-medium">
+                          {evt.description}
+                        </p>
                       </div>
-                      
-                      <p className="text-slate-500 text-sm leading-relaxed pl-14 font-medium">
-                        {evt.description}
-                      </p>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </FadeUp>
