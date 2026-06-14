@@ -112,7 +112,7 @@ const Hero = () => {
                       href="/products"
                       className="bg-primary text-white px-10 py-5 rounded-2xl font-bold text-lg hover:scale-[1.05] hover:shadow-primary/40 active:scale-[0.98] transition-all shadow-2xl shadow-primary/20 flex items-center gap-3 group"
                     >
-                      Explore Portfolio
+                      Explore Formulations
                       <span className="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </Link>
                     <Link

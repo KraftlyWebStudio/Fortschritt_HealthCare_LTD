@@ -71,12 +71,12 @@ const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   {
     label: "About",
-    href: "/",
+    href: "/about",
     dropdown: [
-      { label: "Company Overview", href: "/?scroll=about", icon: "domain", description: "Our story, mission & values" },
-      { label: "CEO's Message", href: "/?scroll=ceo", icon: "person", description: "Leadership vision & direction" },
-      { label: "Our Team", href: "/?scroll=team", icon: "groups", description: "Meet the experts behind us" },
-      { label: "Legacy & Milestones", href: "/?scroll=legacy", icon: "timeline", description: "10+ years of healthcare impact" },
+      { label: "Company Overview", href: "/about?scroll=about", icon: "domain", description: "Our story, mission & values" },
+      { label: "CEO's Message", href: "/about?scroll=ceo", icon: "person", description: "Leadership vision & direction" },
+      { label: "Our Team", href: "/about?scroll=team", icon: "groups", description: "Meet the experts behind us" },
+      { label: "Legacy & Milestones", href: "/about?scroll=legacy", icon: "timeline", description: "10+ years of healthcare impact" },
     ],
   },
   {
@@ -144,6 +144,17 @@ export default function Navbar() {
 
     // 1. Same Page scrolling for Home Page
     if (scrollTarget && (currentPath === "/" || (isHomePage && currentPath === "/"))) {
+      e.preventDefault();
+      const element = document.getElementById(scrollTarget);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+      setMobileOpen(false);
+      setActiveDropdown(null);
+    }
+
+    // Same Page scrolling for About Page
+    if (scrollTarget && currentPath === "/about" && path === "/about") {
       e.preventDefault();
       const element = document.getElementById(scrollTarget);
       if (element) {
