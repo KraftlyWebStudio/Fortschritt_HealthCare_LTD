@@ -73,20 +73,21 @@ const navItems: NavItem[] = [
     label: "About",
     href: "/about",
     dropdown: [
-      { label: "Company Overview", href: "/about?scroll=about", icon: "domain", description: "Our story, mission & values" },
-      { label: "CEO's Message", href: "/about?scroll=ceo", icon: "person", description: "Leadership vision & direction" },
-      { label: "Our Team", href: "/about?scroll=team", icon: "groups", description: "Meet the experts behind us" },
-      { label: "Legacy & Milestones", href: "/about?scroll=legacy", icon: "timeline", description: "10+ years of healthcare impact" },
+      { label: "Company Overview",      href: "/?scroll=about",         icon: "domain",         description: "Our story, mission & values" },
+      { label: "CEO's Message",         href: "/about?scroll=ceo",      icon: "person",         description: "Leadership vision & direction" },
+      { label: "Our Team",              href: "/about?scroll=team",     icon: "groups",         description: "Meet the experts behind us" },
+      { label: "Events & Highlights",   href: "/about?scroll=events",   icon: "event",          description: "CPhI expos, health drives & compliance" },
+      { label: "Legacy & Milestones",   href: "/?scroll=legacy",        icon: "timeline",       description: "10+ years of healthcare impact" },
     ],
   },
   {
     label: "Products",
     href: "/products",
     dropdown: [
-      { label: "Pharmaceuticals", href: "/products?cat=general", icon: "medication", description: "Tablets, capsules & injectables" },
-      { label: "Active Pharma Ingredients", href: "/products?cat=api", icon: "science", description: "High-purity API manufacturing" },
-      { label: "Nutraceuticals", href: "/products?cat=nutra", icon: "local_pharmacy", description: "Wellness & dietary supplements" },
-      { label: "Veterinary Products", href: "/products?cat=vet", icon: "pets", description: "Animal healthcare solutions" },
+      { label: "Pharmaceuticals",             href: "/products?cat=general",  icon: "medication",       description: "Tablets, capsules & injectables" },
+      { label: "Active Pharma Ingredients",   href: "/products?cat=api",      icon: "science",          description: "High-purity API manufacturing" },
+      { label: "Nutraceuticals",              href: "/products?cat=nutra",    icon: "local_pharmacy",   description: "Wellness & dietary supplements" },
+      { label: "Veterinary Products",         href: "/products?cat=vet",      icon: "pets",             description: "Animal healthcare solutions" },
     ],
   },
   { label: "Infrastructure", href: "/?scroll=infrastructure" },
@@ -140,21 +141,11 @@ export default function Navbar() {
     const catTarget = searchParams.get("cat");
 
     const currentPath = window.location.pathname;
-    const isHomePage = path === "/" || path === "";
+    const targetPath = path === "" || path === "/" ? "/" : path;
+    const isSamePage = currentPath === targetPath;
 
-    // 1. Same Page scrolling for Home Page
-    if (scrollTarget && (currentPath === "/" || (isHomePage && currentPath === "/"))) {
-      e.preventDefault();
-      const element = document.getElementById(scrollTarget);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-      setMobileOpen(false);
-      setActiveDropdown(null);
-    }
-
-    // Same Page scrolling for About Page
-    if (scrollTarget && currentPath === "/about" && path === "/about") {
+    // 1. Same Page scrolling
+    if (scrollTarget && isSamePage) {
       e.preventDefault();
       const element = document.getElementById(scrollTarget);
       if (element) {
@@ -165,18 +156,9 @@ export default function Navbar() {
     }
 
     // 2. Same Page category filter for Products Page
-    if (catTarget && currentPath === "/products") {
+    if (catTarget && currentPath === "/products" && targetPath === "/products") {
       e.preventDefault();
       const event = new CustomEvent("changeCategory", { detail: catTarget });
-      window.dispatchEvent(event);
-      setMobileOpen(false);
-      setActiveDropdown(null);
-    }
-
-    // 3. Same Page scrolling for Infrastructure Page
-    if (scrollTarget && currentPath === "/infrastructure") {
-      e.preventDefault();
-      const event = new CustomEvent("changeInfraSection", { detail: scrollTarget });
       window.dispatchEvent(event);
       setMobileOpen(false);
       setActiveDropdown(null);

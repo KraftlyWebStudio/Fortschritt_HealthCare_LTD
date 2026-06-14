@@ -15,7 +15,7 @@ const sitemapData = [
     links: [
       { label: "Home", href: "/" },
       { label: "About Us", href: "/about" },
-      { label: "History & Journey", href: "/about?scroll=legacy" },
+      { label: "History & Journey", href: "/?scroll=legacy" },
       { label: "Contact Us", href: "/contact" },
       { label: "Careers", href: "/careers" },
     ],
@@ -45,9 +45,10 @@ const sitemapData = [
     section: "Company & Leadership",
     icon: "domain",
     links: [
-      { label: "Company Overview", href: "/about?scroll=about" },
+      { label: "Company Overview", href: "/?scroll=about" },
       { label: "CEO's Message", href: "/about?scroll=ceo" },
       { label: "Our Team", href: "/about?scroll=team" },
+      { label: "Events & Highlights", href: "/about?scroll=events" },
       { label: "R&D Publications", href: "/rd-publications" },
       { label: "Manufacturing Ethics", href: "/manufacturing-ethics" },
     ],

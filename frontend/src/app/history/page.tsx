@@ -7,7 +7,7 @@ export default function HistoryPage() {
   const router = useRouter();
   
   useEffect(() => {
-    router.replace("/about?scroll=legacy");
+    router.replace("/?scroll=legacy");
   }, [router]);
 
   return null;

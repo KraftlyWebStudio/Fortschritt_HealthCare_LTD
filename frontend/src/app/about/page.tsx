@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -8,74 +8,62 @@ import { FadeUp, FadeIn, StaggerGrid, staggerItem, motion } from "@/utils/animat
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-const teamMembers = [
+const cultureGallery = [
   {
-    name: "Naveen Chandra Kandpal",
-    role: "CEO and Founder",
-    bio: "A visionary leader with over 15 years of industry experience, driving regulatory compliance and global market expansion.",
-    image: "/CEOImage.png",
+    title: "Formulation Research & Development",
+    description: "Scientists discussing drug-delivery profiles and stability testing.",
+    image: "/home/hero-scientist.webp",
   },
   {
-    name: "Chander Negi",
-    role: "Operational Director",
-    bio: "Exacting operations manager overseeing the Baddi plant infrastructure, manufacturing excellence, and logistics.",
-    image: "/OperationalDirectorImage.png",
-  },
-];
-
-const departments = [
-  {
-    name: "Formulation R&D",
-    description: "Our core scientific team of formulation chemists working on drug stability, delivery optimization, and generic equivalents.",
-    icon: "biotech",
-    color: "from-blue-500/10 to-indigo-500/10 text-blue-600",
+    title: "Sterile Blister Packing Line",
+    description: "Operators packaging tablets under strict WHO-GMP sterile conditions.",
+    image: "/home/hero-packaging.webp",
   },
   {
-    name: "QA & QC Auditing",
-    description: "Rigorous analysts conducting raw material assays, packaging audits, and multi-stage compliance checks under WHO-GMP.",
-    icon: "verified",
-    color: "from-emerald-500/10 to-teal-500/10 text-emerald-600",
+    title: "Quality Control Laboratory",
+    description: "Chemists conducting raw material assays and batch verifications.",
+    image: "/home/hero-lab.webp",
   },
   {
-    name: "Regulatory Affairs",
-    description: "Specialized team drafting CTD/eCTD dossiers and securing export compliances for over 45+ international regions.",
-    icon: "gavel",
-    color: "from-amber-500/10 to-orange-500/10 text-amber-600",
-  },
-  {
-    name: "Global Logistics",
-    description: "Managing seamless cold-chain logistics and shipping schedules for wholesale distributors worldwide.",
-    icon: "local_shipping",
-    color: "from-purple-500/10 to-pink-500/10 text-purple-600",
+    title: "Global Logistics & Dispatch",
+    description: "Team securing cold-chain protocols and export documentation.",
+    image: "/home/hero-facility.webp",
   },
 ];
 
-const milestones = [
+const pastEvents = [
   {
-    year: "2014",
-    title: "The Genesis (B2 Operations)",
-    description: "Began our operations in Baddi, Himachal Pradesh, with a focused line of general medicine formulations.",
+    title: "CPhI & P-MEC India Participation",
+    date: "November 2025",
+    category: "Global Expo",
+    icon: "public",
+    image: "/event-cphi.png",
+    description: "Represented Fortschritt Healthcare at South Asia's premier pharma event, presenting our advanced hormonal tablet formulations to international buyers."
   },
   {
-    year: "2015",
-    title: "Fortschritt Healthcare Founded",
-    description: "Officially incorporated Fortschritt Healthcare Limited and launched export pathways to regional and global buyers.",
+    title: "Community CSR Health Drive",
+    date: "April 2026",
+    category: "Community CSR",
+    icon: "volunteer_activism",
+    image: "/home/hero-scientist.webp",
+    description: "Conducted a free medical screening and essential medicine distribution camp in Baddi, servicing over 500+ local families."
   },
   {
-    year: "2018",
-    title: "R&D Facility Dedication",
-    description: "Commissioned a state-of-the-art laboratory in Baddi to drive in-house formulation development and stability studies.",
+    title: "WHO-GMP Triennial Plant Recertification",
+    date: "February 2026",
+    category: "Quality Compliance",
+    icon: "verified_user",
+    image: "/home/hero-lab.webp",
+    description: "Successfully cleared a rigorous 4-day inspection of our manufacturing lines with zero critical observations, reinforcing our export-grade status."
   },
   {
-    year: "2023",
-    title: "Hormone Tablet Division",
-    description: "Expanded our operational footprint to 1800+ formulations and launched our advanced hormonal dosage section.",
-  },
-  {
-    year: "2026 & Beyond",
-    title: "Regulatory Scaling & Automation",
-    description: "Implementing automated high-throughput blistering lines and acquiring approvals for advanced international markets.",
-  },
+    title: "Annual Plant Safety & Festive Awards",
+    date: "December 2025",
+    category: "Workforce",
+    icon: "workspace_premium",
+    image: "/event-festive.png",
+    description: "Celebrated 1200+ consecutive safe production days at our Baddi facility, presenting performance awards to our machine operators and supervisor teams during our safety week and Diwali celebrations."
+  }
 ];
 
 export default function AboutPage() {
@@ -139,82 +127,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Company Overview Section ─────────────────────────── */}
-      <section id="about" className="py-24 bg-white scroll-mt-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-            
-            {/* Visual Side */}
-            <FadeIn direction="left" className="lg:w-1/2 relative w-full">
-              <div className="relative z-10 w-11/12 md:w-4/5 rounded-[32px] overflow-hidden shadow-2xl border-8 border-white hover:scale-[1.02] transition-transform duration-500">
-                <img
-                  src="/about-facility.webp"
-                  alt="Fortschritt Facility Baddi"
-                  className="w-full h-full object-cover aspect-[4/3] md:aspect-[4/5]"
-                />
-              </div>
-              <div className="absolute -bottom-10 -right-4 w-3/5 z-20 rounded-[24px] overflow-hidden shadow-2xl border-8 border-white hidden md:block">
-                <img
-                  src="/home/hero-scientist.webp"
-                  alt="R&D Lab Testing"
-                  className="w-full h-full object-cover aspect-square"
-                />
-              </div>
-              <div className="absolute top-1/2 -right-8 translate-y-[-50%] z-30 glass p-6 rounded-3xl shadow-xl hidden lg:block border border-white/50">
-                <div className="text-center">
-                  <div className="text-4xl font-extrabold text-primary mb-1">WHO-GMP</div>
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Certified <br /> Manufacturing</div>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Content Side */}
-            <FadeIn direction="right" className="lg:w-1/2 w-full">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-widest mb-6">
-                Company Overview
-              </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-8 leading-tight">
-                Pioneering Pharmaceutical <br />
-                <span className="text-primary-accent">Contract Manufacturing</span>
-              </h2>
-              <div className="space-y-6 text-slate-600 leading-relaxed font-medium text-base">
-                <p>
-                  Fortschritt Healthcare Limited operates a state-of-the-art formulation facility based in Baddi, Himachal Pradesh. As an emerging leader in B2B pharmaceutical services, we specialize in high-efficiency contract manufacturing and customized formulation developments.
-                </p>
-                <p>
-                  With certified WHO-GMP and ISO compliance, our output spans critical healthcare verticals—including Gynecology solutions, general medicines, hormonal oral formulations, and active ingredients—serviced by highly experienced production leads and regulatory affairs agents.
-                </p>
-                <p>
-                  Our mission is anchored in reliability: delivering high-purity dosage forms that allow healthcare companies around the world to optimize their distribution pipelines safely.
-                </p>
-              </div>
-
-              {/* Stats Block */}
-              <StaggerGrid className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 pt-8 border-t border-slate-100">
-                {[
-                  { value: "10+", label: "Years of Trust" },
-                  { value: "1800+", label: "Formulations" },
-                  { value: "45+", label: "Export Nations" },
-                  { value: "100%", label: "WHO-GMP Compliant" },
-                ].map((stat, idx) => (
-                  <motion.div key={stat.label} variants={staggerItem} className="space-y-1">
-                    <div className={`text-2xl md:text-3xl font-extrabold ${idx === 0 ? "text-primary" : idx === 1 ? "text-primary-accent" : idx === 2 ? "text-secondary" : "text-emerald-500"}`}>
-                      {stat.value}
-                    </div>
-                    <p className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider leading-tight">
-                      {stat.label}
-                    </p>
-                  </motion.div>
-                ))}
-              </StaggerGrid>
-            </FadeIn>
-
-          </div>
-        </div>
-      </section>
-
       {/* ── CEO's Message Section ─────────────────────────────── */}
-      <section id="ceo" className="py-24 bg-slate-50 scroll-mt-20 overflow-hidden border-t border-b border-slate-100">
+      <section id="ceo" className="py-24 bg-slate-50 scroll-mt-20 overflow-hidden border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
             
@@ -272,69 +186,49 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Our Team Section ──────────────────────────────────── */}
+      {/* ── Our Team & Culture Section ────────────────────────── */}
       <section id="team" className="py-24 bg-white scroll-mt-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <FadeUp className="text-center max-w-3xl mx-auto mb-20">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-widest mb-6">
-              Leadership & Team
+              Our Culture & Team
             </div>
             <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
-              The Experts Behind Fortschritt
+              Our Workforce in Action
             </h2>
             <p className="text-slate-500 text-lg leading-relaxed font-medium">
-              Combining administrative foresight, operational efficiency, and deep pharmaceutical expertise.
+              A glimpse into the daily focus, research collaboration, sterile packing, and dispatch operations at our Baddi plant.
             </p>
           </FadeUp>
 
-          {/* Executive Leadership Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto gap-12 mb-24">
-            {teamMembers.map((member) => (
-              <FadeUp key={member.name} className="group">
-                <div className="relative mb-6 overflow-hidden rounded-[28px] aspect-[4/5] bg-slate-100 shadow-lg border-4 border-white hover:scale-[1.01] transition-transform duration-350">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
-                    <p className="text-slate-200 text-xs font-bold tracking-widest uppercase mb-1">{member.role}</p>
-                    <h4 className="text-white text-xl font-bold">{member.name}</h4>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-primary mb-1">{member.name}</h4>
-                  <p className="text-primary-accent font-bold text-sm mb-3 uppercase tracking-wider">{member.role}</p>
-                  <p className="text-slate-500 text-sm leading-relaxed font-medium">{member.bio}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-
-          <hr className="border-slate-100 max-w-5xl mx-auto mb-24" />
-
-          {/* Departmental Operations Intro */}
-          <FadeUp className="text-center max-w-2xl mx-auto mb-16">
-            <h3 className="text-2xl font-extrabold text-primary mb-4">Departmental Strength</h3>
-            <p className="text-slate-500 text-base leading-relaxed font-medium">
-              We employ over 120+ skilled personnel in specialized divisions to maintain reliable wholesale manufacturing cycles.
-            </p>
-          </FadeUp>
-
-          {/* Department Cards Grid */}
-          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {departments.map((dept) => (
+          {/* Workforce Gallery Grid */}
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-5xl mx-auto">
+            {cultureGallery.map((item) => (
               <motion.div
-                key={dept.name}
+                key={item.title}
                 variants={staggerItem}
-                className="p-8 rounded-[28px] border border-slate-100 bg-white hover:-translate-y-2 hover:shadow-xl hover:border-transparent transition-all duration-300 group shadow-sm"
+                className="group relative rounded-[32px] overflow-hidden border border-slate-100 bg-white shadow-md hover:shadow-xl transition-all duration-500"
               >
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${dept.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <span className="material-icons text-3xl">{dept.icon}</span>
+                {/* Visual */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/15 to-transparent opacity-65" />
                 </div>
-                <h4 className="text-lg font-bold text-primary mb-3">{dept.name}</h4>
-                <p className="text-slate-500 text-sm leading-relaxed font-medium">{dept.description}</p>
+                
+                {/* Overlay Text info */}
+                <div className="p-6 md:p-8 bg-white relative z-10 border-t border-slate-50">
+                  <h4 className="text-lg font-bold text-primary group-hover:text-primary-accent transition-colors mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-slate-500 text-sm leading-relaxed font-medium">
+                    {item.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </StaggerGrid>
@@ -342,83 +236,77 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Legacy & Milestones Section ───────────────────────── */}
-      <section id="legacy" className="py-24 bg-slate-50 scroll-mt-20 overflow-hidden border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex flex-col lg:flex-row gap-20">
-            
-            {/* Left Column Sticky info */}
-            <FadeIn direction="left" className="lg:w-1/3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-widest mb-6">
-                Our History
-              </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-6 leading-tight">
-                A Decade of Growth <br />
-                <span className="text-primary-accent">& Global Footprint</span>
-              </h2>
-              <p className="text-slate-500 text-lg leading-relaxed font-medium mb-12">
-                Since starting our early operational runs in 2014, Fortschritt Healthcare has scaled consistently, achieving new milestones in compliance, formulation ranges, and client satisfaction.
-              </p>
-
-              <div className="space-y-6">
-                {[
-                  { icon: "star_border", color: "primary", label: "Founded January 2014" },
-                  { icon: "public", color: "secondary", label: "Exporter to 45+ Countries" },
-                ].map((item) => (
-                  <motion.div
-                    key={item.label}
-                    whileHover={{ x: 6 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-200"
-                  >
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${item.color === "primary" ? "bg-primary/5 text-primary" : "bg-secondary/5 text-secondary"}`}>
-                      <span className="material-icons">{item.icon}</span>
-                    </div>
-                    <div className="text-primary font-bold text-sm">{item.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </FadeIn>
-
-            {/* Right Column Timeline */}
-            <FadeIn direction="right" className="lg:w-2/3 relative pl-12">
-              {/* Vertical line indicator */}
-              <div className="absolute left-0 top-2 bottom-2 w-1 bg-gradient-to-b from-primary via-primary-accent to-transparent rounded-full opacity-20" />
-              
-              <div className="space-y-16">
-                {milestones.map((item, idx) => (
-                  <motion.div
-                    key={item.year}
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.6, delay: idx * 0.12, ease }}
-                    className="relative group"
-                  >
-                    {/* Circle Dot indicator */}
-                    <div className="absolute -left-[54px] top-1.5 w-6 h-6 rounded-full bg-white border-4 border-primary transition-all group-hover:scale-125 group-hover:shadow-[0_0_20px_rgba(30,58,138,0.3)] shadow-sm" />
-
-                    <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 mb-2">
-                      <span className="text-primary font-black text-3xl tabular-nums tracking-tighter">
-                        {item.year}
-                      </span>
-                      <h3 className="text-2xl font-bold text-primary group-hover:text-primary-accent transition-colors">
-                        {item.title}
-                      </h3>
-                    </div>
-
-                    <p className="text-slate-500 text-lg leading-relaxed font-medium max-w-xl">
-                      {item.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </FadeIn>
-
-          </div>
-
+      {/* ── Past Events Section ────────────────────────────────── */}
+      <section id="events" className="py-24 bg-slate-50 scroll-mt-20 overflow-hidden border-t border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+          <FadeUp className="text-center max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-widest mb-6">
+              Events & Highlights
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
+              Company Highlights & Activities
+            </h2>
+            <p className="text-slate-500 text-lg leading-relaxed font-medium">
+              Explore our participations, compliance milestones, and corporate social responsibility (CSR) drives.
+            </p>
+          </FadeUp>
         </div>
+
+        {/* Full-width Marquee Container */}
+        <FadeUp delay={0.15}>
+          <div className="relative w-full overflow-hidden py-4">
+            {/* Left and right fade gradient overlays for premium aesthetic */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-48 bg-gradient-to-r from-slate-50 via-slate-50/70 to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-48 bg-gradient-to-l from-slate-50 via-slate-50/70 to-transparent z-10" />
+
+            <div className="flex w-max gap-8 animate-marquee-rtl px-8">
+              {/* Render pastEvents 3 times for seamless infinite scroll */}
+              {[...pastEvents, ...pastEvents, ...pastEvents].map((evt, idx) => (
+                <div
+                  key={`${evt.title}-${idx}`}
+                  className="group w-[300px] sm:w-[420px] flex-shrink-0 rounded-[32px] overflow-hidden border border-slate-100 bg-white hover:-translate-y-1 hover:shadow-xl hover:border-transparent transition-all duration-300 shadow-sm flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Event Image */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                      <img
+                        src={evt.image}
+                        alt={evt.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent opacity-60" />
+                    </div>
+                    
+                    {/* Event Details */}
+                    <div className="p-8">
+                      <div className="flex justify-between items-center mb-5">
+                        <span className="text-[10px] font-bold tracking-wider uppercase bg-primary/5 text-primary px-3 py-1 rounded-full">
+                          {evt.category}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-400 tabular-nums">
+                          {evt.date}
+                        </span>
+                      </div>
+                      
+                      <div className="flex items-start gap-3.5 mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                          <span className="material-icons text-lg">{evt.icon}</span>
+                        </div>
+                        <h4 className="text-base sm:text-lg font-bold text-primary group-hover:text-primary-accent transition-colors pt-1.5">
+                          {evt.title}
+                        </h4>
+                      </div>
+                      
+                      <p className="text-slate-500 text-sm leading-relaxed pl-14 font-medium">
+                        {evt.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </FadeUp>
       </section>
 
       <Footer />
