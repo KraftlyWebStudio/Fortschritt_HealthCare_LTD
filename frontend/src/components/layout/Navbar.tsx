@@ -84,7 +84,10 @@ const navItems: NavItem[] = [
     label: "Products",
     href: "/products",
     dropdown: [
-      { label: "Pharmaceuticals",             href: "/products?cat=general",  icon: "medication",       description: "Tablets, capsules & injectables" },
+      { label: "All Categories",              href: "/products",              icon: "grid_view",        description: "Browse our complete product portfolio" },
+      { label: "Gynecology Range",            href: "/products?cat=gynecology", icon: "favorite",       description: "Women's health & reproductive care" },
+      { label: "General Medicine",            href: "/products?cat=general",  icon: "medication",       description: "Tablets, capsules & injectables" },
+      { label: "Hormonal Tablets",            href: "/products?cat=hormonal", icon: "biotech",          description: "Endocrine & hormone therapy" },
       { label: "Active Pharma Ingredients",   href: "/products?cat=api",      icon: "science",          description: "High-purity API manufacturing" },
       { label: "Nutraceuticals",              href: "/products?cat=nutra",    icon: "local_pharmacy",   description: "Wellness & dietary supplements" },
       { label: "Veterinary Products",         href: "/products?cat=vet",      icon: "pets",             description: "Animal healthcare solutions" },
@@ -248,32 +251,73 @@ export default function Navbar() {
                           <div className="h-[3px] bg-gradient-to-r from-primary via-sky-400 to-primary" />
 
                           <div className="p-2.5 space-y-0.5">
-                            {item.dropdown!.map((sub) => (
-                              <a
-                                key={sub.label}
-                                href={sub.href}
-                                onClick={(e) => handleLinkClick(e, sub.href)}
-                                className="drop-row flex items-center gap-3.5 px-3 py-2.5 rounded-xl hover:bg-primary/5"
-                              >
-                                <div className="drop-icon w-9 h-9 rounded-lg flex items-center
-                                  justify-center flex-shrink-0 bg-primary/10">
-                                  <span className="material-icons text-[18px] text-primary">
-                                    {sub.icon}
-                                  </span>
-                                </div>
-                                <div className="min-w-0 flex-1">
-                                  <p className="text-[13px] font-semibold text-slate-700 leading-tight">
-                                    {sub.label}
-                                  </p>
-                                  <p className="text-[11px] text-slate-400 mt-0.5 truncate">
-                                    {sub.description}
-                                  </p>
-                                </div>
-                                <span className="material-icons text-[14px] text-slate-300 flex-shrink-0">
-                                  chevron_right
-                                </span>
-                              </a>
-                            ))}
+                            {item.dropdown!.map((sub, subIdx) => {
+                              /* ── "All Categories" gets a full-width hero row ── */
+                              if (sub.label === "All Categories") {
+                                return (
+                                  <a
+                                    key={sub.label}
+                                    href={sub.href}
+                                    onClick={(e) => handleLinkClick(e, sub.href)}
+                                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl mb-1
+                                      bg-gradient-to-r from-primary/8 to-sky-50 border border-primary/10
+                                      hover:from-primary/15 hover:to-sky-100 hover:border-primary/20
+                                      transition-all duration-200 group"
+                                  >
+                                    <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 bg-primary/10 group-hover:bg-primary transition-colors duration-200">
+                                      <span className="material-icons text-[18px] text-primary group-hover:text-white transition-colors duration-200">
+                                        {sub.icon}
+                                      </span>
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                      <p className="text-[13px] font-bold text-primary leading-tight">
+                                        {sub.label}
+                                      </p>
+                                      <p className="text-[11px] text-slate-400 mt-0.5 truncate">
+                                        {sub.description}
+                                      </p>
+                                    </div>
+                                    <span className="material-icons text-[14px] text-primary/40 group-hover:text-primary flex-shrink-0 transition-colors">
+                                      east
+                                    </span>
+                                  </a>
+                                );
+                              }
+
+                              /* ── Divider after "All Categories" before first category ── */
+                              const prevIsAll = item.dropdown![subIdx - 1]?.label === "All Categories";
+
+                              return (
+                                <React.Fragment key={sub.label}>
+                                  {prevIsAll && (
+                                    <div className="my-1.5 border-t border-slate-100 mx-1" />
+                                  )}
+                                  <a
+                                    href={sub.href}
+                                    onClick={(e) => handleLinkClick(e, sub.href)}
+                                    className="drop-row flex items-center gap-3.5 px-3 py-2.5 rounded-xl hover:bg-primary/5"
+                                  >
+                                    <div className="drop-icon w-9 h-9 rounded-lg flex items-center
+                                      justify-center flex-shrink-0 bg-primary/10">
+                                      <span className="material-icons text-[18px] text-primary">
+                                        {sub.icon}
+                                      </span>
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                      <p className="text-[13px] font-semibold text-slate-700 leading-tight">
+                                        {sub.label}
+                                      </p>
+                                      <p className="text-[11px] text-slate-400 mt-0.5 truncate">
+                                        {sub.description}
+                                      </p>
+                                    </div>
+                                    <span className="material-icons text-[14px] text-slate-300 flex-shrink-0">
+                                      chevron_right
+                                    </span>
+                                  </a>
+                                </React.Fragment>
+                              );
+                            })}
                           </div>
                         </div>
                       </div>
