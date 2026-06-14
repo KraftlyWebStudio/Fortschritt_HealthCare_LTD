@@ -10,51 +10,51 @@ const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const cultureGallery = [
   {
-    title: "Formulation Research & Development",
-    description: "Scientists discussing drug-delivery profiles and stability testing.",
-    image: "/home/hero-scientist.webp",
+    title: "Blister Strip Sealing Line",
+    description: "Our skilled technician operates the automated blister strip sealing machine, ensuring every tablet batch is hermetically packed and export-ready under GMP standards.",
+    image: "/working/with_machine1.jpeg",
   },
   {
-    title: "Sterile Blister Packing Line",
-    description: "Operators packaging tablets under strict WHO-GMP sterile conditions.",
-    image: "/home/hero-packaging.webp",
+    title: "Capsule Filling & Dosing",
+    description: "Hands-on operation of the capsule filling machine — precision-dosing active pharmaceutical ingredients at our Baddi manufacturing facility.",
+    image: "/working/with_machine2.jpeg",
   },
   {
-    title: "Quality Control Laboratory",
-    description: "Chemists conducting raw material assays and batch verifications.",
-    image: "/home/hero-lab.webp",
+    title: "Tablet Strip Packaging",
+    description: "Experienced operator managing the D-3130 strip packaging line, maintaining speed and sterility across high-volume production batches.",
+    image: "/working/with_machine3.jpeg",
   },
   {
-    title: "Global Logistics & Dispatch",
-    description: "Team securing cold-chain protocols and export documentation.",
-    image: "/home/hero-facility.webp",
+    title: "Operations & Admin Team",
+    description: "Our dedicated operations and administrative staff managing orders, documentation, and client coordination from our modern Baddi office.",
+    image: "/working/seating_area.jpeg",
   },
 ];
 
 const pastEvents = [
+  {
+    title: "Industry Recognition & Excellence Award",
+    date: "2024",
+    category: "Industry Award",
+    icon: "emoji_events",
+    image: "/event/award1.jpeg",
+    description: "Fortschritt Healthcare was honoured at the Jagran industry felicitation ceremony, receiving recognition from senior government dignitaries for outstanding contribution to the pharmaceutical manufacturing sector in Himachal Pradesh."
+  },
+  {
+    title: "Annual Staff Celebration & Team Felicitation",
+    date: "2024",
+    category: "Team Event",
+    icon: "celebration",
+    image: "/event/group1.jpeg",
+    description: "Our entire Baddi plant team came together for our annual celebration, honouring hardworking operators, packaging staff, and administrative personnel for their year-round dedication and excellence in GMP-compliant manufacturing."
+  },
   {
     title: "CPhI & P-MEC India Participation",
     date: "November 2025",
     category: "Global Expo",
     icon: "public",
     image: "/event-cphi.png",
-    description: "Represented Fortschritt Healthcare at South Asia's premier pharma event, presenting our advanced hormonal tablet formulations to international buyers."
-  },
-  {
-    title: "Community CSR Health Drive",
-    date: "April 2026",
-    category: "Community CSR",
-    icon: "volunteer_activism",
-    image: "/home/hero-scientist.webp",
-    description: "Conducted a free medical screening and essential medicine distribution camp in Baddi, servicing over 500+ local families."
-  },
-  {
-    title: "WHO-GMP Triennial Plant Recertification",
-    date: "February 2026",
-    category: "Quality Compliance",
-    icon: "verified_user",
-    image: "/home/hero-lab.webp",
-    description: "Successfully cleared a rigorous 4-day inspection of our manufacturing lines with zero critical observations, reinforcing our export-grade status."
+    description: "Represented Fortschritt Healthcare at South Asia's premier pharma event, presenting our advanced hormonal tablet formulations to international buyers from 20+ countries."
   },
   {
     title: "Annual Plant Safety & Festive Awards",
@@ -62,7 +62,7 @@ const pastEvents = [
     category: "Workforce",
     icon: "workspace_premium",
     image: "/event-festive.png",
-    description: "Celebrated 1200+ consecutive safe production days at our Baddi facility, presenting performance awards to our machine operators and supervisor teams during our safety week and Diwali celebrations."
+    description: "Celebrated 1200+ consecutive safe production days at our Baddi facility, presenting performance awards to our machine operators and supervisor teams during Diwali celebrations."
   }
 ];
 
@@ -138,7 +138,7 @@ export default function AboutPage() {
                 <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-tr from-primary/20 to-secondary/20 blur-xl opacity-80 group-hover:opacity-100 transition-opacity" />
                 <div className="relative overflow-hidden rounded-[36px] border-[12px] border-white shadow-[0_32px_64px_-16px_rgba(30,58,138,0.2)] bg-slate-100 aspect-[3/4]">
                   <img
-                    src="/CEOImage.png"
+                    src="/team/CEOImage.jpeg"
                     alt="Naveen Chandra Kandpal - CEO Fortschritt Healthcare"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />

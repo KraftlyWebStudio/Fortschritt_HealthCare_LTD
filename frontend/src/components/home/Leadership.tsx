@@ -4,8 +4,8 @@ import React from "react";
 import { FadeUp, StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const leaders = [
-  { name: "Naveen Chandra Kandpal", role: "CEO and Founder", bio: "Leading with vision and integrity to deliver world-class pharmaceutical solutions.", image: "/CEOImage.png" },
-  { name: "Chander Negi", role: "Operational Director", bio: "Expert in operational excellence and strategic manufacturing management.", image: "/OperationalDirectorImage.png" },
+  { name: "Naveen Chandra Kandpal",   role: "CEO and Founder",          bio: "Leading with vision and integrity to deliver world-class pharmaceutical solutions.",    image: "/team/CEOImage.jpeg" },
+  { name: "Chander Negi",             role: "Operational Director",     bio: "Expert in operational excellence and strategic manufacturing management.",              image: "/team/OperationalDirectorImage.png" },
 ];
 
 const Leadership = () => {
