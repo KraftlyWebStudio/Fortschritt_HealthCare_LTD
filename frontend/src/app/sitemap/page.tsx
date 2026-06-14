@@ -12,54 +12,70 @@ const sitemapData = [
   {
     section: "Main Pages",
     icon: "home",
+    color: "from-blue-500/10 to-sky-500/5",
     links: [
-      { label: "Home", href: "/" },
-      { label: "About Us", href: "/about" },
-      { label: "History & Journey", href: "/?scroll=legacy" },
-      { label: "Contact Us", href: "/contact" },
-      { label: "Careers", href: "/careers" },
+      { label: "Home",              href: "/",        description: "Welcome & hero overview" },
+      { label: "About Us",         href: "/about",   description: "Our story, vision & team" },
+      { label: "Products",         href: "/products",description: "Full product portfolio" },
+      { label: "Contact Us",       href: "/contact", description: "Get in touch with us" },
+      { label: "Careers",          href: "/careers", description: "Join our growing team" },
     ],
   },
   {
     section: "Products Portfolio",
     icon: "inventory_2",
+    color: "from-violet-500/10 to-purple-500/5",
     links: [
-      { label: "All Products", href: "/products" },
-      { label: "Pharmaceuticals", href: "/products?cat=general" },
-      { label: "Active Pharma Ingredients", href: "/products?cat=api" },
-      { label: "Nutraceuticals", href: "/products?cat=nutra" },
-      { label: "Veterinary Products", href: "/products?cat=vet" },
-    ],
-  },
-  {
-    section: "Our Infrastructure",
-    icon: "factory",
-    links: [
-      { label: "Infrastructure Overview", href: "/?scroll=infrastructure" },
-      { label: "Research & Development", href: "/?scroll=infrastructure" },
-      { label: "Manufacturing Facility", href: "/?scroll=infrastructure" },
-      { label: "Quality Control Standards", href: "/?scroll=infrastructure" },
+      { label: "All Products",               href: "/products",                description: "Browse complete catalogue" },
+      { label: "Gynecology Range",           href: "/products?cat=gynecology", description: "Women's health & reproductive care" },
+      { label: "General Medicine",           href: "/products?cat=general",    description: "Tablets, capsules & injectables" },
+      { label: "Hormonal Tablets",           href: "/products?cat=hormonal",   description: "Endocrine & hormone therapy" },
+      { label: "Active Pharma Ingredients",  href: "/products?cat=api",        description: "High-purity API manufacturing" },
+      { label: "Nutraceuticals",             href: "/products?cat=nutra",      description: "Wellness & dietary supplements" },
+      { label: "Veterinary Products",        href: "/products?cat=vet",        description: "Animal healthcare solutions" },
     ],
   },
   {
     section: "Company & Leadership",
     icon: "domain",
+    color: "from-emerald-500/10 to-teal-500/5",
     links: [
-      { label: "Company Overview", href: "/?scroll=about" },
-      { label: "CEO's Message", href: "/about?scroll=ceo" },
-      { label: "Our Team", href: "/about?scroll=team" },
-      { label: "Events & Highlights", href: "/about?scroll=events" },
-      { label: "R&D Publications", href: "/rd-publications" },
-      { label: "Manufacturing Ethics", href: "/manufacturing-ethics" },
+      { label: "Company Overview",      href: "/?scroll=about",         description: "Mission, vision & values" },
+      { label: "CEO's Message",         href: "/about?scroll=ceo",      description: "Leadership vision & direction" },
+      { label: "Our Team",              href: "/about?scroll=team",     description: "Meet the experts behind us" },
+      { label: "Events & Highlights",   href: "/about?scroll=events",   description: "CPhI expos & company milestones" },
+      { label: "Legacy & Milestones",   href: "/?scroll=legacy",        description: "10+ years of healthcare impact" },
+    ],
+  },
+  {
+    section: "Infrastructure",
+    icon: "factory",
+    color: "from-orange-500/10 to-amber-500/5",
+    links: [
+      { label: "Infrastructure Overview",  href: "/?scroll=infrastructure",  description: "Plant & facility layout" },
+      { label: "Manufacturing Facility",   href: "/manufacturing-ethics",     description: "GMP-compliant production" },
+      { label: "R&D Publications",         href: "/rd-publications",          description: "Scientific research & studies" },
+      { label: "Quality Standards",        href: "/?scroll=infrastructure",   description: "WHO-GMP & ISO certifications" },
+    ],
+  },
+  {
+    section: "Resources",
+    icon: "menu_book",
+    color: "from-rose-500/10 to-pink-500/5",
+    links: [
+      { label: "R&D Publications",      href: "/rd-publications",       description: "Research papers & white papers" },
+      { label: "Manufacturing Ethics",  href: "/manufacturing-ethics",  description: "Our production ethics charter" },
+      { label: "Sitemap",              href: "/sitemap",                description: "Full site navigation index" },
     ],
   },
   {
     section: "Legal & Policies",
     icon: "gavel",
+    color: "from-slate-500/10 to-gray-500/5",
     links: [
-      { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Terms of Service", href: "/terms-of-service" },
-      { label: "Cookie Policy", href: "/cookie-policy" },
+      { label: "Privacy Policy",    href: "/privacy-policy",    description: "How we handle your data" },
+      { label: "Terms of Service",  href: "/terms-of-service",  description: "Rules governing site use" },
+      { label: "Cookie Policy",     href: "/cookie-policy",     description: "Our cookie & tracking policy" },
     ],
   },
 ];
@@ -68,7 +84,7 @@ export default function SitemapPage() {
   return (
     <div className="min-h-screen bg-[#fdfdfe] overflow-x-hidden">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-primary pb-24 pt-40">
         <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(#fff 2px, transparent 2px)", backgroundSize: "40px 40px" }} />
@@ -103,6 +119,25 @@ export default function SitemapPage() {
           >
             Access any page, product segment, or company policy directly from our master sitemap.
           </motion.p>
+
+          {/* Quick stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-6 mt-10"
+          >
+            {[
+              { value: sitemapData.length, label: "Sections" },
+              { value: sitemapData.reduce((acc, s) => acc + s.links.length, 0), label: "Pages" },
+              { value: "100%", label: "Indexed" },
+            ].map((stat) => (
+              <div key={stat.label} className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl px-6 py-3 text-center">
+                <p className="text-2xl font-extrabold text-white">{stat.value}</p>
+                <p className="text-white/50 text-xs font-semibold tracking-wider uppercase">{stat.label}</p>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -113,26 +148,37 @@ export default function SitemapPage() {
             <motion.div
               key={group.section}
               variants={staggerItem}
-              className="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              className="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-slate-50">
-                <div className="w-11 h-11 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+              {/* Section header */}
+              <div className={`flex items-center gap-3.5 mb-6 pb-5 border-b border-slate-100`}>
+                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${group.color} flex items-center justify-center text-primary border border-primary/10`}>
                   <span className="material-icons text-xl">{group.icon}</span>
                 </div>
-                <h2 className="font-extrabold text-primary text-lg">{group.section}</h2>
+                <div>
+                  <h2 className="font-extrabold text-primary text-base leading-tight">{group.section}</h2>
+                  <p className="text-slate-400 text-[11px] font-medium mt-0.5">{group.links.length} pages</p>
+                </div>
               </div>
-              
-              <ul className="space-y-4">
+
+              <ul className="space-y-3">
                 {group.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="flex items-center gap-2.5 text-slate-600 hover:text-primary transition-colors text-sm font-semibold group"
+                      className="flex items-start gap-2.5 text-slate-600 hover:text-primary transition-colors group"
                     >
-                      <span className="material-icons text-[16px] text-primary/40 group-hover:translate-x-0.5 transition-transform">
+                      <span className="material-icons text-[15px] text-primary/30 group-hover:text-primary group-hover:translate-x-0.5 transition-all mt-0.5 flex-shrink-0">
                         chevron_right
                       </span>
-                      {link.label}
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold leading-tight group-hover:text-primary transition-colors">
+                          {link.label}
+                        </p>
+                        <p className="text-[11px] text-slate-400 mt-0.5 font-medium">
+                          {link.description}
+                        </p>
+                      </div>
                     </Link>
                   </li>
                 ))}
@@ -140,6 +186,17 @@ export default function SitemapPage() {
             </motion.div>
           ))}
         </StaggerGrid>
+
+        {/* Bottom note */}
+        <FadeUp delay={0.3} className="text-center mt-16">
+          <p className="text-slate-400 text-sm font-medium">
+            Can&apos;t find what you&apos;re looking for?{" "}
+            <Link href="/contact" className="text-primary font-semibold hover:underline underline-offset-4">
+              Contact our team
+            </Link>{" "}
+            and we&apos;ll help you navigate.
+          </p>
+        </FadeUp>
       </main>
 
       <Footer />
