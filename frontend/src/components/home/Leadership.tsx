@@ -4,7 +4,7 @@ import React from "react";
 import { FadeUp, StaggerGrid, staggerItem, motion } from "@/utils/animations";
 
 const leaders = [
-  { name: "Naveen Chandra Kandpal",   role: "CEO and Founder",          bio: "Leading with vision and integrity to deliver world-class pharmaceutical solutions.",    image: "/team/CEOImage.png" },
+  { name: "Naveen Chandra Kandpal",   role: "Managing Director",        bio: "A pharmaceutical industry leader with nearly three decades of experience. Former tenures at Rhydburg Pharmaceuticals (1998), Maiden Pharmaceuticals Ltd. (2000), and Salus Pharmaceuticals (2010) forged his expertise before he founded Fortschritt Ltd. in 2014.",    image: "/team/CEOImage.png" },
   { name: "Chander Negi",             role: "Operational Director",     bio: "Expert in operational excellence and strategic manufacturing management.",              image: "/team/OperationalDirectorImage.png" },
 ];
 

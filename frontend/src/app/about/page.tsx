@@ -213,13 +213,13 @@ export default function AboutPage() {
                 <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-tr from-primary/20 to-secondary/20 blur-xl opacity-80 group-hover:opacity-100 transition-opacity" />
                 <div className="relative overflow-hidden rounded-[36px] border-[12px] border-white shadow-[0_32px_64px_-16px_rgba(30,58,138,0.2)] bg-slate-100 aspect-[3/4]">
                   <img
-                    src="/team/CEOImage.jpeg"
-                    alt="Naveen Chandra Kandpal - CEO Fortschritt Healthcare"
+                    src="/team/CEOImage.png"
+                    alt="Naveen Chandra Kandpal - Managing Director, Fortschritt Healthcare"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60" />
                   <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <p className="text-xs font-bold uppercase tracking-widest text-slate-200 mb-1">Chairman & Founder</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-slate-200 mb-1">Managing Director</p>
                     <h4 className="text-xl font-bold text-white">Naveen Chandra Kandpal</h4>
                   </div>
                 </div>
@@ -229,31 +229,59 @@ export default function AboutPage() {
             {/* CEO Message Content */}
             <FadeIn direction="right" className="w-full lg:w-7/12">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-widest mb-6">
-                CEO's Vision
+                Managing Director's Message
               </div>
               <div className="relative">
                 <span className="absolute -top-12 -left-8 text-[120px] font-serif text-primary/5 pointer-events-none select-none">“</span>
                 <h3 className="text-2xl md:text-3xl font-extrabold text-primary mb-8 relative z-10">
-                  Delivering Quality Healthcare with Trust & Precision
+                  Delivering Quality Healthcare with Trust &amp; Precision
                 </h3>
               </div>
-              
-              <div className="space-y-6 text-slate-600 text-lg leading-relaxed font-medium">
+
+              <div className="space-y-5 text-slate-600 text-base leading-relaxed font-medium">
                 <p>
-                  "Welcome to Fortschritt Healthcare. From the very beginning of our journey in 2014, we established this organization with a clear and singular ambition: to provide pharmaceutical formulations that meet the highest international benchmarks of safety, quality, and efficacy."
+                  {"Mr. Naveen Kandpal is a seasoned pharmaceutical industry professional with nearly three decades of experience in business leadership, operations, and strategic management."}
                 </p>
                 <p>
-                  "Over the past decade, Baddi has evolved into India's primary pharmaceutical hub, and Fortschritt has grown alongside it. By continually investing in modern manufacturing blocks, strict Quality Assurance protocols, and responsive B2B custom formulation cycles, we have built lasting partnerships with leading healthcare brands and distributors globally."
+                  {"He began his career in 1998 with "}
+                  <strong className="text-primary">Rhydburg Pharmaceuticals</strong>
+                  {", where he built a strong foundation in industry operations and business development. In 2000, he joined "}
+                  <strong className="text-primary">Maiden Pharmaceuticals Ltd.</strong>
+                  {" (Maiden Group of Companies), contributing significantly to the company's growth and expansion, and building extensive expertise in pharmaceutical manufacturing, marketing, and corporate management."}
                 </p>
                 <p>
-                  "Our B2B contract manufacturing relies on total transparency and absolute compliance. We recognize that our clients place their reputation in our hands. Every tablet, capsule, and dosage form manufactured at Fortschritt is a testament to that trust. We look forward to scaling new regulatory heights and expanding our therapeutic capabilities to serve patient health everywhere."
+                  {"In 2010, Mr. Kandpal moved to "}
+                  <strong className="text-primary">Salus Pharmaceuticals</strong>
+                  {", where he further strengthened his leadership credentials and played an important role in driving organizational development and business excellence."}
+                </p>
+                <p>
+                  {"Since "}
+                  <strong className="text-primary">2014</strong>
+                  {", he has been associated with Fortschritt Ltd. as "}
+                  <strong className="text-primary">Managing Director</strong>
+                  {". Under his leadership, the company has focused on innovation, quality, operational efficiency, and sustainable growth. His strategic vision and commitment to excellence have been instrumental in advancing the organization's position in the pharmaceutical sector."}
                 </p>
               </div>
 
-              <div className="mt-10 pt-8 border-t border-slate-200">
+              {/* Career timeline pills */}
+              <div className="flex flex-wrap gap-3 mt-8">
+                {[
+                  { year: "1998", org: "Rhydburg Pharmaceuticals" },
+                  { year: "2000", org: "Maiden Pharmaceuticals" },
+                  { year: "2010", org: "Salus Pharmaceuticals" },
+                  { year: "2014", org: "Fortschritt Ltd." },
+                ].map((step) => (
+                  <div key={step.year} className="flex items-center gap-2 bg-primary/5 border border-primary/10 rounded-full px-4 py-1.5">
+                    <span className="text-xs font-extrabold text-primary">{step.year}</span>
+                    <span className="text-[11px] text-slate-500 font-semibold">{step.org}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-slate-200">
                 <div className="text-xl font-extrabold text-primary">Naveen Chandra Kandpal</div>
-                <div className="text-sm font-bold text-primary-accent uppercase tracking-wider mt-1">Founder, CEO & Chairman</div>
-                <div className="text-xs text-slate-400 mt-1">Fortschritt Healthcare Limited</div>
+                <div className="text-sm font-bold text-primary-accent uppercase tracking-wider mt-1">Managing Director</div>
+                <div className="text-xs text-slate-400 mt-1">Fortschritt Healthcare Limited &nbsp;·&nbsp; Est. 2014</div>
               </div>
             </FadeIn>
 
