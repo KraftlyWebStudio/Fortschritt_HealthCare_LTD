@@ -289,6 +289,95 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── Director's Message Section ────────────────────────── */}
+      <section id="director" className="py-24 bg-white scroll-mt-20 overflow-hidden border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-20">
+
+            {/* Director Portrait */}
+            <FadeIn direction="right" className="w-full lg:w-5/12 max-w-md lg:max-w-none">
+              <div className="relative group">
+                <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-tr from-secondary/20 to-primary/20 blur-xl opacity-80 group-hover:opacity-100 transition-opacity" />
+                <div className="relative overflow-hidden rounded-[36px] border-[12px] border-white shadow-[0_32px_64px_-16px_rgba(30,58,138,0.2)] bg-gradient-to-br from-slate-100 to-slate-200 aspect-[3/4] flex items-center justify-center">
+                  <img
+                    src="/team/OperationalDirectorImage.png"
+                    alt="Chander Mohan Negi - Director, Fortschritt Healthcare"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60" />
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <p className="text-xs font-bold uppercase tracking-widest text-slate-200 mb-1">Director</p>
+                    <h4 className="text-xl font-bold text-white">Chander Mohan Negi</h4>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Director Message Content */}
+            <FadeIn direction="left" className="w-full lg:w-7/12">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-widest mb-6">
+                {"Director's Message"}
+              </div>
+              <div className="relative">
+                <span className="absolute -top-12 -left-8 text-[120px] font-serif text-secondary/5 pointer-events-none select-none">"</span>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-primary mb-8 relative z-10">
+                  {"Building Brands, Shaping Healthcare Markets with Integrity"}
+                </h3>
+              </div>
+
+              <div className="space-y-5 text-slate-600 text-base leading-relaxed font-medium">
+                <p>
+                  {"Mr. Chander Mohan Negi is a distinguished pharmaceutical professional with over 26 years of experience in pharmaceutical marketing, business development, and strategic brand management. He holds an "}
+                  <strong className="text-primary">MBA</strong>
+                  {" and "}
+                  <strong className="text-primary">MCA</strong>
+                  {", bringing together strong business leadership and technical expertise."}
+                </p>
+                <p>
+                  {"Mr. Negi began his pharmaceutical career with "}
+                  <strong className="text-primary">Wander Pharmaceuticals</strong>
+                  {", where he established a solid foundation in pharmaceutical sales and marketing. In 2010, he joined "}
+                  <strong className="text-primary">Akumentis Healthcare</strong>
+                  {", where he gained extensive experience in product promotion, market development, and customer relationship management."}
+                </p>
+                <p>
+                  {"In 2016, he joined "}
+                  <strong className="text-primary">Fortschritt Healthcare Ltd.</strong>
+                  {", contributing to the company's growth through strategic marketing initiatives and business expansion. Since 2017, he has been associated with both Fortschritt Healthcare Ltd. and "}
+                  <strong className="text-primary">Menschlich Healthcare</strong>
+                  {", playing a key role in driving business growth, strengthening market presence, and developing innovative healthcare solutions."}
+                </p>
+                <p>
+                  {"Under his guidance, Menschlich Healthcare continues to focus on delivering high-quality, affordable, and innovative pharmaceutical products while building lasting relationships with healthcare professionals and improving patient outcomes."}
+                </p>
+              </div>
+
+              {/* Career timeline pills */}
+              <div className="flex flex-wrap gap-3 mt-8">
+                {[
+                  { year: "Early Career", org: "Wander Pharmaceuticals" },
+                  { year: "2010", org: "Akumentis Healthcare" },
+                  { year: "2016", org: "Fortschritt Healthcare" },
+                  { year: "2017", org: "Menschlich Healthcare" },
+                ].map((step) => (
+                  <div key={step.year} className="flex items-center gap-2 bg-secondary/5 border border-secondary/15 rounded-full px-4 py-1.5">
+                    <span className="text-xs font-extrabold text-secondary">{step.year}</span>
+                    <span className="text-[11px] text-slate-500 font-semibold">{step.org}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-slate-200">
+                <div className="text-xl font-extrabold text-primary">Chander Mohan Negi</div>
+                <div className="text-sm font-bold text-secondary uppercase tracking-wider mt-1">Director</div>
+                <div className="text-xs text-slate-400 mt-1">Fortschritt Healthcare Limited &nbsp;·&nbsp; Menschlich Healthcare</div>
+              </div>
+            </FadeIn>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── Our Team & Culture Section ────────────────────────── */}
       <section id="team" className="py-24 bg-white scroll-mt-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
