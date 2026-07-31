@@ -179,23 +179,23 @@ export default function Navbar() {
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-[72px]">
+          <div className="flex items-center justify-between h-[84px]">
 
             <Link href="/" onClick={scrollToTop}
-              className="flex items-center gap-3 group flex-shrink-0"
+              className="flex items-center gap-3.5 group flex-shrink-0"
             >
-              <div className="flex items-center justify-center h-11 w-11 flex-shrink-0">
+              <div className="flex items-center justify-center h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0">
                 <img
                   src="/brand/logo.webp"
                   alt="Fortschritt Healthcare"
                   className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
-              <div className="flex flex-col justify-center leading-tight">
-                <span className="font-extrabold text-[17px] tracking-tight text-primary">
+              <div className="flex flex-col justify-center leading-none">
+                <span className="font-black text-[22px] sm:text-[26px] tracking-tight text-primary">
                   FORTSCHRITT
                 </span>
-                <span className="text-[9px] font-semibold tracking-[0.22em] uppercase text-primary">
+                <span className="text-[11px] sm:text-[12.5px] font-extrabold tracking-[0.26em] uppercase text-primary mt-1">
                   Healthcare Limited
                 </span>
               </div>

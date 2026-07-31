@@ -50,10 +50,10 @@ export default function CareersPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-primary pb-32 pt-48">
-        <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(#fff 2px, transparent 2px)", backgroundSize: "40px 40px" }} />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/20 rounded-full translate-x-1/2 -translate-y-1/2 blur-[100px]" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/5 rounded-full -translate-x-1/3 translate-y-1/3 blur-[120px]" />
+      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden bg-[#101b3b] pb-32 pt-44 border-b border-slate-800">
+        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
+        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
+        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-accent/20 rounded-full blur-[120px]" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}
@@ -65,7 +65,7 @@ export default function CareersPage() {
           <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease }}
             className="text-5xl md:text-7xl font-extrabold text-white leading-[1.05] mb-8">
             Shape the Future of <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-200 to-indigo-100">
               Global Healthcare
             </span>
           </motion.h1>
@@ -226,18 +226,18 @@ export default function CareersPage() {
       </section>
 
       {/* Spontaneous Application CTA */}
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div 
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease }}
-          className="bg-primary rounded-[2rem] p-8 md:p-10 text-center relative overflow-hidden shadow-2xl shadow-primary/20"
+          className="bg-primary rounded-[2rem] p-8 md:p-12 text-center relative overflow-hidden shadow-2xl shadow-primary/20"
         >
-          <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24"></div>
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-24 -mb-24"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-32 -mb-32"></div>
           
-          <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center">
+          <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
             <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white mb-6 border border-white/20">
               <span className="material-icons text-xl">flight_takeoff</span>
             </div>

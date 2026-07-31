@@ -163,10 +163,10 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-primary pb-24 pt-40">
-        <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "radial-gradient(#fff 2px, transparent 2px)", backgroundSize: "40px 40px" }} />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/20 rounded-full translate-x-1/2 -translate-y-1/2 blur-[100px]" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/5 rounded-full -translate-x-1/3 translate-y-1/3 blur-[120px]" />
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-[#101b3b] pb-24 pt-44 border-b border-slate-800">
+        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
+        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
+        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-accent/20 rounded-full blur-[120px]" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -186,7 +186,7 @@ export default function AboutPage() {
             className="text-4xl md:text-6xl font-extrabold text-white leading-[1.15] mb-6"
           >
             About <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-200 to-indigo-100">
               Fortschritt Healthcare
             </span>
           </motion.h1>
@@ -279,7 +279,7 @@ export default function AboutPage() {
               </div>
 
               <div className="mt-8 pt-8 border-t border-slate-200">
-                <div className="text-xl font-extrabold text-primary">Naveen Chandra Kandpal</div>
+                <div className="text-xl font-extrabold text-primary">Naveen Kandpal</div>
                 <div className="text-sm font-bold text-primary-accent uppercase tracking-wider mt-1">Managing Director</div>
                 <div className="text-xs text-slate-400 mt-1">Fortschritt Healthcare Limited &nbsp;·&nbsp; Est. 2014</div>
               </div>

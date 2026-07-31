@@ -142,3 +142,5 @@ build/
 # Backend (if using specific folders)
 /backend/dist/
 /backend/build/
+
+data_to_add/

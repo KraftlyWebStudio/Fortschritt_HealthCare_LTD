@@ -18,12 +18,11 @@ const partners = [
   { name: "Britannia Biological", type: "Manufacturing Client", logo: "/partners/britannia.webp" },
   { name: "Keita Pharma", type: "Strategic Client", logo: "/partners/keita.webp" },
   { name: "Megacare Life Sciences", type: "Strategic Partner", logo: "/partners/mega.webp" },
-  { name: "Triglobal Biosciences", type: "Biosciences Partner", logo: "/partners/triglobal.webp" },
   { name: "Servocare Lifesciences", type: "Healthcare Client", logo: "/partners/servocare.webp" },
   { name: "NOVALAB HEALTH CARE", type: "Pharma Partner", logo: "/partners/novalab.webp" },
-  { name: "Prowill Pharma", type: "Collaborator", logo: "/partners/akumentis.webp" },
-  { name: "Ramburg Pharma", type: "Manufacturing Partner", logo: "/partners/akumentis.webp" },
-  { name: "Vitaglobal", type: "Strategic Client", logo: "/partners/akumentis.webp" },
+  { name: "Prowill Pharma", type: "Collaborator", logo: "" },
+  { name: "Ramburg Pharma", type: "Manufacturing Partner", logo: "" },
+  { name: "Vitaglobal", type: "Strategic Client", logo: "" },
 ];
 
 const Partners = () => {

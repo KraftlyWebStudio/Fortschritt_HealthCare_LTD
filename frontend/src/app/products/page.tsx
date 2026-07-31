@@ -3,647 +3,490 @@
 import React, { useState, useMemo, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { PRODUCTS, type ProductItem } from "@/data/productsData";
 
-// High-fidelity product list with detailed specs
-const products = [
-  // Gynecology Range
-  {
-    id: "gyn-1",
-    name: "Progyn-M 200",
-    composition: "Natural Micronized Progesterone",
-    strength: "200 mg",
-    packaging: "10x10 Softgel Capsules in Alu-Alu",
-    indication: "Progesterone supplement for luteal support, prevention of preterm birth, and hormone replacement therapy.",
-    category: "gynecology",
-    categoryLabel: "Gynecology Range",
-    details: "Manufactured under state-of-the-art nitrogen-flushed conditions to ensure high stability of soft gel shells and precise bio-availability.",
-    standards: "WHO-GMP, ISO 9001:2015"
-  },
-  {
-    id: "gyn-2",
-    name: "Gynocare-F",
-    composition: "L-Methylfolate, Pyridoxal-5-Phosphate, Methylcobalamin",
-    strength: "1mg + 0.5mg + 1500mcg",
-    packaging: "10x10 Tablets in Blister Pack",
-    indication: "Active folate supplement during pregnancy to support fetal neural tube development and prevent anemia.",
-    category: "gynecology",
-    categoryLabel: "Gynecology Range",
-    details: "Premium prenatal care tablet formulated with highly bioavailable L-Methylfolate to bypass folate-pathway mutations.",
-    standards: "WHO-GMP, ISO 22000"
-  },
-  {
-    id: "gyn-3",
-    name: "Clomiprime 50",
-    composition: "Clomiphene Citrate",
-    strength: "50 mg",
-    packaging: "10x10 Tablets in Alu-Alu",
-    indication: "Ovulatory stimulant for women with ovulatory dysfunction seeking pregnancy.",
-    category: "gynecology",
-    categoryLabel: "Gynecology Range",
-    details: "Induces ovulation by mimicking low estrogen levels, stimulating gonadotropin release and follicular growth.",
-    standards: "WHO-GMP"
-  },
-  {
-    id: "gyn-4",
-    name: "Uricare Sachets",
-    composition: "Cranberry Extract + D-Mannose + Potassium Citrate",
-    strength: "300mg + 600mg + 1000mg",
-    packaging: "10x15 Effervescent Sachets",
-    indication: "Prevention and adjunct treatment of recurrent Urinary Tract Infections (UTIs).",
-    category: "gynecology",
-    categoryLabel: "Gynecology Range",
-    details: "Sugar-free effervescent granules with high anti-adherence activity against uropathogenic E. coli.",
-    standards: "ISO 22000, HACCP"
-  },
-
-  // General Medicine
-  {
-    id: "gen-1",
-    name: "Fort-Para 650",
-    composition: "Paracetamol (Acetaminophen)",
-    strength: "650 mg",
-    packaging: "10x15 Tablets in Blister Pack",
-    indication: "Fever reduction and temporary relief of mild-to-moderate systemic pain.",
-    category: "general",
-    categoryLabel: "General Medicine",
-    details: "Fast-dissolving formulation with optimized disintegrants for rapid absorption and onset of therapeutic action.",
-    standards: "WHO-GMP, ISO 9001:2015"
-  },
-  {
-    id: "gen-2",
-    name: "Clavufort 625",
-    composition: "Amoxicillin Trihydrate & Potassium Clavulanate",
-    strength: "500mg + 125mg",
-    packaging: "10x10 Alu-Alu Strip",
-    indication: "Treatment of clinical bacterial infections of the respiratory tract, urinary tract, and skin.",
-    category: "general",
-    categoryLabel: "General Medicine",
-    details: "Synergistic beta-lactamase inhibitor combination ensuring high efficacy against resistant bacterial strains.",
-    standards: "WHO-GMP, US-FDA compliant facility"
-  },
-  {
-    id: "gen-3",
-    name: "Pantofort-40",
-    composition: "Pantoprazole Sodium EC",
-    strength: "40 mg",
-    packaging: "10x10 Alu-Alu Strip",
-    indication: "Gastroesophageal Reflux Disease (GERD) and peptic ulcer healing.",
-    category: "general",
-    categoryLabel: "General Medicine",
-    details: "Enteric-coated tablet protects the active ingredient from gastric acidity, ensuring optimal absorption in the duodenum.",
-    standards: "WHO-GMP, ISO 9001"
-  },
-  {
-    id: "gen-4",
-    name: "Azifort 500",
-    composition: "Azithromycin",
-    strength: "500 mg",
-    packaging: "1x5 Blister Pack",
-    indication: "Treatment of community-acquired pneumonia, sinusitis, pharyngitis, and tonsillitis.",
-    category: "general",
-    categoryLabel: "General Medicine",
-    details: "Macrolide antibiotic with extended tissue half-life permitting a convenient 3-to-5 day dosage regimen.",
-    standards: "WHO-GMP"
-  },
-
-  // Hormonal Tablets
-  {
-    id: "horm-1",
-    name: "Thyrofort 100",
-    composition: "Levothyroxine Sodium",
-    strength: "100 mcg",
-    packaging: "100 Tablets Bottle",
-    indication: "Replacement therapy for hypothyroidism of any etiology.",
-    category: "hormonal",
-    categoryLabel: "Hormonal Tablets",
-    details: "Synthetic thyroid hormone T4, bio-identical to naturally secreted hormone, ensuring physiological normalization.",
-    standards: "WHO-GMP, ISO 9001:2015"
-  },
-  {
-    id: "horm-2",
-    name: "Dexafort 4",
-    composition: "Dexamethasone",
-    strength: "4 mg",
-    packaging: "10x10 Tablets in Alu-Alu",
-    indication: "Severe inflammatory conditions, acute allergies, and endocrine disorders.",
-    category: "hormonal",
-    categoryLabel: "Hormonal Tablets",
-    details: "Highly potent glucocorticoid with minimal mineralocorticoid activity, minimizing fluid retention side-effects.",
-    standards: "WHO-GMP"
-  },
-  {
-    id: "horm-3",
-    name: "Prednifort 10",
-    composition: "Prednisolone",
-    strength: "10 mg",
-    packaging: "10x15 Tablets in Blister Pack",
-    indication: "Suppression of inflammatory and allergic disorders; systemic immunosuppressive therapy.",
-    category: "hormonal",
-    categoryLabel: "Hormonal Tablets",
-    details: "Standard glucocorticoid for systemic inflammatory and autoimmune diseases, synthesized to exact international standards.",
-    standards: "WHO-GMP, US-FDA compliant"
-  },
-
-  // Active Pharma Ingredients (APIs)
-  {
-    id: "api-1",
-    name: "Telmisartan Pure API",
-    composition: "Telmisartan",
-    strength: "USP/BP Grade Pure API",
-    packaging: "25 kg HDPE Drum",
-    indication: "Active pharmaceutical ingredient for manufacturing Angiotensin II Receptor Blockers used in hypertension management.",
-    category: "api",
-    categoryLabel: "APIs",
-    details: "High-purity crystalline powder with consistent particle size distribution optimized for direct compression.",
-    standards: "CEP, EDQM Compliant, WHO-GMP"
-  },
-  {
-    id: "api-2",
-    name: "Atorvastatin Calcium API",
-    composition: "Atorvastatin Calcium Trihydrate",
-    strength: "IP/EP Grade Pure API",
-    packaging: "25 kg HDPE Drum",
-    indication: "HMG-CoA reductase inhibitor API for manufacturing cholesterol-reducing formulations.",
-    category: "api",
-    categoryLabel: "APIs",
-    details: "Synthesized under cleanroom ISO-7 environment with strict impurity profiling matching ICH guidelines.",
-    standards: "WHO-GMP, DMF Filed"
-  },
-
-  // Nutraceuticals
-  {
-    id: "nutra-1",
-    name: "Fort-Whey Protein",
-    composition: "Whey Protein Concentrate + Multivitamin Blend",
-    strength: "24g Protein per Serving",
-    packaging: "1 kg Jar",
-    indication: "Protein supplement for muscle recovery and dietary protein bridge.",
-    category: "nutra",
-    categoryLabel: "Nutraceuticals",
-    details: "Enriched with multi-enzyme digestive complexes (DigeZyme) for maximum protein assimilation and zero bloating.",
-    standards: "FSSAI, ISO 22000"
-  },
-  {
-    id: "nutra-2",
-    name: "Vita-Omega 3",
-    composition: "Fish Oil (EPA 180mg, DHA 120mg)",
-    strength: "1000 mg",
-    packaging: "60 Softgels Bottle",
-    indication: "Supports cardiovascular health, cognitive function, and joint elasticity.",
-    category: "nutra",
-    categoryLabel: "Nutraceuticals",
-    details: "Molecularly distilled to eliminate heavy metals, PCBs, and mercury contaminants, leaving no fishy aftertaste.",
-    standards: "FSSAI, ISO 9001"
-  },
-
-  // Veterinary Products
-  {
-    id: "vet-1",
-    name: "Fiproguard Vet",
-    composition: "Fipronil + S-Methoprene",
-    strength: "9.8% + 8.8% w/v Spot-on",
-    packaging: "0.67 ml Pipette",
-    indication: "Treatment and prevention of flea, tick, and chewing lice infestations on dogs and puppies.",
-    category: "vet",
-    categoryLabel: "Veterinary Products",
-    details: "Spot-on topical solution with dual-action formulation targeting adult fleas, ticks, and flea eggs/larvae.",
-    standards: "WHO-GMP, Veterinary Drug Board Certified"
-  },
-  {
-    id: "vet-2",
-    name: "Cal-Phos Vet Forte",
-    composition: "Calcium, Phosphorus, Vitamin D3 & B12",
-    strength: "Liquid Nutritional Feed",
-    packaging: "1 Litre & 5 Litre Bottles",
-    indication: "Liquid feed supplement to improve milk yield, fat percentage, and bone health in cattle and livestock.",
-    category: "vet",
-    categoryLabel: "Veterinary Products",
-    details: "High-absorption oral calcium emulsion for lactating dairy animals preventing milk fever.",
-    standards: "GMP (Vet)"
-  }
+const divisionTabs = [
+  { id: "all", label: "All Formulations", count: PRODUCTS.length, icon: "grid_view", color: "from-blue-600 to-indigo-600" },
+  { id: "General", label: "General Pharma", count: PRODUCTS.filter(p => p.division === "General").length, icon: "medication", color: "from-blue-600 to-sky-600" },
+  { id: "Hormones", label: "Hormones & Endocrine", count: PRODUCTS.filter(p => p.division === "Hormones").length, icon: "monitor_heart", color: "from-purple-600 to-indigo-600" },
+  { id: "Nutraceuticals", label: "Nutraceuticals & Powders", count: PRODUCTS.filter(p => p.division === "Nutraceuticals").length, icon: "local_pharmacy", color: "from-emerald-600 to-teal-600" },
+  { id: "Softgel", label: "Softgel Capsules", count: PRODUCTS.filter(p => p.division === "Softgel").length, icon: "water_drop", color: "from-amber-500 to-sky-500" },
 ];
 
-// All categories for filter tabs
+const dosageForms = ["All", "Tablet", "Capsule", "Softgel", "Sachet", "Protein Powder"];
 const categories = [
-  { id: "all", label: "All Categories", icon: "grid_view" },
-  { id: "gynecology", label: "Gynecology Range", icon: "favorite" },
-  { id: "general", label: "General Medicine", icon: "medication" },
-  { id: "hormonal", label: "Hormonal Tablets", icon: "monitor_heart" },
-  { id: "api", label: "APIs", icon: "science" },
-  { id: "nutra", label: "Nutraceuticals", icon: "local_pharmacy" },
-  { id: "vet", label: "Veterinary Products", icon: "pets" }
+  "All",
+  "Gynaecology & Endocrinology",
+  "Cardiology & Hypertension",
+  "Neurology & Psychiatry",
+  "Gastroenterology",
+  "Pain & Orthopedics",
+  "Anti-Infective & Antibiotic",
+  "Dermatology & Cosmeceuticals",
+  "Nutraceuticals & Wellness"
 ];
 
 export default function ProductsPage() {
-  const router = useRouter();
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeModalProduct, setActiveModalProduct] = useState<typeof products[0] | null>(null);
+  const [selectedDivision, setSelectedDivision] = useState<string>("all");
+  const [selectedForm, setSelectedForm] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [activeModalProduct, setActiveModalProduct] = useState<ProductItem | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const catTarget = params.get("cat");
-    if (catTarget) {
-      if (["gynecology", "general", "hormonal", "api", "nutra", "vet"].includes(catTarget)) {
-        setSelectedCategory(catTarget);
+    const divTarget = params.get("div") || params.get("cat");
+    if (divTarget) {
+      if (["General", "Hormones", "Nutraceuticals", "Softgel"].includes(divTarget)) {
+        setSelectedDivision(divTarget);
       }
-      router.replace("/products");
     }
-
-    const handleCategoryChange = (e: Event) => {
-      const cat = (e as CustomEvent).detail;
-      if (["gynecology", "general", "hormonal", "api", "nutra", "vet"].includes(cat)) {
-        setSelectedCategory(cat);
-      }
-    };
-
-    window.addEventListener("changeCategory", handleCategoryChange);
-    return () => {
-      window.removeEventListener("changeCategory", handleCategoryChange);
-    };
   }, []);
 
-  // Filtered and searched products list
   const filteredProducts = useMemo(() => {
-    return products.filter((p) => {
-      const matchesCategory = selectedCategory === "all" || p.category === selectedCategory;
-      const matchesSearch =
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.composition.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.indication.toLowerCase().includes(searchQuery.toLowerCase());
-
-      return matchesCategory && matchesSearch;
-    });
-  }, [selectedCategory, searchQuery]);
+    return PRODUCTS.filter((product) => {
+      // Division Filter
+      if (selectedDivision !== "all" && product.division !== selectedDivision) {
+        return false;
+      }
+      // Dosage Form Filter
+      if (selectedForm !== "All" && product.dosageForm !== selectedForm) {
+        return false;
+      }
+      // Therapeutic Category Filter
+      if (selectedCategory !== "All" && product.category !== selectedCategory) {
+        return false;
+      }
+      // Search Query Filter
+      if (searchQuery.trim() !== "") {
+        const query = searchQuery.toLowerCase();
+        const matchName = product.name.toLowerCase().includes(query);
+        const matchComp = product.composition.toLowerCase().includes(query);
+        const matchCat = product.category.toLowerCase().includes(query);
+        const matchStrengths = product.availableStrengths.some(s => s.toLowerCase().includes(query));
+        return matchName || matchComp || matchCat || matchStrengths;
+      }
+      return true;
+    }).sort((a, b) => a.name.localeCompare(b.name));
+  }, [selectedDivision, selectedForm, selectedCategory, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased overflow-x-hidden">
       <Navbar />
 
-      {/* Hero Banner */}
-      <section className="relative py-20 bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "32px 32px" }} />
-        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-secondary/20 rounded-full translate-x-1/3 -translate-y-1/3 blur-[90px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 rounded-full -translate-x-1/4 translate-y-1/4 blur-[100px]" />
+      {/* Hero Header */}
+      <section className="relative bg-[#101b3b] pt-44 pb-24 overflow-hidden border-b border-slate-800">
+        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
+        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
+        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-accent/20 rounded-full blur-[120px]" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white/90 text-xs font-bold uppercase tracking-widest mb-6 border border-white/10">
-            <span className="material-icons text-sm">inventory_2</span>
-            Fortschritt Portfolio
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 text-sky-300 text-xs font-bold uppercase tracking-widest mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative rounded-full h-2 w-2 bg-sky-400"></span>
+            </span>
+            WHO-GMP Approved Product Portfolio (IP / BP / USP)
+          </motion.div>
+
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8 tracking-tight">
+            Precision Formulations for <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-200 to-indigo-100">
+              Global Healthcare Demand
+            </span>
+          </motion.h1>
+
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-slate-300 text-base md:text-xl max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
+            Explore 200+ WHO-GMP compliant formulations spanning General Medicines, Hormones &amp; Endocrinology, Nutraceuticals, Sachets, Protein Powders, and Softgel Capsules.
+          </motion.p>
+
+          {/* Integrated Hero Search Bar */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
+            className="max-w-3xl mx-auto bg-white/10 backdrop-blur-xl border border-white/20 p-2.5 rounded-3xl shadow-2xl mb-10 flex flex-col sm:flex-row items-center gap-2">
+            <div className="relative flex-1 w-full flex items-center">
+              <span className="material-icons absolute left-4 text-slate-300 text-xl">search</span>
+              <input
+                type="text"
+                placeholder="Search active ingredient or molecule (e.g., Progesterone, Telmisartan, Pregabalin)..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-10 py-3.5 bg-white/90 rounded-2xl text-slate-900 placeholder:text-slate-500 text-sm font-semibold outline-none focus:bg-white transition-all shadow-inner"
+              />
+              {searchQuery && (
+                <button onClick={() => setSearchQuery("")} className="absolute right-4 text-slate-400 hover:text-slate-600 font-bold">
+                  ✕
+                </button>
+              )}
+            </div>
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <select
+                value={selectedDivision}
+                onChange={(e) => setSelectedDivision(e.target.value)}
+                className="px-4 py-3.5 bg-slate-900/80 text-white rounded-2xl text-xs font-bold border border-slate-700 outline-none cursor-pointer w-full sm:w-auto"
+              >
+                <option value="all">Division: All</option>
+                <option value="General">General Pharma</option>
+                <option value="Hormones">Hormones</option>
+                <option value="Nutraceuticals">Nutraceuticals</option>
+                <option value="Softgel">Softgel</option>
+              </select>
+            </div>
+          </motion.div>
+
+          {/* Quick PDF Downloads Bar */}
+          <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-white/80">
+            <span className="font-bold text-white uppercase tracking-wider text-[11px] mr-2">PDF Catalogs:</span>
+            <a href="/data_to_add/FORTSCHRITT%20GENERAL.pdf" download target="_blank" rel="noopener noreferrer"
+              className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 hover:bg-white hover:text-primary transition-all font-semibold flex items-center gap-1.5">
+              <span className="material-icons text-sm text-sky-400">download</span>
+              <span>General Pharma</span>
+            </a>
+            <a href="/data_to_add/FORTSCHRITT%20HORMONES.pdf" download target="_blank" rel="noopener noreferrer"
+              className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 hover:bg-white hover:text-primary transition-all font-semibold flex items-center gap-1.5">
+              <span className="material-icons text-sm text-purple-400">download</span>
+              <span>Hormones &amp; Endocrine</span>
+            </a>
+            <a href="/data_to_add/FORTSCHRITT%20FOOD%20%2B%20SACHET%20%2B%20POTEIN%20POWDER.pdf" download target="_blank" rel="noopener noreferrer"
+              className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 hover:bg-white hover:text-primary transition-all font-semibold flex items-center gap-1.5">
+              <span className="material-icons text-sm text-emerald-400">download</span>
+              <span>Food &amp; Sachets</span>
+            </a>
+            <a href="/data_to_add/Product%20List-Softgel.pdf" download target="_blank" rel="noopener noreferrer"
+              className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 hover:bg-white hover:text-primary transition-all font-semibold flex items-center gap-1.5">
+              <span className="material-icons text-sm text-amber-400">download</span>
+              <span>Softgel Capsules</span>
+            </a>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
-            Our Healthcare Formulations
-          </h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Explore our state-of-the-art formulations across major therapeutic ranges, manufactured to meet stringent quality standards and regulatory compliance.
-          </p>
         </div>
       </section>
 
-      {/* Search & Filter Control Center */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
-        <div className="bg-white rounded-[2rem] shadow-xl shadow-primary/5 p-6 border border-slate-100/60">
-          <div className="flex flex-col gap-6">
+      {/* Catalog Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Division Selector Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+          {divisionTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setSelectedDivision(tab.id)}
+              className={`flex items-center gap-2.5 px-6 py-3.5 rounded-2xl text-sm font-extrabold transition-all duration-300 ${
+                selectedDivision === tab.id
+                  ? "bg-primary text-white shadow-xl shadow-primary/20 scale-105 border border-primary/20"
+                  : "bg-white text-slate-600 border border-slate-200/80 hover:border-primary/40 hover:text-primary shadow-sm"
+              }`}
+            >
+              <span className="material-icons text-lg">{tab.icon}</span>
+              <span>{tab.label}</span>
+              <span className={`px-2.5 py-0.5 rounded-full text-xs font-black ${
+                selectedDivision === tab.id ? "bg-white/25 text-white" : "bg-slate-100 text-slate-700"
+              }`}>
+                {tab.count}
+              </span>
+            </button>
+          ))}
+        </div>
 
-            {/* Search and Filter Row */}
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-              {/* Search input */}
-              <div className="relative w-full">
-                <span className="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                <input
-                  type="text"
-                  placeholder="Search by brand name, composition, or therapeutic indication..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-6 py-4 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary font-medium transition-all"
-                />
-              </div>
-            </div>
+        {/* Sub-Filters: Dosage Form & Therapeutic Area */}
+        <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Dosage Form Selector */}
+          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2">Dosage Form:</span>
+            {dosageForms.map((form) => (
+              <button
+                key={form}
+                onClick={() => setSelectedForm(form)}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                  selectedForm === form
+                    ? "bg-secondary text-white shadow-md shadow-secondary/20"
+                    : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-primary"
+                }`}
+              >
+                {form}
+              </button>
+            ))}
+          </div>
 
-            {/* Category tabs */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-none">
-              {categories.map((cat) => {
-                const isActive = selectedCategory === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    className={`flex items-center gap-2 px-5 py-3 rounded-full text-xs font-bold whitespace-nowrap transition-all ${isActive
-                        ? "bg-primary text-white shadow-lg shadow-primary/20"
-                        : "bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-primary"
-                      }`}
-                  >
-                    <span className="material-icons text-base">{cat.icon}</span>
-                    {cat.label}
-                  </button>
-                );
-              })}
-            </div>
-
+          {/* Therapeutic Category Selector */}
+          <div className="w-full md:w-auto flex items-center gap-3">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex-shrink-0">Therapy:</span>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none focus:border-primary cursor-pointer w-full md:w-auto"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
           </div>
         </div>
-      </section>
 
-      {/* Product Grid Showcase */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Active Results Header */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-slate-200/60">
+          <div>
+            <h3 className="text-2xl font-black text-primary">
+              Formulations ({filteredProducts.length})
+            </h3>
+            <p className="text-slate-500 text-xs font-medium mt-1">
+              WHO-GMP certified pharmaceutical formulations matching active parameters
+            </p>
+          </div>
+
+          {(selectedDivision !== "all" || selectedForm !== "All" || selectedCategory !== "All" || searchQuery !== "") && (
+            <button
+              onClick={() => {
+                setSelectedDivision("all");
+                setSelectedForm("All");
+                setSelectedCategory("All");
+                setSearchQuery("");
+              }}
+              className="text-xs font-bold text-secondary hover:underline flex items-center gap-1.5 px-4 py-2 rounded-xl bg-sky-50 border border-sky-100"
+            >
+              <span className="material-icons text-sm">restart_alt</span> Reset All Filters
+            </button>
+          )}
+        </div>
+
+        {/* Products Grid */}
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
-              {filteredProducts.map((product) => (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  key={product.id}
-                  className="bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:border-primary/10 transition-all duration-300 flex flex-col justify-between group overflow-hidden"
-                >
-                  {/* Category Pill header */}
-                  <div className="p-8 pb-4">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${product.category === "gynecology" ? "bg-pink-50 text-pink-600" :
-                          product.category === "general" ? "bg-sky-50 text-sky-600" :
-                            product.category === "hormonal" ? "bg-emerald-50 text-emerald-600" :
-                              product.category === "api" ? "bg-purple-50 text-purple-600" :
-                                product.category === "nutra" ? "bg-amber-50 text-amber-600" :
-                                  "bg-teal-50 text-teal-600"
-                        }`}>
-                        {product.categoryLabel}
-                      </span>
-                      <span className="text-[11px] text-slate-400 font-semibold flex items-center gap-1">
-                        <span className="material-icons text-xs">verified</span>
-                        {product.standards.split(",")[0]}
-                      </span>
-                    </div>
+            {filteredProducts.map((product) => (
+              <motion.div
+                key={product.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                whileHover={{ y: -8, boxShadow: "0 25px 50px -12px rgba(30,58,138,0.12)" }}
+                transition={{ duration: 0.3 }}
+                className="bg-white rounded-[2rem] p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between group relative overflow-hidden"
+              >
+                {/* Top Colored Division Accent Line */}
+                <div className={`absolute top-0 left-0 right-0 h-1.5 ${
+                  product.division === 'General' ? 'bg-blue-600' :
+                  product.division === 'Hormones' ? 'bg-purple-600' :
+                  product.division === 'Nutraceuticals' ? 'bg-emerald-600' : 'bg-amber-500'
+                }`} />
 
-                    <h3 className="text-2xl font-extrabold text-primary mb-2 group-hover:text-primary-accent transition-colors">
-                      {product.name}
-                    </h3>
+                <div>
+                  {/* Top Badges */}
+                  <div className="flex items-center justify-between gap-2 mb-4 pt-1">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                      {product.division}
+                    </span>
 
-                    <p className="text-[13px] text-slate-400 font-bold uppercase tracking-wider mb-4">
-                      Composition
-                    </p>
-                    <p className="text-slate-600 text-sm font-semibold leading-relaxed mb-6 bg-slate-50 p-3.5 rounded-xl border border-slate-100/50">
-                      {product.composition}
-                    </p>
-
-                    <div className="space-y-2 text-xs font-semibold text-slate-500">
-                      <div className="flex items-center gap-2">
-                        <span className="material-icons text-slate-400 text-sm">scale</span>
-                        <span>Strength: {product.strength}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="material-icons text-slate-400 text-sm">inventory_2</span>
-                        <span>Packing: {product.packaging}</span>
-                      </div>
-                    </div>
+                    <span className={`text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full ${
+                      product.regulatoryType === 'DRUG' ? 'bg-blue-50 text-blue-700 border border-blue-100' : 'bg-emerald-50 text-emerald-700 border border-emerald-100'
+                    }`}>
+                      {product.regulatoryType} {product.phRef ? `(${product.phRef})` : ''}
+                    </span>
                   </div>
 
-                  {/* Actions footer */}
-                  <div className="p-8 pt-0 border-t border-slate-50 mt-6 flex items-center gap-3">
-                    <button
-                      onClick={() => setActiveModalProduct(product)}
-                      className="flex-1 py-3 bg-slate-50 hover:bg-slate-100 text-primary font-bold text-xs rounded-xl transition-all"
-                    >
-                      View Details
-                    </button>
-                    <a
-                      href={`mailto:fortschritthealthcare@gmail.com?subject=Enquiry for ${product.name} (${product.composition})`}
-                      className="flex-1 py-3 bg-primary text-white hover:bg-primary-accent text-center font-bold text-xs rounded-xl transition-all shadow-md shadow-primary/10"
-                    >
-                      Enquire Now
-                    </a>
+                  {/* Title */}
+                  <h3 className="text-xl font-extrabold text-primary mb-2 group-hover:text-secondary transition-colors leading-snug">
+                    {product.name}
+                  </h3>
+
+                  {/* Therapy Tag */}
+                  <div className="text-[11px] font-bold text-slate-400 mb-5 flex items-center gap-1">
+                    <span className="material-icons text-sm text-secondary">label_important</span>
+                    {product.category}
                   </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+
+                  {/* Composition Block */}
+                  <div className="bg-slate-50/80 rounded-2xl p-3.5 mb-5 border border-slate-100 min-h-[105px] flex flex-col justify-start">
+                    <div className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-2">Active Formulation</div>
+                    {product.ingredients && product.ingredients.length > 0 ? (
+                      <ul className="space-y-1.5">
+                        {product.ingredients.slice(0, 3).map((ing, idx) => (
+                          <li key={idx} className="flex items-center gap-2 text-xs text-slate-700 font-semibold truncate">
+                            <span className="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0" />
+                            <span className="truncate">{ing}</span>
+                          </li>
+                        ))}
+                        {product.ingredients.length > 3 && (
+                          <li className="text-[10px] font-extrabold text-secondary tracking-wide pt-0.5">
+                            + {product.ingredients.length - 3} more active ingredients
+                          </li>
+                        )}
+                      </ul>
+                    ) : (
+                      <p className="text-xs text-slate-700 font-semibold leading-relaxed line-clamp-3">
+                        {product.composition}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Strengths Badges */}
+                  {product.availableStrengths.length > 0 && (
+                    <div className="mb-5">
+                      <div className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-2">Available Dosages</div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {product.availableStrengths.map((st, idx) => (
+                          <span key={idx} className="text-[11px] font-extrabold bg-primary/5 text-primary px-3 py-1 rounded-lg border border-primary/10">
+                            {st}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Card Action Footer */}
+                <div className="pt-5 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-bold text-slate-400">{product.dosageForm}</span>
+                  <button
+                    onClick={() => setActiveModalProduct(product)}
+                    className="px-5 py-2.5 bg-primary text-white font-bold text-xs rounded-xl hover:bg-secondary transition-colors flex items-center gap-1.5 shadow-md shadow-primary/10"
+                  >
+                    Enquire Now
+                    <span className="material-icons text-sm">arrow_forward</span>
+                  </button>
+                </div>
+              </motion.div>
+            ))}
           </div>
         ) : (
-          <div className="py-24 text-center bg-white rounded-[2rem] border border-slate-200 border-dashed max-w-xl mx-auto shadow-sm">
-            <span className="material-icons text-5xl text-slate-300 mb-4 font-light">search_off</span>
-            <h3 className="text-xl font-bold text-slate-600 mb-2">No formulations found</h3>
-            <p className="text-slate-400 font-medium px-6">We couldn't find any products matching your search or filter combination. Please try refining your criteria.</p>
+          <div className="py-24 text-center bg-white rounded-[2rem] border border-slate-200 border-dashed">
+            <span className="material-icons text-6xl text-slate-300 mb-4">search_off</span>
+            <h3 className="text-2xl font-bold text-slate-700 mb-2">No matching formulations found</h3>
+            <p className="text-slate-400 text-sm max-w-md mx-auto mb-6">
+              No product matched your selected filter parameters. Reset filters to view all WHO-GMP approved products.
+            </p>
+            <button
+              onClick={() => {
+                setSelectedDivision("all");
+                setSelectedForm("All");
+                setSelectedCategory("All");
+                setSearchQuery("");
+              }}
+              className="px-6 py-3 bg-primary text-white font-bold rounded-xl text-xs hover:bg-secondary transition-all"
+            >
+              Reset Filters
+            </button>
           </div>
         )}
-      </section>
+      </main>
 
-      {/* Interactive Details Modal */}
+      {/* Interactive Detail & Order Enquiry Modal */}
       <AnimatePresence>
         {activeModalProduct && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setActiveModalProduct(null)}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+              className="fixed inset-0 bg-slate-950/70 backdrop-blur-md"
             />
 
-            {/* Modal Box */}
+            {/* Modal Drawer */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              className="bg-white rounded-[2.5rem] shadow-2xl relative max-w-2xl w-full z-10 overflow-hidden border border-slate-100 flex flex-col max-h-[90vh]"
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative bg-white rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl max-w-2xl w-full p-6 sm:p-8 z-10 border border-slate-100 max-h-[90vh] sm:max-h-[85vh] flex flex-col my-auto"
             >
-              {/* Top Accent Gradient */}
-              <div className={`h-2 w-full ${activeModalProduct.category === "gynecology" ? "bg-pink-500" :
-                  activeModalProduct.category === "general" ? "bg-sky-500" :
-                    activeModalProduct.category === "hormonal" ? "bg-emerald-500" :
-                      activeModalProduct.category === "api" ? "bg-purple-500" :
-                        activeModalProduct.category === "nutra" ? "bg-amber-500" :
-                          "bg-teal-500"
-                }`} />
+              {/* Header (Fixed at top) */}
+              <div className="flex-shrink-0 relative pr-10 mb-4">
+                <button
+                  onClick={() => setActiveModalProduct(null)}
+                  className="absolute top-0 right-0 w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors font-bold z-20"
+                >
+                  ✕
+                </button>
 
-              {/* Close Button */}
-              <button
-                onClick={() => setActiveModalProduct(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors"
-              >
-                <span className="material-icons text-xl">close</span>
-              </button>
-
-              <div className="p-8 lg:p-10 overflow-y-auto flex-1">
-                {/* Modal Title & Category */}
-                <div className="mb-6">
-                  <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider inline-block mb-3 ${activeModalProduct.category === "gynecology" ? "bg-pink-50 text-pink-600" :
-                      activeModalProduct.category === "general" ? "bg-sky-50 text-sky-600" :
-                        activeModalProduct.category === "hormonal" ? "bg-emerald-50 text-emerald-600" :
-                          activeModalProduct.category === "api" ? "bg-purple-50 text-purple-600" :
-                            activeModalProduct.category === "nutra" ? "bg-amber-50 text-amber-600" :
-                              "bg-teal-50 text-teal-600"
-                    }`}>
-                    {activeModalProduct.categoryLabel}
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider bg-primary/10 text-primary px-3 py-1 rounded-full">
+                    {activeModalProduct.division} Division
                   </span>
-                  <h2 className="text-3xl font-extrabold text-primary leading-tight">
-                    {activeModalProduct.name}
-                  </h2>
+                  <span className="text-[11px] font-bold bg-slate-100 text-slate-700 px-3 py-1 rounded-full">
+                    {activeModalProduct.regulatoryType} {activeModalProduct.phRef ? `(${activeModalProduct.phRef})` : ''}
+                  </span>
                 </div>
 
-                <div className="space-y-6">
-                  {/* Active Composition details */}
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Active Composition</h4>
-                    <p className="text-slate-700 bg-slate-50 p-4 rounded-2xl border border-slate-100 font-semibold text-base leading-relaxed">
-                      {activeModalProduct.composition}
-                    </p>
-                  </div>
-
-                  {/* Specification Table */}
-                  <div className="grid grid-cols-2 gap-4 border-y border-slate-100 py-6">
-                    <div>
-                      <h5 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Dosage/Strength</h5>
-                      <p className="text-slate-800 font-bold text-sm">{activeModalProduct.strength}</p>
-                    </div>
-                    <div>
-                      <h5 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Packaging Info</h5>
-                      <p className="text-slate-800 font-bold text-sm">{activeModalProduct.packaging}</p>
-                    </div>
-                    <div>
-                      <h5 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">Quality Standards</h5>
-                      <p className="text-slate-800 font-bold text-sm">{activeModalProduct.standards}</p>
-                    </div>
-                  </div>
-
-                  {/* Indication details */}
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Therapeutic Indications</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed font-medium">
-                      {activeModalProduct.indication}
-                    </p>
-                  </div>
-
-                  {/* Product details description */}
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Technical Description & Quality notes</h4>
-                    <p className="text-slate-500 text-sm leading-relaxed font-medium">
-                      {activeModalProduct.details}
-                    </p>
-                  </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-primary mb-2 leading-tight">
+                  {activeModalProduct.name}
+                </h2>
+                <div className="text-xs font-bold text-slate-400 flex items-center gap-1.5 flex-wrap">
+                  <span className="material-icons text-base text-secondary">category</span>
+                  <span>{activeModalProduct.category}</span>
+                  <span>•</span>
+                  <span>Form: {activeModalProduct.dosageForm}</span>
                 </div>
               </div>
 
-              {/* Modal footer CTA */}
-              <div className="p-8 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-4">
-                <button
-                  onClick={() => setActiveModalProduct(null)}
-                  className="px-6 py-4 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold text-sm rounded-xl transition-all"
-                >
-                  Close
-                </button>
-                <a
-                  href={`mailto:fortschritthealthcare@gmail.com?subject=Enquiry for ${activeModalProduct.name} (${activeModalProduct.composition})`}
-                  className="px-8 py-4 bg-primary hover:bg-primary-accent text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center gap-2"
-                >
-                  <span className="material-icons text-sm">mail_outline</span>
-                  Send Enquiry
-                </a>
+              {/* Scrollable Body Content */}
+              <div className="flex-1 overflow-y-auto min-h-0 pr-1.5 space-y-4 my-2">
+                <div className="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80">
+                  <h4 className="text-[11px] font-extrabold uppercase text-primary tracking-wider mb-3 flex items-center gap-1.5">
+                    <span className="material-icons text-sm text-secondary">science</span>
+                    Key Active Ingredients &amp; Formulation
+                  </h4>
+                  {activeModalProduct.ingredients && activeModalProduct.ingredients.length > 0 ? (
+                    <ul className="space-y-2.5">
+                      {activeModalProduct.ingredients.map((ing, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-800 font-semibold bg-white p-2.5 rounded-xl border border-slate-100 shadow-xs">
+                          <span className="material-icons text-emerald-500 text-sm mt-0.5 flex-shrink-0">check_circle</span>
+                          <span className="leading-snug break-words">{ing}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-xs sm:text-sm text-slate-800 font-semibold leading-relaxed break-words">
+                      {activeModalProduct.composition}
+                    </p>
+                  )}
+                </div>
+
+                {activeModalProduct.availableStrengths.length > 0 && (
+                  <div className="bg-sky-50/60 p-4 sm:p-5 rounded-2xl border border-sky-100">
+                    <h4 className="text-[11px] font-bold uppercase text-secondary tracking-wider mb-2">Available Dosage Strengths</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {activeModalProduct.availableStrengths.map((st, i) => (
+                        <span key={i} className="text-xs font-extrabold bg-white text-primary px-3.5 py-1.5 rounded-xl border border-sky-200 shadow-sm">
+                          {st}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="text-xs text-slate-500 font-medium leading-relaxed bg-slate-50 p-4 rounded-xl">
+                  <strong>Quality Assurance:</strong> Manufactured under WHO-GMP certified facilities with complete analytical COA support and stability compliance.
+                </div>
+              </div>
+
+              {/* Footer Action Buttons (Fixed at bottom) */}
+              <div className="flex-shrink-0 pt-4 mt-2 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 bg-white">
+                <div className="text-[11px] text-slate-400 font-semibold truncate max-w-full">
+                  Source: <span className="text-slate-600 font-bold">{activeModalProduct.sourcePdf}</span>
+                </div>
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <a
+                    href={`https://wa.me/918352810339?text=${encodeURIComponent(`Hello Fortschritt Healthcare, I am inquiring about product: ${activeModalProduct.name} (${activeModalProduct.dosageForm}). Please provide manufacturing & commercial terms.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-none px-5 py-3 bg-[#25D366] text-white font-bold rounded-2xl text-xs hover:bg-[#1db954] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-green-500/20"
+                  >
+                    <span className="material-icons text-sm">chat</span> WhatsApp Sales
+                  </a>
+                  <a
+                    href={`mailto:fortschritthealthcareltdsales@gmail.com?subject=Product Inquiry: ${encodeURIComponent(activeModalProduct.name)}`}
+                    className="flex-1 sm:flex-none px-5 py-3 bg-primary text-white font-bold rounded-2xl text-xs hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
+                  >
+                    <span className="material-icons text-sm">mail</span> Email Inquiry
+                  </a>
+                </div>
               </div>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
-
-      {/* Manufacturing Services */}
-      <section className="py-24 bg-white border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-widest mb-4">
-              What We Offer
-            </div>
-            <h2 className="text-4xl font-extrabold text-primary mb-6 leading-tight">
-              Manufacturing Services
-            </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "Third-Party Manufacturing", desc: "Customized pharmaceutical manufacturing solutions for your brand.", icon: "business" },
-              { title: "Contract Manufacturing", desc: "Production according to your exact specifications and requirements.", icon: "assignment" },
-              { title: "Bulk Manufacturing", desc: "Large-scale pharmaceutical production with consistent quality.", icon: "widgets" },
-              { title: "Private Label", desc: "Customized branding and packaging support for your products.", icon: "local_offer" },
-            ].map((service) => (
-              <div
-                key={service.title}
-                className="bg-slate-50 hover:bg-white rounded-[24px] p-8 border border-slate-100/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col hover:-translate-y-1"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center text-white mb-6">
-                  <span className="material-icons text-2xl">{service.icon}</span>
-                </div>
-                <h3 className="text-lg font-bold text-primary mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-slate-500 text-sm leading-relaxed font-medium">
-                  {service.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Order Process */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-4 leading-tight">
-              Our Order Process
-            </h2>
-          </div>
-
-          <div className="relative">
-            {/* Process connector line (desktop only) */}
-            <div className="hidden lg:block absolute top-[28px] left-[8%] right-[8%] h-[2px] bg-slate-200 z-0" />
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 relative z-10">
-              {[
-                { step: 1, title: "Requirement Discussion", active: false },
-                { step: 2, title: "Product Finalization", active: false },
-                { step: 3, title: "Manufacturing", active: false },
-                { step: 4, title: "Quality Testing", active: false },
-                { step: 5, title: "Packaging", active: false },
-                { step: 6, title: "Delivery", active: true },
-              ].map((item) => (
-                <div key={item.step} className="flex flex-col items-center text-center group">
-                  <div className={`w-[56px] h-[56px] rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 shadow-md ${item.active
-                      ? "bg-emerald-600 text-white ring-4 ring-emerald-100"
-                      : "bg-primary text-white group-hover:scale-105"
-                    }`}>
-                    {item.step}
-                  </div>
-                  <h4 className="mt-4 text-[13px] sm:text-[14px] font-extrabold text-primary px-2 leading-snug">
-                    {item.title}
-                  </h4>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Full Catalog Enquiry Banner */}
-      <section className="py-20 bg-primary">
-        <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">Need our Full Regulatory Catalog?</h2>
-          <p className="text-white/70 mb-8 max-w-2xl mx-auto font-medium">
-            Contact our business development department to request specific dossiers, COAs, and stability studies for our formulations.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4.5 bg-white text-primary font-bold rounded-xl hover:bg-slate-50 transition-colors shadow-lg shadow-black/15">
-              Contact Business Team
-              <span className="material-icons">arrow_forward</span>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       <Footer />
     </div>

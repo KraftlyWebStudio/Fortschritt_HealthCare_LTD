@@ -89,25 +89,25 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#fdfdfe] overflow-x-hidden">
       <Navbar />
 
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-primary">
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "40px 40px" }} />
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
+      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden bg-[#101b3b] border-b border-slate-800">
+        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
+        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
+        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-accent/20 rounded-full blur-[120px]" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-48 pb-36">
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest mb-8">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute h-full w-full rounded-full bg-white opacity-60"></span>
-              <span className="relative rounded-full h-2 w-2 bg-white"></span>
+              <span className="animate-ping absolute h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative rounded-full h-2 w-2 bg-sky-400"></span>
             </span>
-            We Respond Within 3 Working Days
+            We Respond Within 24 Hours
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease }}
             className="text-5xl md:text-7xl font-extrabold text-white leading-[1.05] mb-8">
             Let&apos;s Build Something<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-200 to-indigo-100">
               Great Together
             </span>
           </motion.h1>
@@ -118,15 +118,16 @@ export default function ContactPage() {
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.38 }}
-            className="flex flex-col sm:flex-row justify-center gap-5">
+            className="flex flex-wrap justify-center gap-4 sm:gap-5">
             {[
-              { href: VIKAS.phone, icon: "call", label: "Call Vikas", bg: "bg-white", text: "text-primary", shadow: "shadow-white/20" },
-              { href: VIKAS.whatsapp, icon: "chat", label: "WhatsApp Vikas", bg: "bg-[#25D366]", text: "text-white", shadow: "shadow-green-400/30" },
+              { href: VIKAS.phone, icon: "call", label: "Call", bg: "bg-white", text: "text-primary", shadow: "shadow-white/20" },
+              { href: VIKAS.whatsapp, icon: "chat", label: "WhatsApp", bg: "bg-[#25D366]", text: "text-white", shadow: "shadow-green-400/30" },
+              { href: LANDLINE, icon: "phone_in_talk", label: "Landline", bg: "bg-white/10 border border-white/25", text: "text-white", shadow: "" },
               { href: PRIMARY_EMAIL, icon: "mail", label: "Email Us", bg: "bg-white/10 border border-white/25", text: "text-white", shadow: "" },
             ].map((item) => (
               <motion.a key={item.label} href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined}
                 whileHover={{ scale: 1.06, y: -4 }} whileTap={{ scale: 0.97 }}
-                className={`${item.bg} ${item.text} px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-2xl ${item.shadow} transition-all`}>
+                className={`${item.bg} ${item.text} px-8 py-4 sm:px-10 sm:py-5 rounded-2xl font-bold text-base sm:text-lg flex items-center justify-center gap-3 shadow-2xl ${item.shadow} transition-all`}>
                 <span className="material-icons">{item.icon}</span>
                 {item.label}
               </motion.a>
@@ -423,12 +424,12 @@ export default function ContactPage() {
                 <motion.a href={VIKAS.phone} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
                   className="flex items-center gap-3 px-8 py-4 bg-white text-primary font-bold rounded-2xl text-sm shadow-xl hover:bg-slate-50 transition-colors">
                   <span className="material-icons">call</span>
-                  Call Vikas
+                  Call
                 </motion.a>
                 <motion.a href={VIKAS.whatsapp} target="_blank" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
                   className="flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white font-bold rounded-2xl text-sm shadow-xl hover:bg-[#1db954] transition-colors">
                   <span className="material-icons">chat</span>
-                  WhatsApp Vikas
+                  WhatsApp
                 </motion.a>
               </div>
             </div>
@@ -439,7 +440,7 @@ export default function ContactPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <Section className="grid sm:grid-cols-3 gap-6">
           {[
-            { icon: "timer", title: "3-Day Response", desc: "We guarantee a response to every enquiry within 3 working days." },
+            { icon: "timer", title: "24-Hour Response", desc: "We guarantee a response to every enquiry within 24 hours." },
             { icon: "support_agent", title: "Dedicated Manager", desc: "Every partner gets a dedicated relationship manager for smooth communication." },
             { icon: "verified", title: "Confidential & Secure", desc: "All your data and business enquiries are kept strictly confidential." },
           ].map((item) => (
