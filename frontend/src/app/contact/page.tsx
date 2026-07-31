@@ -89,14 +89,15 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#fdfdfe] overflow-x-hidden">
       <Navbar />
 
-      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden bg-[#101b3b] border-b border-slate-800">
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-accent/20 rounded-full blur-[120px]" />
+      {/* Hero Section (Full Screen Viewport Layout - Zero White Space at Bottom) */}
+      <section className="relative min-h-screen flex flex-col justify-center bg-[#101b3b] pt-28 pb-16 overflow-hidden border-b border-slate-800">
+        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[140px]" />
+        <div className="absolute -bottom-32 -left-32 w-[600px] h-[600px] bg-primary-accent/20 rounded-full blur-[140px]" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-48 pb-36">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto py-4">
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest mb-8">
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute h-full w-full rounded-full bg-sky-400 opacity-75"></span>
               <span className="relative rounded-full h-2 w-2 bg-sky-400"></span>
@@ -105,7 +106,7 @@ export default function ContactPage() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease }}
-            className="text-5xl md:text-7xl font-extrabold text-white leading-[1.05] mb-8">
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
             Let&apos;s Build Something<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-200 to-indigo-100">
               Great Together
@@ -113,12 +114,12 @@ export default function ContactPage() {
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-white/70 text-xl max-w-2xl mx-auto mb-14 leading-relaxed font-medium">
+            className="text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed font-medium">
             Whether you&apos;re looking for a manufacturing partner, product enquiry, or expert consultation — reach us instantly via your preferred channel.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.38 }}
-            className="flex flex-wrap justify-center gap-4 sm:gap-5">
+            className="flex flex-wrap justify-center gap-3.5 sm:gap-4 mb-8">
             {[
               { href: VIKAS.phone, icon: "call", label: "Call", bg: "bg-white", text: "text-primary", shadow: "shadow-white/20" },
               { href: VIKAS.whatsapp, icon: "chat", label: "WhatsApp", bg: "bg-[#25D366]", text: "text-white", shadow: "shadow-green-400/30" },
@@ -126,13 +127,19 @@ export default function ContactPage() {
               { href: PRIMARY_EMAIL, icon: "mail", label: "Email Us", bg: "bg-white/10 border border-white/25", text: "text-white", shadow: "" },
             ].map((item) => (
               <motion.a key={item.label} href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined}
-                whileHover={{ scale: 1.06, y: -4 }} whileTap={{ scale: 0.97 }}
-                className={`${item.bg} ${item.text} px-8 py-4 sm:px-10 sm:py-5 rounded-2xl font-bold text-base sm:text-lg flex items-center justify-center gap-3 shadow-2xl ${item.shadow} transition-all`}>
-                <span className="material-icons">{item.icon}</span>
+                whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}
+                className={`${item.bg} ${item.text} px-6 py-3.5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xl ${item.shadow} transition-all`}>
+                <span className="material-icons text-base">{item.icon}</span>
                 {item.label}
               </motion.a>
             ))}
           </motion.div>
+
+          {/* Quick Location Badge */}
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs sm:text-sm font-semibold backdrop-blur-md">
+            <span className="material-icons text-sky-400 text-base">location_on</span>
+            Manufacturing Plant: Baddi, Distt. Solan, Himachal Pradesh 173205
+          </div>
         </div>
       </section>
 

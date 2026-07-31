@@ -2,7 +2,7 @@ import axios from "axios";
 import { ContactFormData } from "../validators/contact";
 import { env } from "../validators/env";
 
-const API_BASE_URL = env.BACKEND_URL || "http://localhost:5001";
+const API_BASE_URL = env.BACKEND_URL || "http://localhost:5002";
 
 /**
  * Submits the contact form to the backend

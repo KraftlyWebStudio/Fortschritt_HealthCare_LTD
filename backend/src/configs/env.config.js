@@ -1,7 +1,7 @@
 const { z } = require("zod");
 
 const envSchema = z.object({
-  SERVER_PORT: z.string().default("5001"),
+  SERVER_PORT: z.string().default("5002"),
   NODE_ENV: z.enum(["development", "production"]).default("development"),
   FRONTEND_LOCAL_URL: z.string().url(),
   FRONTEND_SERVER_URL: z.string().url(),

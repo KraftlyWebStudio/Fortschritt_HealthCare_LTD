@@ -75,15 +75,15 @@ export default function ProductsPage() {
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased overflow-x-hidden">
       <Navbar />
 
-      {/* Hero Header */}
-      <section className="relative bg-[#101b3b] pt-44 pb-24 overflow-hidden border-b border-slate-800">
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-accent/20 rounded-full blur-[120px]" />
+      {/* Hero Header (Full Screen Viewport Layout - Zero White Space at Bottom) */}
+      <section className="relative min-h-screen flex flex-col justify-center bg-[#101b3b] pt-28 pb-16 overflow-hidden border-b border-slate-800">
+        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[140px]" />
+        <div className="absolute -bottom-32 -left-32 w-[600px] h-[600px] bg-primary-accent/20 rounded-full blur-[140px]" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto py-4">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 text-sky-300 text-xs font-bold uppercase tracking-widest mb-8">
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 border border-white/15 text-sky-300 text-xs font-bold uppercase tracking-widest mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute h-full w-full rounded-full bg-sky-400 opacity-75"></span>
               <span className="relative rounded-full h-2 w-2 bg-sky-400"></span>
@@ -92,50 +92,49 @@ export default function ProductsPage() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8 tracking-tight">
-            Precision Formulations for <br />
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight max-w-5xl mx-auto">
+            Precision Formulations for <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-200 to-indigo-100">
               Global Healthcare Demand
             </span>
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-slate-300 text-base md:text-xl max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
-            Explore 200+ WHO-GMP compliant formulations spanning General Medicines, Hormones &amp; Endocrinology, Nutraceuticals, Sachets, Protein Powders, and Softgel Capsules.
+            className="text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium mb-8">
+            Explore 280+ WHO-GMP compliant formulations spanning General Medicines, Hormones &amp; Endocrinology, Nutraceuticals, Sachets, Protein Powders, and Softgel Capsules.
           </motion.p>
 
-          {/* Integrated Hero Search Bar */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
-            className="max-w-3xl mx-auto bg-white/10 backdrop-blur-xl border border-white/20 p-2.5 rounded-3xl shadow-2xl mb-10 flex flex-col sm:flex-row items-center gap-2">
-            <div className="relative flex-1 w-full flex items-center">
-              <span className="material-icons absolute left-4 text-slate-300 text-xl">search</span>
-              <input
-                type="text"
-                placeholder="Search active ingredient or molecule (e.g., Progesterone, Telmisartan, Pregabalin)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-10 py-3.5 bg-white/90 rounded-2xl text-slate-900 placeholder:text-slate-500 text-sm font-semibold outline-none focus:bg-white transition-all shadow-inner"
-              />
-              {searchQuery && (
-                <button onClick={() => setSearchQuery("")} className="absolute right-4 text-slate-400 hover:text-slate-600 font-bold">
-                  ✕
-                </button>
-              )}
+          {/* Feature Highlights Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 max-w-5xl mx-auto pt-6 border-t border-white/10">
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">verified</span>
+              <div>
+                <div className="text-white text-xs font-bold">280+ Formulations</div>
+                <div className="text-slate-400 text-[11px]">WHO-GMP Certified</div>
+              </div>
             </div>
-            <div className="flex items-center gap-2 w-full sm:w-auto">
-              <select
-                value={selectedDivision}
-                onChange={(e) => setSelectedDivision(e.target.value)}
-                className="px-4 py-3.5 bg-slate-900/80 text-white rounded-2xl text-xs font-bold border border-slate-700 outline-none cursor-pointer w-full sm:w-auto"
-              >
-                <option value="all">Division: All</option>
-                <option value="General">General Pharma</option>
-                <option value="Hormones">Hormones</option>
-                <option value="Nutraceuticals">Nutraceuticals</option>
-                <option value="Softgel">Softgel</option>
-              </select>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">science</span>
+              <div>
+                <div className="text-white text-xs font-bold">4 Key Divisions</div>
+                <div className="text-slate-400 text-[11px]">Pharma &amp; Softgels</div>
+              </div>
             </div>
-          </motion.div>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">public</span>
+              <div>
+                <div className="text-white text-xs font-bold">Global Export</div>
+                <div className="text-slate-400 text-[11px]">50+ Countries</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">security</span>
+              <div>
+                <div className="text-white text-xs font-bold">100% Quality</div>
+                <div className="text-slate-400 text-[11px]">COA &amp; Stability</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -164,38 +163,62 @@ export default function ProductsPage() {
           ))}
         </div>
 
-        {/* Sub-Filters: Dosage Form & Therapeutic Area */}
-        <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Dosage Form Selector */}
-          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2">Dosage Form:</span>
-            {dosageForms.map((form) => (
-              <button
-                key={form}
-                onClick={() => setSelectedForm(form)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                  selectedForm === form
-                    ? "bg-secondary text-white shadow-md shadow-secondary/20"
-                    : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-primary"
-                }`}
+        {/* Sub-Filters: Search Bar + Dosage Form + Therapeutic Area (Location 1) */}
+        <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-md mb-12 flex flex-col gap-6">
+          {/* Main Search Input Bar inside Location 1 */}
+          <div className="relative w-full flex items-center">
+            <span className="material-icons absolute left-4 text-primary text-xl">search</span>
+            <input
+              type="text"
+              placeholder="Search product name, active ingredient or molecule (e.g., Aceclofenac, Progesterone, Telmisartan)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-10 py-4 bg-slate-50 border border-slate-200/90 rounded-2xl text-slate-900 placeholder:text-slate-400 text-sm font-semibold outline-none focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all shadow-inner"
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery("")} 
+                className="absolute right-4 text-slate-400 hover:text-slate-600 font-bold p-1 rounded-full hover:bg-slate-100 transition-colors"
+                title="Clear search"
               >
-                {form}
+                ✕
               </button>
-            ))}
+            )}
           </div>
 
-          {/* Therapeutic Category Selector */}
-          <div className="w-full md:w-auto flex items-center gap-3">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex-shrink-0">Therapy:</span>
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none focus:border-primary cursor-pointer w-full md:w-auto"
-            >
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
+          {/* Sub-Filter Controls: Dosage Form & Therapy */}
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 pt-2 border-t border-slate-100">
+            {/* Dosage Form Selector */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2">Dosage Form:</span>
+              {dosageForms.map((form) => (
+                <button
+                  key={form}
+                  onClick={() => setSelectedForm(form)}
+                  className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                    selectedForm === form
+                      ? "bg-secondary text-white shadow-md shadow-secondary/20 scale-105"
+                      : "bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-primary border border-slate-100"
+                  }`}
+                >
+                  {form}
+                </button>
               ))}
-            </select>
+            </div>
+
+            {/* Therapeutic Category Selector */}
+            <div className="flex items-center gap-3 min-w-[240px]">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex-shrink-0">Therapy:</span>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none focus:border-primary cursor-pointer"
+              >
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
@@ -260,22 +283,26 @@ export default function ProductsPage() {
                     </span>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-extrabold text-primary mb-2 group-hover:text-secondary transition-colors leading-snug">
+                  {/* Title (Max 2 lines, truncated with ...) */}
+                  <h3 
+                    onClick={() => setActiveModalProduct(product)}
+                    className="text-lg font-extrabold text-primary mb-2 group-hover:text-secondary transition-colors leading-snug line-clamp-2 h-[3.25rem] cursor-pointer"
+                    title={product.name}
+                  >
                     {product.name}
                   </h3>
 
                   {/* Therapy Tag */}
-                  <div className="text-[11px] font-bold text-slate-400 mb-5 flex items-center gap-1">
-                    <span className="material-icons text-sm text-secondary">label_important</span>
-                    {product.category}
+                  <div className="text-[11px] font-bold text-slate-400 mb-4 flex items-center gap-1 truncate">
+                    <span className="material-icons text-sm text-secondary flex-shrink-0">label_important</span>
+                    <span className="truncate">{product.category}</span>
                   </div>
 
                   {/* Composition Block */}
-                  <div className="bg-slate-50/80 rounded-2xl p-3.5 mb-5 border border-slate-100 min-h-[105px] flex flex-col justify-start">
+                  <div className="bg-slate-50/80 rounded-2xl p-3.5 mb-4 border border-slate-100 h-[110px] flex flex-col justify-start">
                     <div className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-2">Active Formulation</div>
                     {product.ingredients && product.ingredients.length > 0 ? (
-                      <ul className="space-y-1.5">
+                      <ul className="space-y-1.5 overflow-hidden">
                         {product.ingredients.slice(0, 3).map((ing, idx) => (
                           <li key={idx} className="flex items-center gap-2 text-xs text-slate-700 font-semibold truncate">
                             <span className="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0" />
@@ -296,18 +323,25 @@ export default function ProductsPage() {
                   </div>
 
                   {/* Strengths Badges */}
-                  {product.availableStrengths.length > 0 && (
-                    <div className="mb-5">
-                      <div className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-2">Available Dosages</div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {product.availableStrengths.map((st, idx) => (
-                          <span key={idx} className="text-[11px] font-extrabold bg-primary/5 text-primary px-3 py-1 rounded-lg border border-primary/10">
-                            {st}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <div className="mb-4 h-[52px]">
+                    {product.availableStrengths && product.availableStrengths.length > 0 ? (
+                      <>
+                        <div className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-1.5">Available Dosages</div>
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          {product.availableStrengths.slice(0, 3).map((st, idx) => (
+                            <span key={idx} className="text-[11px] font-extrabold bg-primary/5 text-primary px-2.5 py-0.5 rounded-lg border border-primary/10">
+                              {st}
+                            </span>
+                          ))}
+                          {product.availableStrengths.length > 3 && (
+                            <span className="text-[10px] font-extrabold text-slate-400 self-center">
+                              +{product.availableStrengths.length - 3} more
+                            </span>
+                          )}
+                        </div>
+                      </>
+                    ) : null}
+                  </div>
                 </div>
 
                 {/* Card Action Footer */}
@@ -438,8 +472,8 @@ export default function ProductsPage() {
 
               {/* Footer Action Buttons (Fixed at bottom) */}
               <div className="flex-shrink-0 pt-4 mt-2 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 bg-white">
-                <div className="text-[11px] text-slate-400 font-semibold truncate max-w-full">
-                  Source: <span className="text-slate-600 font-bold">{activeModalProduct.sourcePdf}</span>
+                <div className="text-[11px] text-slate-500 font-semibold flex items-center gap-1.5">
+                  <span className="material-icons text-xs text-primary">verified</span> WHO-GMP Certified Manufacturing
                 </div>
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <a

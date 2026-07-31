@@ -162,18 +162,18 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#fdfdfe] overflow-x-hidden">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-[#101b3b] pb-24 pt-44 border-b border-slate-800">
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-accent/20 rounded-full blur-[120px]" />
+      {/* Hero Section (Full Screen Viewport Layout - Zero White Space at Bottom) */}
+      <section className="relative min-h-screen flex flex-col justify-center bg-[#101b3b] pt-28 pb-16 overflow-hidden border-b border-slate-800">
+        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[140px]" />
+        <div className="absolute -bottom-32 -left-32 w-[600px] h-[600px] bg-primary-accent/20 rounded-full blur-[140px]" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto py-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest mb-6"
           >
             <span className="material-icons text-[14px] text-secondary">info_outline</span>
             Know Our Journey
@@ -183,7 +183,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease }}
-            className="text-4xl md:text-6xl font-extrabold text-white leading-[1.15] mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight"
           >
             About <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-200 to-indigo-100">
@@ -194,11 +194,43 @@ export default function AboutPage() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium mb-8"
           >
             Delivering quality formulations, building trusted B2B relationships, and improving patient outcomes worldwide.
           </motion.p>
+
+          {/* About Highlights Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 max-w-4xl mx-auto pt-6 border-t border-white/10">
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">domain</span>
+              <div>
+                <div className="text-white text-xs font-bold">State-of-Art Facility</div>
+                <div className="text-slate-400 text-[11px]">Baddi, Himachal Pradesh</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">military_tech</span>
+              <div>
+                <div className="text-white text-xs font-bold">WHO-GMP Compliant</div>
+                <div className="text-slate-400 text-[11px]">International Standards</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">groups</span>
+              <div>
+                <div className="text-white text-xs font-bold">100+ Skilled Staff</div>
+                <div className="text-slate-400 text-[11px]">Pharma Experts</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">local_shipping</span>
+              <div>
+                <div className="text-white text-xs font-bold">Pan-India &amp; Global</div>
+                <div className="text-slate-400 text-[11px]">B2B Partner Network</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

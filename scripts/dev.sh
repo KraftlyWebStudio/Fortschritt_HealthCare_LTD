@@ -14,9 +14,9 @@ fi
 echo "🚀 [Dev Master Script] Starting Fortschritt Healthcare dev suite..."
 echo "   Tip: you can also just run 'pnpm run dev' from the project root!"
 
-# 0. Kill any process occupying ports 3000 or 8000
-echo "🧹 [0/3] Freeing ports 3000 and 5001..."
-for PORT in 3000 5001; do
+# 0. Kill any process occupying ports 3001 or 5002
+echo "🧹 [0/3] Freeing ports 3001 and 5002..."
+for PORT in 3001 5002; do
     PIDS=$(lsof -ti:$PORT 2>/dev/null || true)
     if [ -n "$PIDS" ]; then
         echo "  ⚠️  Port $PORT occupied by PID(s): $PIDS — terminating..."
@@ -45,17 +45,17 @@ fi
 # 3. Launch Services
 if [ "$USE_TERMS" = true ]; then
     echo "🖥️  [3/3] Opening services in separate macOS Terminal windows..."
-    # Backend — nodemon on port 8000
+    # Backend — nodemon on port 5002
     osascript -e "tell application \"Terminal\" to do script \"cd '$ROOT_DIR/backend' && pnpm dev\"" >/dev/null
     sleep 1
-    # Frontend — Next.js on port 3000
+    # Frontend — Next.js on port 3001
     osascript -e "tell application \"Terminal\" to do script \"cd '$ROOT_DIR/frontend' && pnpm dev\"" >/dev/null
     echo ""
     echo "✅ Terminals launched!"
-    echo "   Backend  → http://localhost:5001"
-    echo "   Frontend → http://localhost:3000"
+    echo "   Backend  → http://localhost:5002"
+    echo "   Frontend → http://localhost:3001"
 else
-    echo "✨ [3/3] Launching Backend (5001) & Frontend (3000) via concurrently..."
+    echo "✨ [3/3] Launching Backend (5002) & Frontend (3001) via concurrently..."
     cd "$ROOT_DIR"
     if command -v pnpm &> /dev/null; then
         pnpm dlx concurrently \

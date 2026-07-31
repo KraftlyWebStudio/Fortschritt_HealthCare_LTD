@@ -49,21 +49,21 @@ export default function CareersPage() {
     <div className="min-h-screen bg-[#fdfdfe] overflow-x-hidden">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden bg-[#101b3b] pb-32 pt-44 border-b border-slate-800">
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-primary-accent/20 rounded-full blur-[120px]" />
+      {/* Hero Section (Full Screen Viewport Layout - Zero White Space at Bottom) */}
+      <section className="relative min-h-screen flex flex-col justify-center bg-[#101b3b] pt-28 pb-16 overflow-hidden border-b border-slate-800">
+        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(#fff 1.5px, transparent 1.5px)", backgroundSize: "36px 36px" }} />
+        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[140px]" />
+        <div className="absolute -bottom-32 -left-32 w-[600px] h-[600px] bg-primary-accent/20 rounded-full blur-[140px]" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto py-4">
           <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest mb-8">
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest mb-6">
             <span className="material-icons text-[14px] text-secondary">work_outline</span>
             Join Our Team
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease }}
-            className="text-5xl md:text-7xl font-extrabold text-white leading-[1.05] mb-8">
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
             Shape the Future of <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-200 to-indigo-100">
               Global Healthcare
@@ -71,23 +71,48 @@ export default function CareersPage() {
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-white/70 text-xl max-w-2xl mx-auto mb-14 leading-relaxed font-medium">
+            className="text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed font-medium">
             At Fortschritt Healthcare, we believe our greatest asset is our people. Be part of a culture that drives innovation, values precision, and works tirelessly to improve lives worldwide.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.38 }}
-            className="flex flex-col sm:flex-row justify-center gap-5">
+            className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <a href="#positions"
-              className="bg-white text-primary px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-2xl shadow-black/10 hover:scale-105 transition-all">
-              <span className="material-icons">search</span>
+              className="bg-white text-primary px-8 py-3.5 rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-xl hover:scale-105 transition-all">
+              <span className="material-icons text-lg">search</span>
               View Open Positions
             </a>
             <a href="#culture"
-              className="bg-white/10 border border-white/25 text-white px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-white/20 transition-all">
-              <span className="material-icons">favorite_border</span>
+              className="bg-white/10 border border-white/25 text-white px-8 py-3.5 rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 hover:bg-white/20 transition-all">
+              <span className="material-icons text-lg">favorite_border</span>
               Life at Fortschritt
             </a>
           </motion.div>
+
+          {/* Culture Highlights Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-3xl mx-auto pt-6 border-t border-white/10">
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">payments</span>
+              <div>
+                <div className="text-white text-xs font-bold">Competitive Pay</div>
+                <div className="text-slate-400 text-[11px]">Industry Leading Growth</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">health_and_safety</span>
+              <div>
+                <div className="text-white text-xs font-bold">WHO-GMP Facility</div>
+                <div className="text-slate-400 text-[11px]">Baddi, Himachal Pradesh</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-2xl text-left backdrop-blur-md">
+              <span className="material-icons text-sky-400 text-xl">psychology</span>
+              <div>
+                <div className="text-white text-xs font-bold">Continuous Learning</div>
+                <div className="text-slate-400 text-[11px]">Skill Development &amp; Training</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
