@@ -66,12 +66,18 @@ const Partners = () => {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="flex-shrink-0 w-64 mx-10 flex flex-col items-center justify-center text-center"
             >
-              <div className="w-40 h-24 mb-6 flex items-center justify-center">
-                <img 
-                  src={partner.logo} 
-                  alt={`${partner.name} logo`}
-                  className="max-w-full max-h-full object-contain transition-all duration-500 hover:scale-110 mix-blend-multiply"
-                />
+              <div className="w-44 h-20 mb-4 flex items-center justify-center">
+                {partner.logo ? (
+                  <img 
+                    src={partner.logo} 
+                    alt={`${partner.name} logo`}
+                    className="max-w-full max-h-full object-contain mix-blend-multiply opacity-90 hover:opacity-100 hover:scale-110 transition-all duration-300"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center text-primary/60 font-bold text-xs text-center px-3 py-2">
+                    <span className="line-clamp-2">{partner.name}</span>
+                  </div>
+                )}
               </div>
               <p className="text-primary font-bold text-sm mb-1 line-clamp-1">{partner.name}</p>
               <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{partner.type}</p>

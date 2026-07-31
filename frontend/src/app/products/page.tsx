@@ -136,31 +136,6 @@ export default function ProductsPage() {
               </select>
             </div>
           </motion.div>
-
-          {/* Quick PDF Downloads Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-white/80">
-            <span className="font-bold text-white uppercase tracking-wider text-[11px] mr-2">PDF Catalogs:</span>
-            <a href="/data_to_add/FORTSCHRITT%20GENERAL.pdf" download target="_blank" rel="noopener noreferrer"
-              className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 hover:bg-white hover:text-primary transition-all font-semibold flex items-center gap-1.5">
-              <span className="material-icons text-sm text-sky-400">download</span>
-              <span>General Pharma</span>
-            </a>
-            <a href="/data_to_add/FORTSCHRITT%20HORMONES.pdf" download target="_blank" rel="noopener noreferrer"
-              className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 hover:bg-white hover:text-primary transition-all font-semibold flex items-center gap-1.5">
-              <span className="material-icons text-sm text-purple-400">download</span>
-              <span>Hormones &amp; Endocrine</span>
-            </a>
-            <a href="/data_to_add/FORTSCHRITT%20FOOD%20%2B%20SACHET%20%2B%20POTEIN%20POWDER.pdf" download target="_blank" rel="noopener noreferrer"
-              className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 hover:bg-white hover:text-primary transition-all font-semibold flex items-center gap-1.5">
-              <span className="material-icons text-sm text-emerald-400">download</span>
-              <span>Food &amp; Sachets</span>
-            </a>
-            <a href="/data_to_add/Product%20List-Softgel.pdf" download target="_blank" rel="noopener noreferrer"
-              className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 hover:bg-white hover:text-primary transition-all font-semibold flex items-center gap-1.5">
-              <span className="material-icons text-sm text-amber-400">download</span>
-              <span>Softgel Capsules</span>
-            </a>
-          </div>
         </div>
       </section>
 
