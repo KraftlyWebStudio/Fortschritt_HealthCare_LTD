@@ -27,40 +27,16 @@ function Section({ children, className = "", id = "" }: { children: React.ReactN
   );
 }
 
-const jobs = [
-  {
-    id: 1,
-    title: "Senior R&D Scientist",
-    department: "Research & Development",
-    location: "Baddi, HP",
-    type: "Full-Time",
-    posted: "2 days ago",
-  },
-  {
-    id: 2,
-    title: "Quality Control Manager",
-    department: "Quality Assurance",
-    location: "Thane, MH",
-    type: "Full-Time",
-    posted: "1 week ago",
-  },
-  {
-    id: 3,
-    title: "Regulatory Affairs Specialist",
-    department: "Compliance",
-    location: "Remote / Baddi",
-    type: "Full-Time",
-    posted: "2 weeks ago",
-  },
-  {
-    id: 4,
-    title: "Area Sales Manager",
-    department: "Sales & Marketing",
-    location: "Pan India",
-    type: "Full-Time",
-    posted: "Just now",
-  }
-];
+interface Job {
+  id: string;
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  posted: string;
+}
+
+const jobs: Job[] = [];
 
 export default function CareersPage() {
   const [activeDepartment, setActiveDepartment] = useState<string>("All");
